@@ -5,6 +5,7 @@
  */
 package mytunes.DAL;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
@@ -33,43 +34,86 @@ import mytunes.GUI.AddSongController;
  */
 
             
-public class myTunesDAL {
+public class myTunesDAL 
+{
     private ConnectionManager cm = new ConnectionManager();
-
-    public List<AddSongController> getAllSongsByPlaylist(String songName, String Artist, String Album, int Year)
-    {
-        List<AddSongController> allSongs = new ArrayList();
-        
     
-        {
-            AddSongController s = new AddSongController();
-            allSongs.add(s);
-        }
+    public List<myTunes> getAllSongsByPlaylist(String songName, String Artist, String Album, int Year) throws SQLException
+    {
+        List<myTunes> allSongs = new ArrayList();
         
+        try (Connection con = cm.getConnection())
+        {
+            // No good when having userinput, because SQL injection
+            //Statement stmt = con.createStatement();
+            
+            String query 
+                    = "SELECT * FROM bestTunesTable "
+                    + "WHERE Name LIKE ? ";
+            
+            PreparedStatement pstmt
+                    = con.prepareStatement(query);
+            pstmt.setString(1, "%" + songName + "%");
+            
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next())
+            {
+                myTunes m = new myTunes();
+                m.setName(rs.getString("Name"));
+                m.setAlbum(rs.getString("Album"));
+                m.setArtist(rs.getString("Artist"));
+                m.setYear(rs.getInt("Year"));
+                
+                allSongs.add(m);
+            }
+        }
         return allSongs;
     }
     
-    public List<AddSongController> getAllSongs(String songName, String Artist, String Album, int Year)
+    public List<myTunes> getAllSongs()
     {
-        List<AddSongController> allSongs = new ArrayList();
+        List<myTunes> allSongs = new ArrayList();
+        
+        try (Connection con = cm.getConnection())
         {
-            AddSongController s = new AddSongController();
-            allSongs.add(s);
+            PreparedStatement stmt
+                    = con.prepareStatement("SELECT * FROM bestTunes");
+            ResultSet rs = stmt.executeQuery();
             
+            while(rs.next())
+            {
+                myTunes m = new myTunes();
+
+                m.setName(rs.getString("Name"));
+                m.setAlbum(rs.getString("Album"));
+                m.setArtist(rs.getString("Artist"));
+                m.setYear(rs.getInt("Year"));
+                
+                allSongs.add(m);
+            }
+        } 
+        catch (SQLServerException ex) 
+        {
+            Logger.getLogger(myTunesDAL.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        catch (SQLException ex) {         
+            Logger.getLogger(myTunesDAL.class.getName()).log(Level.SEVERE, null, ex);
         }
         return allSongs;
     }
     
     public void remove(myTunes selectedSong)
     {
-        try (Connection con = cm.getConnection()) {
-        String sql = "DELETE FROM Songs WHERE id=?";
-        
-        PreparedStatement pstmt = con.prepareStatement(sql);
-        pstmt.setString(1, selectedSong.getSongName());
-        pstmt.execute();
+        try (Connection con = cm.getConnection()) 
+        {
+            String sql = "DELETE FROM bestTunes WHERE id=?";
+
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, selectedSong.getSongName());
+            pstmt.execute();
         }
-        catch (SQLException ex) {
+        catch (SQLException ex) 
+        {
             Logger.getLogger(myTunesDAL.class.getName()).log(Level.SEVERE, null, ex);
             
         }
@@ -77,39 +121,41 @@ public class myTunesDAL {
     
     public void add (myTunes allSongs) throws SQLException
     {
-                 try (Connection con = cm.getConnection())  {
-
-        String sql 
+        try (Connection con = cm.getConnection())  
+        {
+            String sql 
                 = "INSERT INTO Songs"
-                + "(songName, artist, album, year)"
-                + "VALUES(?, ?, ?, ?)";
-           PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-           
+                    + "(songName, artist, album, year)"
+                    + "VALUES(?, ?, ?, ?)";
+            PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
             pstmt.setString(1, allSongs.getSongName());
             pstmt.setString(2, allSongs.getArtist());
             pstmt.setString(3, allSongs.getAlbum());
             pstmt.setInt(4, allSongs.getYear());
-            
+
             int affected = pstmt.executeUpdate();
             if (affected<1)
-                    throw new SQLException("Song could not be added");
-           
-                 }
-    catch (SQLException ex) {
-        Logger.getLogger(myTunesDAL.class.getName()).log(Level.SEVERE, null, ex);
-    }     
-  }
+                throw new SQLException("Song could not be added");
+        }        
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(myTunesDAL.class.getName()).log(Level.SEVERE, null, ex);
+        }     
+    }
 
-    public List<myTunes> getAllSong() {
-      
+    public List<myTunes> getAllSong() 
+    {
         List<myTunes> allSong
                 = new ArrayList();
 
-        try (Connection con = cm.getConnection()) {
+        try (Connection con = cm.getConnection()) 
+        {
             PreparedStatement stmt
                     = con.prepareStatement("SELECT * FROM Prisoners");
             ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
+            while (rs.next()) 
+            {
                 myTunes s = new myTunes();
                 s.setName(rs.getString("name"));
                 s.setSongName(rs.getString("title"));
@@ -117,13 +163,11 @@ public class myTunesDAL {
                 s.setArtist(rs.getString("artist"));
                 s.setPath((rs.getString("URL")));
                 s.setYear(rs.getInt("year"));
-                
-                
-
                 allSong.add(s);
             }
         }
-        catch (SQLException ex) {
+        catch (SQLException ex) 
+        {
             Logger.getLogger(myTunesDAL.class.getName()).log(
                     Level.SEVERE, null, ex);
         }
