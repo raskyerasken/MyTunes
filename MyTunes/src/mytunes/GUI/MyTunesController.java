@@ -25,7 +25,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-import mytunes.BE.myTunes;
+import mytunes.BE.MyTunes;
 
 
 /**
@@ -43,19 +43,19 @@ public class MyTunesController implements Initializable {
     private TextField textFieldFilter;
     private ObservableList<String> playlist; 
     @FXML
-    private TableColumn<myTunes, String> columName;
+    private TableColumn<MyTunes, String> columName;
     @FXML
-    private TableColumn<myTunes, String> columSongs;
+    private TableColumn<MyTunes, String> columSongs;
     @FXML
-    private TableColumn<myTunes, Integer> colomTime;
+    private TableColumn<MyTunes, Integer> colomTime;
     @FXML
-    private TableColumn<myTunes, String> listSongTitle;
+    private TableColumn<MyTunes, String> listSongTitle;
     @FXML
-    private TableColumn<myTunes,String> listSongArtist;
+    private TableColumn<MyTunes,String> listSongArtist;
     @FXML
-    private TableColumn<myTunes, String> listSongCategory;
+    private TableColumn<MyTunes, String> listSongCategory;
     @FXML
-    private TableColumn<myTunes, Integer> listSongTime;
+    private TableColumn<MyTunes, Integer> listSongTime;
     @FXML
     private ImageView playBtn;
     @FXML
@@ -67,7 +67,7 @@ public class MyTunesController implements Initializable {
     private MediaPlayer player;
     MyTunesModel model= new MyTunesModel();
     @FXML
-    private TableView<myTunes> myTunes;
+    private TableView<MyTunes> myTunes;
 
     
     @Override
@@ -83,7 +83,7 @@ public class MyTunesController implements Initializable {
         listSongTime.setCellValueFactory(
             new PropertyValueFactory("year"));
          
-      myTunes.setItems((ObservableList<myTunes>) model.getAllSong());
+      myTunes.setItems((ObservableList<MyTunes>) model.getAllSong());
     }    
 
     @FXML

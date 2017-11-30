@@ -86,10 +86,10 @@ if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
         }
 	}
 
-    public myTunes getdata() throws UnsupportedTagException, InvalidDataException, IOException, NotSupportedException {
+    public MyTunes getdata() throws UnsupportedTagException, InvalidDataException, IOException, NotSupportedException {
         choseFile();
         int yearr= Integer.parseInt(year);
-        myTunes song = new myTunes();
+        MyTunes song = new MyTunes();
         song.setAlbum(album);
         song.setArtist(artist);
         song.setPath(URLAdressSong);

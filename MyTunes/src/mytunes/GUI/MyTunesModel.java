@@ -15,7 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import javafx.scene.media.Media;
-import mytunes.BE.myTunes;
+import mytunes.BE.MyTunes;
 import mytunes.BLL.BLLManager;
 
 /**
@@ -26,14 +26,20 @@ public class MyTunesModel
 {  
     private BLLManager bllManager = new BLLManager();
 
-     private ObservableList<myTunes> songList
+     private ObservableList<MyTunes> songList
             = FXCollections.observableArrayList();
 
-    List<myTunes> getAllSong() {
+    List<MyTunes> getAllSong() {
         songList.addAll(bllManager.getallSong());
         return songList;
     }
+    public void add (MyTunes mytunes) throws SQLException
+    {   
+        bllManager.add(mytunes);
+        songList.add(mytunes);
+        
     
+    }
     
    
     

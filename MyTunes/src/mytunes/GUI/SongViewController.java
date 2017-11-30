@@ -11,6 +11,7 @@ import com.mpatric.mp3agic.UnsupportedTagException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -24,7 +25,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import mytunes.BE.TrackUtility;
-import mytunes.BE.myTunes;
+import mytunes.BE.MyTunes;
 
 /**
  * FXML Controller class
@@ -47,9 +48,9 @@ public class SongViewController implements Initializable {
     private Button chooseDirectory;
 
     private Stage dialogStage;
-    private myTunes trackList;
+    private MyTunes trackList;
     private boolean okClicked = false;
-     myTunes songData ;
+     MyTunes songData ;
     MyTunesModel model = new MyTunesModel();
     
     /**
@@ -60,8 +61,8 @@ public class SongViewController implements Initializable {
         // TODO
     }    
     @FXML
-    private void save(ActionEvent event) {
-      //model.add(songData)
+    private void save(ActionEvent event) throws SQLException {
+      model.add(songData);
       
     }
     

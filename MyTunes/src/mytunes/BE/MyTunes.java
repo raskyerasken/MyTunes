@@ -18,8 +18,8 @@ import javafx.geometry.Side;
  *
  * @author mr.Andersen
  */
-public class myTunes {
-    List<myTunes> allSongs = new ArrayList();
+public class MyTunes {
+    List<MyTunes> allSongs = new ArrayList();
 
     private final StringProperty  songName =  new SimpleStringProperty();
     private final StringProperty artist= new SimpleStringProperty();

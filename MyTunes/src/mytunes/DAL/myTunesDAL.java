@@ -24,7 +24,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.MediaPlayer;
-import mytunes.BE.myTunes;
+import mytunes.BE.MyTunes;
 import mytunes.BLL.BLLManager;
 
 
@@ -37,9 +37,9 @@ import mytunes.BLL.BLLManager;
 public class myTunesDAL {
     private ConnectionManager cm = new ConnectionManager();
 
-    public List<myTunes> getAllSongsByPlaylist(String songName, String Artist, String Album, int Year) throws SQLServerException, SQLException
+    public List<MyTunes> getAllSongsByPlaylist(String songName, String Artist, String Album, int Year) throws SQLServerException, SQLException
     {
-       List<myTunes> allSongs = new ArrayList();
+       List<MyTunes> allSongs = new ArrayList();
         
         try (Connection con = cm.getConnection())
         {
@@ -57,7 +57,7 @@ public class myTunesDAL {
             ResultSet rs = pstmt.executeQuery();
             while(rs.next())
             {
-                myTunes m = new myTunes();
+                MyTunes m = new MyTunes();
                 m.setSongName(rs.getString("Name"));
                 m.setAlbum(rs.getString("Album"));
                 m.setArtist(rs.getString("Artist"));
@@ -70,7 +70,7 @@ public class myTunesDAL {
     }
     
     
-    public void remove(myTunes selectedSong)
+    public void remove(MyTunes selectedSong)
     {
         try (Connection con = cm.getConnection()) {
         String sql = "DELETE FROM Songs WHERE id=?";
@@ -85,13 +85,13 @@ public class myTunesDAL {
         }
     }
     
-    public void add (myTunes allSongs) throws SQLException
+    public void add (MyTunes allSongs) throws SQLException
     {
                  try (Connection con = cm.getConnection())  {
 
         String sql 
-                = "INSERT INTO Songs"
-                + "(songName, artist, album, year)"
+                = "INSERT INTO bestTunesTable"
+                + "(Name, artist, album, year)"
                 + "VALUES(?, ?, ?, ?)";
            PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
            
@@ -110,9 +110,9 @@ public class myTunesDAL {
     }     
   }
 
-    public List<myTunes> getAllSong() {
+    public List<MyTunes> getAllSong() {
       
-        List<myTunes> allSong
+        List<MyTunes> allSong
                 = new ArrayList();
 
         try (Connection con = cm.getConnection()) {
@@ -120,7 +120,7 @@ public class myTunesDAL {
                     = con.prepareStatement("SELECT * FROM bestTunesTable");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                myTunes s = new myTunes();
+                MyTunes s = new MyTunes();
                 s.setSongName(rs.getString("Name"));
                 s.setAlbum(rs.getString("Album"));
                 s.setArtist(rs.getString("Artist"));
