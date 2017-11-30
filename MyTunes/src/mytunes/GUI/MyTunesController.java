@@ -154,7 +154,9 @@ public class MyTunesController implements Initializable {
     }
 
     @FXML
-    private void editSong(ActionEvent event) {
+    private void editSong(ActionEvent event) 
+    {
+        
     }
 
     @FXML
