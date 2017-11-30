@@ -50,7 +50,7 @@ public class SongViewController implements Initializable {
     private myTunes trackList;
     private boolean okClicked = false;
      myTunes songData ;
-    MyTunesModel model = new PrisonerModel();
+    MyTunesModel model = new MyTunesModel();
     
     /**
      * Initializes the controller class.
@@ -61,7 +61,7 @@ public class SongViewController implements Initializable {
     }    
     @FXML
     private void save(ActionEvent event) {
-      model.add(songData)
+      //model.add(songData)
       
     }
     

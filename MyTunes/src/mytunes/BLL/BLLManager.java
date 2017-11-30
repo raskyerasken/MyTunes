@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 import mytunes.BE.myTunes;
 import mytunes.DAL.myTunesDAL;
-import mytunes.GUI.AddSongController;
+
 
 /**
  *
@@ -20,11 +20,8 @@ public class BLLManager
     myTunesDAL mtdal = new myTunesDAL();
      
     
-    public List<AddSongController> getAllSongs(String songName, String Artist, String Album, int Year){
-        return mtdal.getAllSongs(songName, Artist, Album, 0);
-    }
-   
-    public List<AddSongController> getAllSongsByPlaylist(String songName, String Artist, String Album, int Year)
+    
+    public List<myTunes> getAllSongsByPlaylist(String songName, String Artist, String Album, int Year) throws SQLException
     {
         return mtdal.getAllSongsByPlaylist(songName, Artist, Album, 0);
     }
@@ -38,7 +35,7 @@ public class BLLManager
         mtdal.add(allSongs);
     }
 
-    public List<myTunes> allSong() {
+    public List<myTunes> getallSong() {
         return mtdal.getAllSong();
     }
 }

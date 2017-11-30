@@ -29,8 +29,8 @@ public class MyTunesModel
      private ObservableList<myTunes> songList
             = FXCollections.observableArrayList();
 
-    List<myTunes> getSong() {
-        songList.addAll(bllManager.allSong());
+    List<myTunes> getAllSong() {
+        songList.addAll(bllManager.getallSong());
         return songList;
     }
     

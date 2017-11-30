@@ -12,14 +12,14 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.geometry.Side;
-import mytunes.GUI.AddSongController;
+
 
 /**
  *
  * @author mr.Andersen
  */
 public class myTunes {
-    List<AddSongController> allSongs = new ArrayList();
+    List<myTunes> allSongs = new ArrayList();
 
     private final StringProperty  songName =  new SimpleStringProperty();
     private final StringProperty artist= new SimpleStringProperty();

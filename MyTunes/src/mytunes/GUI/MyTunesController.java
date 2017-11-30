@@ -83,7 +83,7 @@ public class MyTunesController implements Initializable {
         listSongTime.setCellValueFactory(
             new PropertyValueFactory("year"));
          
-      myTunes.setItems((ObservableList<myTunes>) model.getSong());
+      myTunes.setItems((ObservableList<myTunes>) model.getAllSong());
     }    
 
     @FXML

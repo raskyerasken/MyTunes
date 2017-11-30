@@ -5,6 +5,7 @@
  */
 package mytunes.DAL;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
@@ -25,7 +26,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.media.MediaPlayer;
 import mytunes.BE.myTunes;
 import mytunes.BLL.BLLManager;
-import mytunes.GUI.AddSongController;
+
 
 /**
  *
@@ -36,29 +37,38 @@ import mytunes.GUI.AddSongController;
 public class myTunesDAL {
     private ConnectionManager cm = new ConnectionManager();
 
-    public List<AddSongController> getAllSongsByPlaylist(String songName, String Artist, String Album, int Year)
+    public List<myTunes> getAllSongsByPlaylist(String songName, String Artist, String Album, int Year) throws SQLServerException, SQLException
     {
-        List<AddSongController> allSongs = new ArrayList();
+       List<myTunes> allSongs = new ArrayList();
         
-    
+        try (Connection con = cm.getConnection())
         {
-            AddSongController s = new AddSongController();
-            allSongs.add(s);
-        }
-        
-        return allSongs;
-    }
-    
-    public List<AddSongController> getAllSongs(String songName, String Artist, String Album, int Year)
-    {
-        List<AddSongController> allSongs = new ArrayList();
-        {
-            AddSongController s = new AddSongController();
-            allSongs.add(s);
+            // No good when having userinput, because SQL injection
+            //Statement stmt = con.createStatement();
             
+            String query 
+                    = "SELECT * FROM bestTunesTable "
+                    + "WHERE Name LIKE ? ";
+            
+            PreparedStatement pstmt
+                    = con.prepareStatement(query);
+            pstmt.setString(1, "%" + songName + "%");
+            
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next())
+            {
+                myTunes m = new myTunes();
+                m.setSongName(rs.getString("Name"));
+                m.setAlbum(rs.getString("Album"));
+                m.setArtist(rs.getString("Artist"));
+                m.setYear(rs.getInt("Year"));
+                
+                allSongs.add(m);
+            }
         }
         return allSongs;
     }
+    
     
     public void remove(myTunes selectedSong)
     {
