@@ -8,6 +8,7 @@ package mytunes.GUI;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -68,6 +69,7 @@ public class MyTunesController implements Initializable {
     MyTunesModel model= new MyTunesModel();
     @FXML
     private TableView<MyTunes> myTunes;
+    SongViewController songview = new SongViewController();
 
     
     @Override
@@ -150,7 +152,8 @@ public class MyTunesController implements Initializable {
             Scene scene = new Scene(root);
             newStage.setScene(scene);
             newStage.show();
-       
+            
+                   
     }
 
     @FXML
@@ -170,7 +173,9 @@ public class MyTunesController implements Initializable {
     
 
     @FXML
-    private void closeProgram(ActionEvent event) {
+    private void closeProgram(ActionEvent event) 
+    {
+        Platform.exit();
     }
 
 
