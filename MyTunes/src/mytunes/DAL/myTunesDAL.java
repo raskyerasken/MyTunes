@@ -70,13 +70,13 @@ public class myTunesDAL {
     }
     
     
-    public void remove(MyTunes selectedSong)
+    public void remove(MyTunes selectedMyTunes)
     {
         try (Connection con = cm.getConnection()) {
-        String sql = "DELETE FROM Songs WHERE id=?";
+        String sql = "DELETE FROM bestTunesTable WHERE Name=?";
         
         PreparedStatement pstmt = con.prepareStatement(sql);
-        pstmt.setString(1, selectedSong.getSongName());
+        pstmt.setString(1,selectedMyTunes.getSongName());
         pstmt.execute();
         }
         catch (SQLException ex) {

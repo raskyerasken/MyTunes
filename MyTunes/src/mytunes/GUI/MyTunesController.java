@@ -82,9 +82,21 @@ public class MyTunesController implements Initializable {
             new PropertyValueFactory("album"));
         listSongTime.setCellValueFactory(
             new PropertyValueFactory("year"));
+        
          
-      myTunes.setItems((ObservableList<MyTunes>) model.getAllSong());
-    }    
+
+        myTunes.setItems((ObservableList<MyTunes>) model.getAllSong());
+  
+    }   
+     
+        
+    
+    public void playlistUpdate(MyTunesModel model)
+    {
+        this.model= model;
+       myTunes.setItems((ObservableList<MyTunes>) model.updateAllSong());
+       
+    }
 
     @FXML
     private void newPlaylist(ActionEvent event) throws IOException {
@@ -147,7 +159,13 @@ public class MyTunesController implements Initializable {
 
     @FXML
     private void DeleteSong(ActionEvent event) {
+        MyTunes selectedMyTunes
+                = myTunes.getSelectionModel().getSelectedItem();
+
+        model.remove(selectedMyTunes);
     }
+        
+    
 
     @FXML
     private void closeProgram(ActionEvent event) {

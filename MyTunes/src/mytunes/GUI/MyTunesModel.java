@@ -33,6 +33,10 @@ public class MyTunesModel
         songList.addAll(bllManager.getallSong());
         return songList;
     }
+    List<MyTunes> updateAllSong()
+    {
+    return songList;
+    }
     public void add (MyTunes mytunes) throws SQLException
     {   
         bllManager.add(mytunes);
@@ -40,10 +44,14 @@ public class MyTunesModel
         
     
     }
-    
+
+    public void remove(MyTunes selectedMyTunes) {
+       
+    bllManager.remove(selectedMyTunes);
+        songList.remove(selectedMyTunes);
    
     
-     }
+     }}
     
     
    

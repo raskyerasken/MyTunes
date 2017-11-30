@@ -38,5 +38,9 @@ public class BLLManager
     public List<MyTunes> getallSong() {
         return mtdal.getAllSong();
     }
+
+    public void remove(MyTunes selectedMyTunes) {
+        mtdal.remove(selectedMyTunes);
+    }
 }
 

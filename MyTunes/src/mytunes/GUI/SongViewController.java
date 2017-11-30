@@ -63,6 +63,8 @@ public class SongViewController implements Initializable {
     @FXML
     private void save(ActionEvent event) throws SQLException {
       model.add(songData);
+      MyTunesController MTModel = new MyTunesController();
+      MTModel.playlistUpdate(model);
       
     }
     
