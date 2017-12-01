@@ -114,6 +114,8 @@ public class MyTunesController implements Initializable {
             newStage.setScene(scene);
             newStage.show();
     }
+    
+    
 
     @FXML
     private void editPlaylist(ActionEvent event) throws IOException {
@@ -131,16 +133,21 @@ public class MyTunesController implements Initializable {
     }
 
     @FXML
-    private void deletePlaylist(ActionEvent event) {
+    private void deletePlaylist(ActionEvent event) 
+    {
+        
     }
 
 
     @FXML
-    private void deleteSongOnPlaylist(ActionEvent event) {
+    private void deleteSongOnPlaylist(ActionEvent event) 
+    {
+        
     }
 
     @FXML
-    private void newSong(ActionEvent event) throws IOException {
+    private void newSong(ActionEvent event) throws IOException 
+    {
          Stage newStage = new Stage();
             FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("songView.fxml"));
 
@@ -152,8 +159,6 @@ public class MyTunesController implements Initializable {
             Scene scene = new Scene(root);
             newStage.setScene(scene);
             newStage.show();
-            
-                   
     }
 
     @FXML

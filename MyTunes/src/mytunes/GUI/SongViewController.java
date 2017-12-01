@@ -71,7 +71,8 @@ public class SongViewController implements Initializable {
     
 
     @FXML
-    private void chooseDirectory(ActionEvent event) throws UnsupportedTagException, InvalidDataException, IOException, NotSupportedException {
+    private void chooseDirectory(ActionEvent event) throws UnsupportedTagException, InvalidDataException, IOException, NotSupportedException 
+    {
          TrackUtility  choser= new TrackUtility();
         songData = choser.getdata();
          
@@ -81,13 +82,14 @@ public class SongViewController implements Initializable {
         textFile.setText(songData.getPath().toString());
         textYear.setText(""+songData.getYear());
         textAlbum.setText(songData.getAlbum().toString());
-        
-        
-        
+    }
+
+    @FXML
+    private void cancelButton(ActionEvent event) {
     }
 
    
-    }
+}
 
     
   
