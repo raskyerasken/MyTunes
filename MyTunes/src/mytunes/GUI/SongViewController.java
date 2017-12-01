@@ -52,6 +52,8 @@ public class SongViewController implements Initializable {
     private boolean okClicked = false;
      MyTunes songData ;
     MyTunesModel model = new MyTunesModel();
+    @FXML
+    private Button closeButton;
     
     /**
      * Initializes the controller class.
@@ -64,7 +66,7 @@ public class SongViewController implements Initializable {
     private void save(ActionEvent event) throws SQLException {
       model.add(songData);
       MyTunesController MTModel = new MyTunesController();
-      MTModel.playlistUpdate(model);
+      //MTModel.playlistUpdate();
       
     }
     
@@ -84,6 +86,13 @@ public class SongViewController implements Initializable {
         
         
         
+    }
+
+    @FXML
+    private void closeSongview(ActionEvent event) {
+         Stage stage = (Stage) closeButton.getScene().getWindow();
+    // do what you have to do
+    stage.close();
     }
 
    
