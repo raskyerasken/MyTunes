@@ -21,7 +21,11 @@
       <Label layoutX="50.0" layoutY="193.0" text="File:" />
       <TextField fx:id="textFile" layoutX="93.0" layoutY="189.0" prefHeight="26.0" prefWidth="214.0" />
       <Button fx:id="chooseDirectory" layoutX="321.0" layoutY="190.0" mnemonicParsing="false" onAction="#chooseDirectory" text="Choose.." />
+<<<<<<< HEAD
       <Button fx:id="closeButton" layoutX="269.0" layoutY="231.0" mnemonicParsing="false" onAction="#closeSongview" text="Cancel" />
+=======
+      <Button layoutX="269.0" layoutY="231.0" mnemonicParsing="false" onAction="#cancelButton" text="Cancel" />
+>>>>>>> bd5879170e7fefbbfa8ee2db3ec784a3f98183ea
       <Button layoutX="342.0" layoutY="231.0" mnemonicParsing="false" onAction="#save" text="Save" />
       <TextField fx:id="textAlbum" layoutX="93.0" layoutY="116.0" prefHeight="26.0" prefWidth="214.0" />
       <Label layoutX="45.0" layoutY="121.0" text="Album:" />
