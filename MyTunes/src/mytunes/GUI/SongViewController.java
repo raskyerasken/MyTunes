@@ -62,16 +62,12 @@ public class SongViewController implements Initializable {
     }
 
     @FXML
-private void closeSongview(ActionEvent event) {
-         Stage stage = (Stage) closeButton.getScene().getWindow();
-    // do what you have to do
-    stage.close();
+    private void closeSongview(ActionEvent event) 
+    {
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        // do what you have to do
+        stage.close();
     }
-
-   
-
-    
-   
 }
 
     
