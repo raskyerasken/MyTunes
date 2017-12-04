@@ -222,10 +222,6 @@ public class MyTunesController implements Initializable {
         System.out.println("pause");
     }
 
-    @FXML
-    private void nextSong(MouseEvent event) {
-        System.out.println("next");
-        if (nextTrack != null) (nextTrack);
-    }
+    
  
 }

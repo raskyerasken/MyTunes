@@ -20,24 +20,16 @@ import javafx.geometry.Side;
  */
 public class MyTunes {
     List<MyTunes> allSongs = new ArrayList();
-  private final IntegerProperty id= new SimpleIntegerProperty();
-    private final StringProperty  songName =  new SimpleStringProperty();
+    
+    private final IntegerProperty id= new SimpleIntegerProperty();
+    private final StringProperty songName =  new SimpleStringProperty();
     private final StringProperty artist= new SimpleStringProperty();
     private final StringProperty album =  new SimpleStringProperty();
     private final IntegerProperty year= new SimpleIntegerProperty();
     private final StringProperty path =  new SimpleStringProperty();
-<<<<<<< HEAD
-     
-
-   /* public myTunes(String songName, String artist, String album, int year, String path) {
-       this.songName= new SimpleStringProperty();
-       this.artist = new SimpleStringProperty(); 
-       this.album = new SimpleStringProperty();
-       this.year = new SimpleIntegerProperty();
-      this.path = new SimpleStringProperty();
-=======
-      private final IntegerProperty songLength= new SimpleIntegerProperty();
+    private final IntegerProperty songLength= new SimpleIntegerProperty();
     
+  
  public int getSongLength()
     {
         return songLength.get();
@@ -45,7 +37,6 @@ public class MyTunes {
     
     public void setSongLength(int songLength)
     {
->>>>>>> c4269d271f055775c1ca82bf03a2d9409e93226a
         
         this.songLength.set(songLength);
     }
@@ -53,9 +44,7 @@ public class MyTunes {
     return songLength;
     }
     
-<<<<<<< HEAD
 
-=======
  public int getId()
     {
         return id.get();
@@ -73,7 +62,6 @@ public class MyTunes {
     {
         return songName.get();
     }
->>>>>>> c4269d271f055775c1ca82bf03a2d9409e93226a
     
     
     public String getArtist()
@@ -121,8 +109,15 @@ public class MyTunes {
     public void setPath(String path) {
         this.path.set(path);
     }
-    public StringProperty pathProperty(){
-    return path;
+    
+    public StringProperty pathProperty()
+    {
+        return path;
+    }
+    
+    public void setSongName(String songName)
+    {
+        this.songName.set(songName);
     }
         
 
