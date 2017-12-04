@@ -5,7 +5,10 @@
  */
 package mytunes.GUI;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -31,6 +34,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
+import javazoom.jlgui.basicplayer.BasicPlayer;
+import javazoom.jlgui.basicplayer.BasicPlayerException;
 import mytunes.BE.MyTunes;
 
 
@@ -202,20 +214,17 @@ public class MyTunesController implements Initializable
 
 
     @FXML
-    private void playBtn() 
+    private void playBtn() throws LineUnavailableException, UnsupportedAudioFileException, IOException, BasicPlayerException, JavaLayerException 
     {
-        System.out.println("lalal");
-        if(player != null) {
-            boolean playing = player.getStatus().equals(MediaPlayer.Status.PLAYING);
-            if(playing) {
-                player.pause();
-                System.out.println("lol");
-            } else {
-                player.play();
-                System.out.println("lolz");
-            }
-        }
-    }
+           MyTunes selectedMyTunes
+                = myTunes.getSelectionModel().getSelectedItem();
+           System.out.println(selectedMyTunes.getPath());
+      FileInputStream fis = new FileInputStream(selectedMyTunes.getPath());
+             Player playMP3 = new Player(fis);
+
+             playMP3.play();
+}
+    
 
     @FXML
     private void lastSong(MouseEvent event) 
