@@ -56,7 +56,6 @@ public class SongViewController implements Initializable {
         songData = choser.getdata();
         System.out.println(songData.toString());
       model.add(songData);
-      MyTunesController MTModel = new MyTunesController();
         Stage stage = (Stage) chooseDirectory.getScene().getWindow();
     // do what you have to do
     stage.close();
