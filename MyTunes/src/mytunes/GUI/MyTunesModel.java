@@ -7,14 +7,8 @@ package mytunes.GUI;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.prefs.Preferences;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ListView;
-import javafx.scene.media.Media;
 import mytunes.BE.MyTunes;
 import mytunes.BLL.BLLManager;
 

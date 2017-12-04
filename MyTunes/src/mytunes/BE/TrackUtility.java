@@ -12,10 +12,6 @@ import com.mpatric.mp3agic.NotSupportedException;
 import com.mpatric.mp3agic.UnsupportedTagException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.util.Arrays;
-import java.util.List;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.StringProperty;
 import javax.swing.JFileChooser;
 
 /**

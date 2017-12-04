@@ -6,14 +6,8 @@
 package mytunes.BE;
 
 import java.io.Serializable;
-import java.time.Duration;
-import java.util.Map;
 import java.util.UUID;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.collections.MapChangeListener;
-import javafx.scene.control.TableView;
-import javafx.scene.media.MediaPlayer;
+
 
 /**
  *

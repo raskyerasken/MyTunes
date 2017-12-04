@@ -5,15 +5,9 @@
  */
 package mytunes.BLL;
 
-import java.io.File;
 import java.sql.SQLException;
-import java.time.Duration;
 import java.util.List;
-import javafx.fxml.FXML;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import mytunes.BE.MyTunes;
-import mytunes.BE.Song;
 import mytunes.DAL.myTunesDAL;
 
 
