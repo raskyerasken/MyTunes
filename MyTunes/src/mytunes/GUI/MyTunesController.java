@@ -159,14 +159,14 @@ public class MyTunesController implements Initializable {
          Stage newStage = new Stage();
             FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("songView.fxml"));
 
-            Parent root = fxLoader.load();
-           SongViewController controller
+        Parent root = fxLoader.load();
+        SongViewController controller
                     = fxLoader.getController();
 
-
-            Scene scene = new Scene(root);
-            newStage.setScene(scene);
-            newStage.show();
+        controller.setModel(model);
+        Scene scene = new Scene(root);
+        newStage.setScene(scene);
+        newStage.show();
     }
 
     @FXML
@@ -176,7 +176,8 @@ public class MyTunesController implements Initializable {
     }
 
     @FXML
-    private void DeleteSong(ActionEvent event) {
+    private void DeleteSong(ActionEvent event) 
+    {
         MyTunes selectedMyTunes
                 = myTunes.getSelectionModel().getSelectedItem();
 
@@ -219,6 +220,16 @@ public class MyTunesController implements Initializable {
     @FXML
     private void pause(MouseEvent event) {
         System.out.println("pause");
+    }
+
+    @FXML
+    private void play(MouseEvent event) {
+    }
+
+    @FXML
+    private void nextSong(MouseEvent event) 
+    {
+        
     }
 
     

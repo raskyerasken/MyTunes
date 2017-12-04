@@ -106,18 +106,21 @@ public class myTunesDAL {
     }     
   }
 
-    public List<MyTunes> getAllSong() {
+    public List<MyTunes> getAllSong() 
+    {
       
         List<MyTunes> allSong
                 = new ArrayList();
 
-        try (Connection con = cm.getConnection()) {
+        try (Connection con = cm.getConnection()) 
+        {
             PreparedStatement stmt
                     = con.prepareStatement("SELECT * FROM myTunes");
             ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
+            while (rs.next()) 
+            {
                 MyTunes s = new MyTunes();
-               s.setSongName(rs.getString("Name"));
+                s.setSongName(rs.getString("Name"));
                 s.setAlbum(rs.getString("Album"));
                 s.setArtist(rs.getString("Artist"));
                 s.setYear(rs.getInt("Year"));
@@ -128,12 +131,12 @@ public class myTunesDAL {
                 allSong.add(s);
             }
         }
-        catch (SQLException ex) {
+        catch (SQLException ex) 
+        {
             Logger.getLogger(myTunesDAL.class.getName()).log(
                     Level.SEVERE, null, ex);
         }
         return allSong;
-    
     }
 }
     
