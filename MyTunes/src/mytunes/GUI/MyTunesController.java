@@ -38,7 +38,8 @@ import mytunes.BE.MyTunes;
  *
  * @author jacob
  */
-public class MyTunesController implements Initializable {
+public class MyTunesController implements Initializable 
+{
     
     private Label label;
     @FXML
@@ -84,9 +85,8 @@ public class MyTunesController implements Initializable {
     private Media currentMedia;
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-      
+    public void initialize(URL url, ResourceBundle rb) 
+    {
       listSongTitle.setCellValueFactory(
             new PropertyValueFactory("songName"));
         listSongArtist.setCellValueFactory(
@@ -96,10 +96,7 @@ public class MyTunesController implements Initializable {
         listSongTime.setCellValueFactory(
             new PropertyValueFactory("year"));
         
-         
-
         myTunes.setItems((ObservableList<MyTunes>) model.getAllSong());
-  
     }   
      
         
@@ -129,7 +126,8 @@ public class MyTunesController implements Initializable {
     
 
     @FXML
-    private void editPlaylist(ActionEvent event) throws IOException {
+    private void editPlaylist(ActionEvent event) throws IOException 
+    {
          Stage newStage = new Stage();
             FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("playListView.fxml"));
 
@@ -219,21 +217,22 @@ public class MyTunesController implements Initializable {
         }
     }
 
-
-    
-
     @FXML
-    private void lastSong(MouseEvent event) {
+    private void lastSong(MouseEvent event) 
+    {
         System.out.println("last");
     }
 
     @FXML
-    private void pause(MouseEvent event) {
+    private void pause(MouseEvent event) 
+    {
         System.out.println("pause");
     }
 
     @FXML
-    private void play(MouseEvent event) {
+    private void play(MouseEvent event) 
+    {
+        
     }
 
     @FXML
