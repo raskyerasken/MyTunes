@@ -31,11 +31,13 @@ public class BLLManager
         mtdal.add(allSongs);
     }
 
-    public List<MyTunes> getallSong() {
+    public List<MyTunes> getallSong() 
+    {
         return mtdal.getAllSong();
     }
 
-    public void remove(MyTunes selectedMyTunes) {
+    public void remove(MyTunes selectedMyTunes) 
+    {
         mtdal.remove(selectedMyTunes);
     }
     

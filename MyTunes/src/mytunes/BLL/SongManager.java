@@ -14,14 +14,20 @@ import mytunes.BE.Song;
  *
  * @author kasper
  */
-public class SongManager {
+public class SongManager 
+{
     
     private Song song;
     private MediaPlayer player;
 
     
+<<<<<<< HEAD
      public void playSong(Song song, boolean overwrite) {
         
+=======
+     private void playSong(Song song, boolean overwrite) 
+     {
+>>>>>>> 3efc38ca7ba44195450a30b924dbd92b8a353a85
         pauseSong();
         if (this.song == null || overwrite)
         {
@@ -31,7 +37,6 @@ public class SongManager {
             player = new MediaPlayer(media);
         }
         player.play();
-        
     }
     
     public void pauseSong()

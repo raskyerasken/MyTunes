@@ -16,7 +16,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
@@ -38,7 +41,8 @@ import mytunes.BLL.SongManager;
  *
  * @author jacob
  */
-public class MyTunesController implements Initializable {
+public class MyTunesController implements Initializable 
+{
     
     @FXML
     public ImageView imgPlay;
@@ -93,9 +97,8 @@ public class MyTunesController implements Initializable {
    
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-      
+    public void initialize(URL url, ResourceBundle rb) 
+    {
       listSongTitle.setCellValueFactory(
             new PropertyValueFactory("songName"));
         listSongArtist.setCellValueFactory(
@@ -105,10 +108,7 @@ public class MyTunesController implements Initializable {
         listSongTime.setCellValueFactory(
             new PropertyValueFactory("year"));
         
-         
-
         myTunes.setItems((ObservableList<MyTunes>) model.getAllSong());
-  
     }   
 
     public MyTunesController(SongManager songManager) {
@@ -141,6 +141,7 @@ public class MyTunesController implements Initializable {
     
     
 
+<<<<<<< HEAD
 //    @FXML
 //    private void editPlaylist(ActionEvent event) throws IOException {
 //         Stage newStage = new Stage();
@@ -155,6 +156,23 @@ public class MyTunesController implements Initializable {
 //            newStage.setScene(scene);
 //            newStage.show();
 //    }
+=======
+    @FXML
+    private void editPlaylist(ActionEvent event) throws IOException 
+    {
+         Stage newStage = new Stage();
+            FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("playListView.fxml"));
+
+            Parent root = fxLoader.load();
+            PlayListController controller
+                    = fxLoader.getController();
+
+
+            Scene scene = new Scene(root);
+            newStage.setScene(scene);
+            newStage.show();
+    }
+>>>>>>> 3efc38ca7ba44195450a30b924dbd92b8a353a85
 
     @FXML
     private void deletePlaylist(ActionEvent event) 
@@ -175,14 +193,14 @@ public class MyTunesController implements Initializable {
          Stage newStage = new Stage();
             FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("songView.fxml"));
 
-            Parent root = fxLoader.load();
-           SongViewController controller
+        Parent root = fxLoader.load();
+        SongViewController controller
                     = fxLoader.getController();
 
-
-            Scene scene = new Scene(root);
-            newStage.setScene(scene);
-            newStage.show();
+        controller.setModel(model);
+        Scene scene = new Scene(root);
+        newStage.setScene(scene);
+        newStage.show();
     }
 
     @FXML
@@ -192,7 +210,8 @@ public class MyTunesController implements Initializable {
     }
 
     @FXML
-    private void DeleteSong(ActionEvent event) {
+    private void DeleteSong(ActionEvent event) 
+    {
         MyTunes selectedMyTunes
                 = myTunes.getSelectionModel().getSelectedItem();
 
@@ -204,7 +223,14 @@ public class MyTunesController implements Initializable {
     @FXML
     private void closeProgram(ActionEvent event) 
     {
-        Platform.exit();
+        Alert alert = new Alert(AlertType.CONFIRMATION, "Do you want to close the player?", ButtonType.YES, ButtonType.NO);
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.YES) 
+        {
+            Platform.exit();
+        }
+        
     }
 
 
@@ -232,16 +258,32 @@ public class MyTunesController implements Initializable {
         changePlayButton(isPlaying);
     }
 
-
-    
-
     @FXML
-    private void lastSong(MouseEvent event) {
+    private void lastSong(MouseEvent event) 
+    {
         System.out.println("last");
     }
 
+<<<<<<< HEAD
     private void pause(MouseEvent event) {
+=======
+    @FXML
+    private void pause(MouseEvent event) 
+    {
+>>>>>>> 3efc38ca7ba44195450a30b924dbd92b8a353a85
         System.out.println("pause");
+    }
+
+    @FXML
+    private void play(MouseEvent event) 
+    {
+        
+    }
+
+    @FXML
+    private void nextSong(MouseEvent event) 
+    {
+        
     }
 
     

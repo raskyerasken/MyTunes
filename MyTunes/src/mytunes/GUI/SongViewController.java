@@ -33,7 +33,7 @@ public class SongViewController implements Initializable {
     private Button chooseDirectory;
 
     MyTunes songData ;
-    MyTunesModel model = new MyTunesModel();
+    MyTunesModel model;
     @FXML
     private Button closeButton;
     @FXML
@@ -52,13 +52,17 @@ public class SongViewController implements Initializable {
     @FXML
     private void chooseDirectory(ActionEvent event) throws UnsupportedTagException, InvalidDataException, IOException, NotSupportedException, SQLException 
     {
-         TrackUtility  choser= new TrackUtility();
+        TrackUtility  choser= new TrackUtility();
         songData = choser.getdata();
         System.out.println(songData.toString());
+<<<<<<< HEAD
       model.add(songData);
+=======
+        model.add(songData);
+>>>>>>> 3efc38ca7ba44195450a30b924dbd92b8a353a85
         Stage stage = (Stage) chooseDirectory.getScene().getWindow();
-    // do what you have to do
-    stage.close();
+    
+        stage.close();
     }
 
     @FXML
@@ -67,6 +71,11 @@ public class SongViewController implements Initializable {
         Stage stage = (Stage) closeButton.getScene().getWindow();
         // do what you have to do
         stage.close();
+    }
+
+    void setModel(MyTunesModel model) 
+    {
+        this.model = model;
     }
 }
 
