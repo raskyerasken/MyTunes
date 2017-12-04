@@ -26,7 +26,7 @@ public class MyTunes {
     private final StringProperty album =  new SimpleStringProperty();
     private final IntegerProperty year= new SimpleIntegerProperty();
     private final StringProperty path =  new SimpleStringProperty();
-    
+     
 
    /* public myTunes(String songName, String artist, String album, int year, String path) {
        this.songName= new SimpleStringProperty();
@@ -44,19 +44,7 @@ public class MyTunes {
 
     
 
-    public String getSongName()
-    {
-        return songName.get();
-    }
     
-    public void setSongName(String songName)
-    {
-        
-        this.songName.set(songName);
-    }
-    public StringProperty songNameProperty(){
-    return songName;
-    }
     
     public String getArtist()
     {

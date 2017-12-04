@@ -5,9 +5,15 @@
  */
 package mytunes.BLL;
 
+import java.io.File;
 import java.sql.SQLException;
+import java.time.Duration;
 import java.util.List;
+import javafx.fxml.FXML;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import mytunes.BE.MyTunes;
+import mytunes.BE.Song;
 import mytunes.DAL.myTunesDAL;
 
 
@@ -20,15 +26,11 @@ public class BLLManager
     myTunesDAL mtdal = new myTunesDAL();
      
     
-    
     public List<MyTunes> getAllSongsByPlaylist(String songName, String Artist, String Album, int Year) throws SQLException
     {
         return mtdal.getAllSongsByPlaylist(songName, Artist, Album, 0);
     }
     
-//    public void remove (myTunes selectedSong) {
-//        mtdal.remove(selectedSong);
-//    }
     
     public void add(MyTunes allSongs) throws SQLException
     {
@@ -42,5 +44,10 @@ public class BLLManager
     public void remove(MyTunes selectedMyTunes) {
         mtdal.remove(selectedMyTunes);
     }
+    
+    
+    
+    
+   
 }
 

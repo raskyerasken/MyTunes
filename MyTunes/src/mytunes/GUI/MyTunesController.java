@@ -5,6 +5,7 @@
  */
 package mytunes.GUI;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
@@ -24,6 +26,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import mytunes.BE.MyTunes;
@@ -70,7 +73,13 @@ public class MyTunesController implements Initializable {
     @FXML
     private TableView<MyTunes> myTunes;
     SongViewController songview = new SongViewController();
-
+    final Button play = new Button("Pause");
+    
+    private ObservableList<MyTunesModel> observableTracksView;
+    private MyTunesModel nextTrack;
+    private MyTunesModel prevTrack;
+    private MyTunesModel currentTrack;
+    private Media currentMedia;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -201,10 +210,7 @@ public class MyTunesController implements Initializable {
     }
 
 
-    @FXML
-    private void play(MouseEvent event) {
-        System.out.println("play");
-    }
+    
 
     @FXML
     private void lastSong(MouseEvent event) {
@@ -219,6 +225,7 @@ public class MyTunesController implements Initializable {
     @FXML
     private void nextSong(MouseEvent event) {
         System.out.println("next");
+        if (nextTrack != null) (nextTrack);
     }
  
 }
