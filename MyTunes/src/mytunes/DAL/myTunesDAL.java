@@ -47,7 +47,7 @@ public class myTunesDAL {
             //Statement stmt = con.createStatement();
             
             String query 
-                    = "SELECT * FROM bestTunesTable "
+                    = "SELECT * FROM myTunes "
                     + "WHERE Name LIKE ? ";
             
             PreparedStatement pstmt
@@ -73,7 +73,7 @@ public class myTunesDAL {
     public void remove(MyTunes selectedMyTunes)
     {
         try (Connection con = cm.getConnection()) {
-        String sql = "DELETE FROM bestTunesTable WHERE Name=?";
+        String sql = "DELETE FROM myTunes WHERE Name=?";
         
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1,selectedMyTunes.getSongName());
@@ -90,20 +90,26 @@ public class myTunesDAL {
                  try (Connection con = cm.getConnection())  {
 
         String sql 
-                = "INSERT INTO bestTunesTable"
-                + "(Name, artist, album, year)"
-                + "VALUES(?, ?, ?, ?)";
+                = "INSERT INTO myTunes"
+                + "(name, album, year, path, songLength, artist) "
+                + "VALUES(?,?,?,?,?,?)";
            PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-           
-            pstmt.setString(1, allSongs.getSongName());
-            pstmt.setString(2, allSongs.getArtist());
-            pstmt.setString(3, allSongs.getAlbum());
-            pstmt.setInt(4, allSongs.getYear());
+           pstmt.setString(1, allSongs.getSongName());
+            pstmt.setString(2, allSongs.getAlbum());
+            pstmt.setInt(3, allSongs.getYear());
+            pstmt.setString(4, allSongs.getPath());
+            pstmt.setInt(5,allSongs.getSongLength());
+            pstmt.setString(6, allSongs.getArtist());
             
             int affected = pstmt.executeUpdate();
-            if (affected<1)
-                    throw new SQLException("Song could not be added");
-           
+            if (affected<1){
+                    throw new SQLException("Song could not be added");}
+            
+            
+              ResultSet rs = pstmt.getGeneratedKeys();
+            if (rs.next()) {
+                allSongs.setId(rs.getInt(1));
+           }
                  }
     catch (SQLException ex) {
         Logger.getLogger(myTunesDAL.class.getName()).log(Level.SEVERE, null, ex);
@@ -117,15 +123,17 @@ public class myTunesDAL {
 
         try (Connection con = cm.getConnection()) {
             PreparedStatement stmt
-                    = con.prepareStatement("SELECT * FROM bestTunesTable");
+                    = con.prepareStatement("SELECT * FROM myTunes");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 MyTunes s = new MyTunes();
-                s.setSongName(rs.getString("Name"));
+               s.setSongName(rs.getString("Name"));
                 s.setAlbum(rs.getString("Album"));
                 s.setArtist(rs.getString("Artist"));
                 s.setYear(rs.getInt("Year"));
-                                
+                s.setId(rs.getInt("id"));
+                s.setSongLength(rs.getInt("songLength"));
+                s.setPath(rs.getString("path"));
 
                 allSong.add(s);
             }

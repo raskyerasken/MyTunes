@@ -20,12 +20,13 @@ import javafx.geometry.Side;
  */
 public class MyTunes {
     List<MyTunes> allSongs = new ArrayList();
-
+  private final IntegerProperty id= new SimpleIntegerProperty();
     private final StringProperty  songName =  new SimpleStringProperty();
     private final StringProperty artist= new SimpleStringProperty();
     private final StringProperty album =  new SimpleStringProperty();
     private final IntegerProperty year= new SimpleIntegerProperty();
     private final StringProperty path =  new SimpleStringProperty();
+<<<<<<< HEAD
      
 
    /* public myTunes(String songName, String artist, String album, int year, String path) {
@@ -34,16 +35,45 @@ public class MyTunes {
        this.album = new SimpleStringProperty();
        this.year = new SimpleIntegerProperty();
       this.path = new SimpleStringProperty();
-        
-        this.songName.set(songName);
-        this.artist.set(artist);
-        this.album.set(album);
-        this.year.set(year);
-        this.path.set(path);
-    }*/
-
+=======
+      private final IntegerProperty songLength= new SimpleIntegerProperty();
     
+ public int getSongLength()
+    {
+        return songLength.get();
+    }
+    
+    public void setSongLength(int songLength)
+    {
+>>>>>>> c4269d271f055775c1ca82bf03a2d9409e93226a
+        
+        this.songLength.set(songLength);
+    }
+    public IntegerProperty songLengthProperty(){
+    return songLength;
+    }
+    
+<<<<<<< HEAD
 
+=======
+ public int getId()
+    {
+        return id.get();
+    }
+    
+    public void setId(int id)
+    {
+        
+        this.id.set(id);
+    }
+    public IntegerProperty idProperty(){
+    return id;
+    }
+    public String getSongName()
+    {
+        return songName.get();
+    }
+>>>>>>> c4269d271f055775c1ca82bf03a2d9409e93226a
     
     
     public String getArtist()
