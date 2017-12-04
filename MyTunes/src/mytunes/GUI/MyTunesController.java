@@ -16,7 +16,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
@@ -189,7 +192,14 @@ public class MyTunesController implements Initializable {
     @FXML
     private void closeProgram(ActionEvent event) 
     {
-        Platform.exit();
+        Alert alert = new Alert(AlertType.CONFIRMATION, "Do you want to close the player?", ButtonType.YES, ButtonType.NO);
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.YES) 
+        {
+            Platform.exit();
+        }
+        
     }
 
 
