@@ -82,14 +82,20 @@ songLength=(int) mp3file.getLengthInSeconds();
 
     public MyTunes getdata() throws UnsupportedTagException, InvalidDataException, IOException, NotSupportedException {
         choseFile();
-        int yearr= Integer.parseInt(year);
         MyTunes song = new MyTunes();
+        if (year != null)
+        {
+               int yearr= Integer.parseInt(year);   
+               song.setYear(yearr);
+        }
+        
+        
         song.setSongLength(songLength);
         song.setAlbum(album);
         song.setArtist(artist);
         song.setPath(URLAdressSong);
         song.setSongName(title);
-        song.setYear(yearr);
+        
         
         return song;
     
