@@ -20,30 +20,41 @@ import javafx.geometry.Side;
  */
 public class MyTunes {
     List<MyTunes> allSongs = new ArrayList();
-
+  private final IntegerProperty id= new SimpleIntegerProperty();
     private final StringProperty  songName =  new SimpleStringProperty();
     private final StringProperty artist= new SimpleStringProperty();
     private final StringProperty album =  new SimpleStringProperty();
     private final IntegerProperty year= new SimpleIntegerProperty();
     private final StringProperty path =  new SimpleStringProperty();
+      private final IntegerProperty songLength= new SimpleIntegerProperty();
     
-
-   /* public myTunes(String songName, String artist, String album, int year, String path) {
-       this.songName= new SimpleStringProperty();
-       this.artist = new SimpleStringProperty(); 
-       this.album = new SimpleStringProperty();
-       this.year = new SimpleIntegerProperty();
-      this.path = new SimpleStringProperty();
+ public int getSongLength()
+    {
+        return songLength.get();
+    }
+    
+    public void setSongLength(int songLength)
+    {
         
-        this.songName.set(songName);
-        this.artist.set(artist);
-        this.album.set(album);
-        this.year.set(year);
-        this.path.set(path);
-    }*/
-
+        this.songLength.set(songLength);
+    }
+    public IntegerProperty songLengthProperty(){
+    return songLength;
+    }
     
-
+ public int getId()
+    {
+        return id.get();
+    }
+    
+    public void setId(int id)
+    {
+        
+        this.id.set(id);
+    }
+    public IntegerProperty idProperty(){
+    return id;
+    }
     public String getSongName()
     {
         return songName.get();

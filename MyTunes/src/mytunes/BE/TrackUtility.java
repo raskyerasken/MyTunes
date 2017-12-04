@@ -30,6 +30,7 @@ public class TrackUtility {
     String album;
     String year ; 
     String URLAdressSong;
+    int songLength;
     /**
      * Get all tracklists stored in user preferences
      *
@@ -52,7 +53,7 @@ if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 }
         URLAdressSong=""+chooser.getSelectedFile();
         Mp3File mp3file = new Mp3File(chooser.getSelectedFile());
-
+songLength=(int) mp3file.getLengthInSeconds();
         System.out.println("Length of this mp3 is: " + mp3file.getLengthInSeconds() + " seconds");
       
         System.out.println("Has ID3v2 tag?: " + (mp3file.hasId3v2Tag() ? "YES" : "NO"));
@@ -63,14 +64,7 @@ if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
                 title = id3v2Tag.getTitle();
                 album = id3v2Tag.getAlbum();
                 year = id3v2Tag.getYear();
-           /*     
-        	System.out.println("Artist: " + id3v2Tag.getArtist());
-        	System.out.println("Title: " + id3v2Tag.getTitle());
-        	System.out.println("Album: " + id3v2Tag.getAlbum());
-        	System.out.println("Year: " + id3v2Tag.getYear());
-        	System.out.println("Genre: " + id3v2Tag.getGenre() + " (" + id3v2Tag.getGenreDescription() + ")");*/
-        	
-        }
+           }
         
         if (mp3file.hasId3v2Tag()) {
         	ID3v2 id3v2Tag = mp3file.getId3v2Tag();
@@ -90,6 +84,7 @@ if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
         choseFile();
         int yearr= Integer.parseInt(year);
         MyTunes song = new MyTunes();
+        song.setSongLength(songLength);
         song.setAlbum(album);
         song.setArtist(artist);
         song.setPath(URLAdressSong);
