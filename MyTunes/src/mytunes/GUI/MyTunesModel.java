@@ -45,7 +45,14 @@ public class MyTunesModel
         songList.remove(selectedMyTunes);
    
     
-     }}
+     }
+public List<MyTunes> getAllSongsByPlaylist(String song) throws SQLException
+    {
+        songList.setAll(bllManager.getAllSongsByPlaylist(song));
+        return songList;
+        
+    }
+}
     
     
    

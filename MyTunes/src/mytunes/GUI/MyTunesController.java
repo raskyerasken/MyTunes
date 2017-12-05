@@ -7,7 +7,11 @@ package mytunes.GUI;
 
 import java.io.IOException;
 import java.net.URL;
+<<<<<<< HEAD
+import java.sql.SQLException;
+=======
 import java.util.Random;
+>>>>>>> eb8448dfb1381d7b44354570997925316b33fdf9
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
@@ -105,8 +109,8 @@ public class MyTunesController implements Initializable
     
     @FXML
     private ImageView imgPlay;
-    @FXML
     private Slider sliderVolume;
+<<<<<<< HEAD
     @FXML
     private Button imgMute;
     @FXML
@@ -115,6 +119,8 @@ public class MyTunesController implements Initializable
     private MenuItem newSong;
     @FXML
     private MenuItem newPlaylist;
+=======
+>>>>>>> 3f530b87bd79601d51859507f8d3563badbb3b9c
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -224,7 +230,7 @@ public class MyTunesController implements Initializable
     @FXML
     private void handlePlayButton() 
     {
-       if (selectedSong == null )
+       /*if (selectedSong == null )
        {
            ListSongPlaylist.selectionModelProperty().get().select(0);
        }
@@ -240,11 +246,18 @@ public class MyTunesController implements Initializable
        else 
        {
            songManager.pauseSong();
+<<<<<<< HEAD
+       }*/
+       
+       
+=======
        }
+>>>>>>> eb8448dfb1381d7b44354570997925316b33fdf9
     }
    
     
     
+<<<<<<< HEAD
 //    private void changePlayButton(boolean playing)
 //    {
 //        Image image;
@@ -261,6 +274,24 @@ public class MyTunesController implements Initializable
 //            isPlaying = true;
 //        }
 //    }
+=======
+    private void changePlayButton(boolean playing)
+    {/*
+        Image image;
+        if (playing)
+        {
+            image = new Image(getClass().getResourceAsStream("/mytunes/src/images/play.png"));
+            imgPlay.setImage(image);
+            isPlaying = false;
+        }
+        else
+        {
+            image = new Image(getClass().getResourceAsStream("/mytunes/src/images/pause.png"));
+            imgPlay.setImage(image);
+            isPlaying = true;
+        }*/
+    }
+>>>>>>> 3f530b87bd79601d51859507f8d3563badbb3b9c
 
     @FXML
     private void lastSong(MouseEvent event) 
@@ -310,6 +341,14 @@ public class MyTunesController implements Initializable
                         isMuted = false;
                     }
                 });
+    }
+
+    @FXML
+    private void update(ActionEvent event) throws SQLException {
+        String a=textFieldFilter.getText();
+        System.out.println(a);
+        myTunes.setItems((ObservableList<MyTunes>) model.getAllSongsByPlaylist(a));
+        
     }
 
     

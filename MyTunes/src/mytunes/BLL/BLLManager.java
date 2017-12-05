@@ -20,9 +20,9 @@ public class BLLManager
     myTunesDAL mtdal = new myTunesDAL();
      
     
-    public List<MyTunes> getAllSongsByPlaylist(String songName, String Artist, String Album, int Year) throws SQLException
+    public List<MyTunes> getAllSongsByPlaylist(String song) throws SQLException
     {
-        return mtdal.getAllSongsByPlaylist(songName, Artist, Album, 0);
+        return mtdal.getAllSongsByPlaylist(song);
     }
     
     
