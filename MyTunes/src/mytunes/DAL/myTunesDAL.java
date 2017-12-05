@@ -38,16 +38,14 @@ public class myTunesDAL {
             
             String query 
                     = "SELECT * FROM myTunes "
-                    + "WHERE Artist = LIKE?  "
-                    +"Name = LIKE? "
-                    
+                    + "WHERE Name =  LIKE?  "
                     ;
             
             PreparedStatement pstmt
                     = con.prepareStatement(query);
+                            
             pstmt.setString(1, "%" + search + "%");
-            pstmt.setString(2, "%" + search + "%");
-            ResultSet rs = pstmt.executeQuery();
+           ResultSet rs = pstmt.executeQuery();
             while(rs.next())
             {
                 MyTunes m = new MyTunes();

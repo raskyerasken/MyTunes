@@ -8,10 +8,7 @@ package mytunes.GUI;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.Random;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,21 +16,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
@@ -57,7 +47,6 @@ public class MyTunesController implements Initializable
     private TableView<MyTunes> ListSongPlaylist ;
     @FXML
     private Label labelSongTheirIsPlaying;
-    @FXML
     private TextField textFieldFilter;
     private ObservableList<String> playlist; 
     @FXML
@@ -116,6 +105,8 @@ public class MyTunesController implements Initializable
     private MenuItem newSong;
     @FXML
     private MenuItem newPlaylist;
+    @FXML
+    private TextField textField;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -305,9 +296,9 @@ public class MyTunesController implements Initializable
 
     @FXML
     private void update(ActionEvent event) throws SQLException {
-        String a=textFieldFilter.getText();
+        String a=textField.getText();
         System.out.println(a);
-        myTunes.setItems((ObservableList<MyTunes>) model.getAllSongsByPlaylist(a));
+        ListSongPlaylist.setItems((ObservableList<MyTunes>) model.getAllSongsByPlaylist(a));
         
     }
 

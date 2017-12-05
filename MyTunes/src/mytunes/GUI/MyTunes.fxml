@@ -78,7 +78,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <TextField fx:id="textFieldFilter" layoutX="586.0" layoutY="50.0" prefHeight="25.0" prefWidth="92.0" />
+      <TextField fx:id="textField" layoutX="586.0" layoutY="50.0" prefHeight="25.0" prefWidth="92.0" />
       <Button layoutX="686.0" layoutY="48.0" mnemonicParsing="false" onAction="#update" text="Button" />
    </children>
 </AnchorPane>
