@@ -24,6 +24,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
@@ -108,6 +109,12 @@ public class MyTunesController implements Initializable
     private Slider sliderVolume;
     @FXML
     private Button imgMute;
+    @FXML
+    private MenuItem closeBtn;
+    @FXML
+    private MenuItem newSong;
+    @FXML
+    private MenuItem newPlaylist;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -165,11 +172,7 @@ public class MyTunesController implements Initializable
             newStage.show();
     }
 
-    @FXML
-    private void deletePlaylist(ActionEvent event) 
-    {
-        
-    }
+  
 
 
     @FXML
@@ -205,7 +208,6 @@ public class MyTunesController implements Initializable
         
     
 
-    @FXML
     private void closeProgram(ActionEvent event) 
     {
         Alert alert = new Alert(AlertType.CONFIRMATION, "Do you want to close the player?", ButtonType.YES, ButtonType.NO);
@@ -243,22 +245,22 @@ public class MyTunesController implements Initializable
    
     
     
-    private void changePlayButton(boolean playing)
-    {
-        Image image;
-        if (playing)
-        {
-            image = new Image(getClass().getResourceAsStream("/mytunes/src/images/play.png"));
-            imgPlay.setImage(image);
-            isPlaying = false;
-        }
-        else
-        {
-            image = new Image(getClass().getResourceAsStream("/mytunes/src/images/pause.png"));
-            imgPlay.setImage(image);
-            isPlaying = true;
-        }
-    }
+//    private void changePlayButton(boolean playing)
+//    {
+//        Image image;
+//        if (playing)
+//        {
+//            image = new Image(getClass().getResourceAsStream("/mytunes/src/images/play.png"));
+//            imgPlay.setImage(image);
+//            isPlaying = false;
+//        }
+//        else
+//        {
+//            image = new Image(getClass().getResourceAsStream("/mytunes/src/images/pause.png"));
+//            imgPlay.setImage(image);
+//            isPlaying = true;
+//        }
+//    }
 
     @FXML
     private void lastSong(MouseEvent event) 
@@ -350,6 +352,10 @@ public class MyTunesController implements Initializable
             songManager.playSong(selectedSong, true);
             songManager.adjustVolume(sliderVolume.getValue() / 100);
         }
+    }
+
+    @FXML
+    private void deletePlaylist(ActionEvent event) {
     }
  
 }
