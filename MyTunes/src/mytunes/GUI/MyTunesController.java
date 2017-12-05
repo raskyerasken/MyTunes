@@ -24,6 +24,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
@@ -120,6 +121,7 @@ public class MyTunesController implements Initializable
             new PropertyValueFactory("year"));
         
         ListSongPlaylist.setItems((ObservableList<MyTunes>) model.getAllSong());
+        changePlayButton(true);
     }   
 
     
@@ -218,7 +220,8 @@ public class MyTunesController implements Initializable
        {
            songManager.pauseSong();
        }*/
-       
+        
+       changePlayButton(isPlaying);
        
        }
     
@@ -227,20 +230,20 @@ public class MyTunesController implements Initializable
     
 
     private void changePlayButton(boolean playing)
-    {/*
+    {
         Image image;
         if (playing)
         {
-            image = new Image(getClass().getResourceAsStream("/mytunes/src/images/play.png"));
+            image = new Image(getClass().getResourceAsStream("/play.png"));
             imgPlay.setImage(image);
             isPlaying = false;
         }
         else
         {
-            image = new Image(getClass().getResourceAsStream("/mytunes/src/images/pause.png"));
+            image = new Image(getClass().getResourceAsStream("/pause.png"));
             imgPlay.setImage(image);
             isPlaying = true;
-        }*/
+        }
     }
 
     @FXML
