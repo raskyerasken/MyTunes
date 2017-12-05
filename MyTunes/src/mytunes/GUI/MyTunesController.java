@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -43,15 +45,13 @@ import mytunes.BLL.SongManager;
  */
 public class MyTunesController implements Initializable 
 {
-   /* 
+   
  
     
-    private boolean isMuted;
-    private double sliderVolumeValue;
+   
 
-    */
-    private boolean isPlaying;
-       private Song selectedSong;
+    
+    
    SongManager songManager= new SongManager();
    
     private Label label;
@@ -89,6 +89,10 @@ public class MyTunesController implements Initializable
     SongViewController songview = new SongViewController();
     final Button play = new Button("Pause");
     
+    private double sliderVolumeValue;
+    private boolean isMuted;
+    private boolean isPlaying;
+    private Song selectedSong;
     private ObservableList<MyTunesModel> observableTracksView;
     private MyTunesModel nextTrack;
     private MyTunesModel prevTrack;
@@ -96,6 +100,10 @@ public class MyTunesController implements Initializable
     private Media currentMedia;
     @FXML
     private ImageView imgPlay;
+    @FXML
+    private Slider sliderVolume;
+    @FXML
+    private Button imgMute;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -245,13 +253,13 @@ public class MyTunesController implements Initializable
         Image image;
         if (playing)
         {
-            image = new Image(getClass().getResourceAsStream("/mytunes/images/play.png"));
+            image = new Image(getClass().getResourceAsStream("/mytunes/src/images/play.png"));
             imgPlay.setImage(image);
             isPlaying = false;
         }
         else
         {
-            image = new Image(getClass().getResourceAsStream("/mytunes/images/pause.png"));
+            image = new Image(getClass().getResourceAsStream("/mytunes/src/images/pause.png"));
             imgPlay.setImage(image);
             isPlaying = true;
         }
@@ -273,6 +281,38 @@ public class MyTunesController implements Initializable
     private void nextSong(MouseEvent event) 
     {
         
+    }
+    
+    private void handleMuteSound()
+    {
+        if (!isMuted)
+        {
+            sliderVolumeValue = sliderVolume.getValue();
+            sliderVolume.setValue(0.0);
+            isMuted = true;
+            
+        }
+        else 
+        {
+            sliderVolume.setValue(sliderVolumeValue);
+            isMuted = false;
+        }
+                    System.out.println("i muted it");
+
+    }
+    
+    private void VolumeSliderUpdate()
+    {
+        sliderVolume.valueProperty().addListener((ObservableValue<? extends Number> listener, Number oldVal, Number newVal)
+                ->
+                {
+                    if (songManager.getMediaPlayer() != null)
+                    {
+                        songManager.adjustVolume(newVal.doubleValue() / 100);
+                        
+                        isMuted = false;
+                    }
+                });
     }
 
     
