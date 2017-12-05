@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -13,19 +12,15 @@
 
 <AnchorPane id="AnchorPane" accessibleRole="BUTTON" prefHeight="471.0" prefWidth="752.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mytunes.GUI.MyTunesController">
    <children>
-      <ListView fx:id="ListSongPlaylist" layoutX="237.0" layoutY="79.0" prefHeight="332.0" prefWidth="123.0" AnchorPane.bottomAnchor="60.0" AnchorPane.rightAnchor="392.0" AnchorPane.topAnchor="79.0" />
-      <Button layoutX="7.0" layoutY="413.0" mnemonicParsing="false" onAction="#newPlaylist" prefHeight="25.0" prefWidth="45.0" text="New" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="7.0" />
+      <Button layoutX="7.0" layoutY="413.0" mnemonicParsing="false" onAction="#newPlaylist" prefHeight="27.0" prefWidth="58.0" text="New" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="7.0" />
       <Button layoutX="80.0" layoutY="413.0" mnemonicParsing="false" onAction="#editPlaylist" text="Edit" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="80.0" />
-      <Button layoutX="158.0" layoutY="413.0" mnemonicParsing="false" onAction="#deletePlaylist" text="Delete" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="158.0" />
-      <Button layoutX="304.0" layoutY="413.0" mnemonicParsing="false" onAction="#deleteSongOnPlaylist" text="Delete" AnchorPane.bottomAnchor="33.0" AnchorPane.rightAnchor="397.0" />
-      <Button layoutX="495.0" layoutY="413.0" mnemonicParsing="false" onAction="#newSong" text="New" AnchorPane.bottomAnchor="33.0" AnchorPane.rightAnchor="217.0" />
-      <Button layoutX="473.0" layoutY="413.0" mnemonicParsing="false" onAction="#editSong" text="Edit" AnchorPane.bottomAnchor="33.0" AnchorPane.rightAnchor="94.0" />
-      <Button layoutX="539.0" layoutY="413.0" mnemonicParsing="false" onAction="#DeleteSong" text="Delete" AnchorPane.bottomAnchor="33.0" AnchorPane.rightAnchor="94.0" />
-      <Button layoutX="680.0" layoutY="413.0" mnemonicParsing="false" onAction="#closeProgram" text="Close" AnchorPane.bottomAnchor="33.0" AnchorPane.rightAnchor="27.0" />
-      <Label layoutX="29.0" layoutY="62.0" text="Playlist" AnchorPane.bottomAnchor="392.0" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="62.0" />
-      <Label layoutX="229.0" layoutY="62.0" text="Songs on playlist" AnchorPane.bottomAnchor="392.0" AnchorPane.topAnchor="62.0" />
-      <Label layoutX="433.0" layoutY="63.0" text="Songs" AnchorPane.bottomAnchor="391.0" />
-      <Label fx:id="labelSongTheirIsPlaying" layoutX="271.0" layoutY="31.0" text="Play a song" AnchorPane.bottomAnchor="423.0" AnchorPane.topAnchor="31.0" />
+      <Button layoutX="140.0" layoutY="411.0" mnemonicParsing="false" onAction="#deletePlaylist" text="Delete" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="140.0" />
+      <Button layoutX="260.0" layoutY="411.0" mnemonicParsing="false" onAction="#newSong" text="New" AnchorPane.bottomAnchor="33.0" AnchorPane.rightAnchor="446.0" />
+      <Button layoutX="387.0" layoutY="411.0" mnemonicParsing="false" onAction="#editSong" text="Edit" AnchorPane.bottomAnchor="33.0" AnchorPane.rightAnchor="323.0" />
+      <Button layoutX="319.0" layoutY="411.0" mnemonicParsing="false" onAction="#DeleteSong" text="Delete" AnchorPane.bottomAnchor="33.0" AnchorPane.rightAnchor="375.0" />
+      <Label layoutX="78.0" layoutY="63.0" text="Playlists" AnchorPane.bottomAnchor="391.0" AnchorPane.leftAnchor="78.0" AnchorPane.topAnchor="63.0" />
+      <Label layoutX="474.0" layoutY="55.0" text="Songs" AnchorPane.bottomAnchor="399.0" />
+      <Label fx:id="labelSongTheirIsPlaying" layoutX="300.0" layoutY="15.0" text="Update Song Name Here" AnchorPane.bottomAnchor="439.0" AnchorPane.topAnchor="15.0" />
       <Label layoutX="551.0" layoutY="14.0" text="Filter" AnchorPane.rightAnchor="174.0" AnchorPane.topAnchor="14.0" />
       <TextField fx:id="textFieldFilter" layoutX="584.0" layoutY="10.0" prefHeight="25.0" prefWidth="81.0" AnchorPane.rightAnchor="87.0" AnchorPane.topAnchor="10.0" />
       <Slider fx:id="sliderVolume" layoutX="43.0" layoutY="39.0" AnchorPane.leftAnchor="43.0" AnchorPane.topAnchor="39.0" />
@@ -36,7 +31,7 @@
             <TableColumn fx:id="colomTime" prefWidth="65.0" text="time" />
         </columns>
       </TableView>
-      <TableView fx:id="myTunes" layoutX="425.0" layoutY="82.0" prefHeight="311.0" prefWidth="321.0" AnchorPane.bottomAnchor="78.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="82.0">
+      <TableView fx:id="ListSongPlaylist" layoutX="425.0" layoutY="81.0" prefHeight="325.0" prefWidth="506.0" AnchorPane.bottomAnchor="65.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="81.0">
         <columns>
           <TableColumn fx:id="listSongTitle" prefWidth="94.0" text="Title" />
           <TableColumn fx:id="listSongArtist" prefWidth="81.0" text="Artist" />
@@ -60,6 +55,6 @@
             <Image url="@../../../../src/Play%20knap.png" />
          </image>
       </ImageView>
-      <Button fx:id="imgMute" layoutX="200.0" layoutY="18.0" mnemonicParsing="false" text="Mute" />
+      <Button fx:id="imgMute" layoutX="194.0" layoutY="10.0" mnemonicParsing="false" text="Mute" />
    </children>
 </AnchorPane>

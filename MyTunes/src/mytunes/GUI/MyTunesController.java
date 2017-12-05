@@ -7,6 +7,7 @@ package mytunes.GUI;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
@@ -23,9 +24,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -45,18 +48,11 @@ import mytunes.BLL.SongManager;
  */
 public class MyTunesController implements Initializable 
 {
-   
- 
-    
-   
-
-    
-    
    SongManager songManager= new SongManager();
    
     private Label label;
     @FXML
-    private ListView<String> ListSongPlaylist ;
+    private TableView<?> ListSongPlaylist ;
     @FXML
     private Label labelSongTheirIsPlaying;
     @FXML
@@ -82,13 +78,14 @@ public class MyTunesController implements Initializable
     private ImageView backBtn;
     @FXML
     private ImageView nextBtn;
-    private MediaPlayer player;
-    MyTunesModel model= new MyTunesModel();
-    @FXML
-    private TableView<MyTunes> myTunes;
-    SongViewController songview = new SongViewController();
-    final Button play = new Button("Pause");
     
+    MyTunesModel model= new MyTunesModel();
+    SongViewController songview = new SongViewController();
+
+    
+    final Button play = new Button("Pause"); 
+    private MediaPlayer player;
+    private TableView<MyTunes> myTunes;
     private double sliderVolumeValue;
     private boolean isMuted;
     private boolean isPlaying;
@@ -98,6 +95,13 @@ public class MyTunesController implements Initializable
     private MyTunesModel prevTrack;
     private MyTunesModel currentTrack;
     private Media currentMedia;
+    private boolean isShuffleToggled;
+    private boolean isRepeatToggled;
+    private final Random rand;
+    
+    
+    
+    
     @FXML
     private ImageView imgPlay;
     @FXML
@@ -119,16 +123,17 @@ public class MyTunesController implements Initializable
         
         myTunes.setItems((ObservableList<MyTunes>) model.getAllSong());
     }   
-     
-        
-    
-    public void playlistUpdate(MyTunesModel model)
-    {
-        this.model= model;
-       myTunes.setItems((ObservableList<MyTunes>) model.updateAllSong());
-       
-    }
 
+    
+    
+    
+    
+    
+    
+    public MyTunesController(Random rand) {
+        this.rand = rand;
+    }
+ 
     @FXML
     private void newPlaylist(ActionEvent event) throws IOException {
          Stage newStage = new Stage();
@@ -143,9 +148,7 @@ public class MyTunesController implements Initializable
             newStage.setScene(scene);
             newStage.show();
     }
-    
-    
-
+   
     @FXML
     private void editPlaylist(ActionEvent event) throws IOException 
     {
@@ -168,12 +171,6 @@ public class MyTunesController implements Initializable
         
     }
 
-
-    @FXML
-    private void deleteSongOnPlaylist(ActionEvent event) 
-    {
-        
-    }
 
     @FXML
     private void newSong(ActionEvent event) throws IOException 
@@ -242,10 +239,8 @@ public class MyTunesController implements Initializable
        {
            songManager.pauseSong();
        }
-       
-       
     }
-    
+   
     
     
     private void changePlayButton(boolean playing)
@@ -316,5 +311,45 @@ public class MyTunesController implements Initializable
     }
 
     
+    
+    private void prevOrNextSong(boolean next)
+    {
+        TableViewSelectionModel<Song> selectionModel = (TableViewSelectionModel<Song>) ListSongPlaylist.selectionModelProperty().getValue();
+        int selectedSongIndex = selectionModel.getSelectedIndex();
+        int tableSongsTotalItems = ListSongPlaylist.getItems().size() - 1;
+        
+        if (next)
+        {
+            if (isShuffleToggled)
+            {
+                selectionModel.clearAndSelect(rand.nextInt(ListSongPlaylist.getItems().size()));
+            }
+            
+            else if (selectedSongIndex == tableSongsTotalItems || selectedSong == null)
+            {
+                selectionModel.clearAndSelect(0);
+            }
+            else
+            {
+                selectionModel.clearAndSelect(selectedSongIndex + 1);
+            }
+        }
+        
+        else if (songManager.getSongTimeElapsed().toMillis() <= 3500.0)
+        {
+            if (selectedSongIndex == 0 || selectedSong == null)
+            {
+                selectionModel.clearAndSelect(tableSongsTotalItems);
+            }
+            else 
+            {
+                selectionModel.clearAndSelect(selectedSongIndex);
+            }
+            
+            selectedSong = selectionModel.getSelectedItem();
+            songManager.playSong(selectedSong, true);
+            songManager.adjustVolume(sliderVolume.getValue() / 100);
+        }
+    }
  
 }
