@@ -29,7 +29,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
@@ -45,8 +44,6 @@ import javazoom.jl.player.Player;
 import javazoom.jlgui.basicplayer.BasicPlayer;
 import javazoom.jlgui.basicplayer.BasicPlayerException;
 import mytunes.BE.MyTunes;
-import mytunes.BE.Song;
-import mytunes.BLL.SongManager;
 
 
 /**
@@ -56,12 +53,13 @@ import mytunes.BLL.SongManager;
 public class MyTunesController implements Initializable 
 {
     
-    @FXML
-    public ImageView imgPlay;
     private Label label;
-    private ListView<Song> listSongPlaylist;
-    
-   
+    @FXML
+    private ListView<String> ListSongPlaylist ;
+    @FXML
+    private Label labelSongTheirIsPlaying;
+    @FXML
+    private TextField textFieldFilter;
     private ObservableList<String> playlist; 
     @FXML
     private TableColumn<MyTunes, String> columName;
@@ -78,11 +76,13 @@ public class MyTunesController implements Initializable
     @FXML
     private TableColumn<MyTunes, Integer> listSongTime;
     @FXML
-    private Button playBtn;
+    private ImageView playBtn;
     @FXML
     private ImageView backBtn;
     @FXML
     private ImageView nextBtn;
+    @FXML
+    private ImageView pauseBtn;
     private MediaPlayer player;
     MyTunesModel model= new MyTunesModel();
     @FXML
@@ -90,23 +90,11 @@ public class MyTunesController implements Initializable
     SongViewController songview = new SongViewController();
     final Button play = new Button("Pause");
     
-    private final SongManager songManager;
     private ObservableList<MyTunesModel> observableTracksView;
     private MyTunesModel nextTrack;
     private MyTunesModel prevTrack;
     private MyTunesModel currentTrack;
     private Media currentMedia;
-    private Song selectedSong;
-    private boolean isPlaying;
-    private boolean isMuted;
-    private double sliderVolumeValue;
-    @FXML
-    private ListView<?> ListSongPlaylist;
-    @FXML
-    private Label labelSongTheirIsPlaying;
-    @FXML
-    private TextField textFieldFilter;
-   
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -122,10 +110,6 @@ public class MyTunesController implements Initializable
         
         myTunes.setItems((ObservableList<MyTunes>) model.getAllSong());
     }   
-
-    public MyTunesController(SongManager songManager) {
-        this.songManager = songManager;
-    }
      
         
     
@@ -153,22 +137,6 @@ public class MyTunesController implements Initializable
     
     
 
-<<<<<<< HEAD
-//    @FXML
-//    private void editPlaylist(ActionEvent event) throws IOException {
-//         Stage newStage = new Stage();
-//            FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("playListView.fxml"));
-//
-//            Parent root = fxLoader.load();
-//            PlayListController controller
-//                    = fxLoader.getController();
-//
-//
-//            Scene scene = new Scene(root);
-//            newStage.setScene(scene);
-//            newStage.show();
-//    }
-=======
     @FXML
     private void editPlaylist(ActionEvent event) throws IOException 
     {
@@ -184,7 +152,6 @@ public class MyTunesController implements Initializable
             newStage.setScene(scene);
             newStage.show();
     }
->>>>>>> 3efc38ca7ba44195450a30b924dbd92b8a353a85
 
     @FXML
     private void deletePlaylist(ActionEvent event) 
@@ -246,7 +213,6 @@ public class MyTunesController implements Initializable
     }
 
 
-<<<<<<< HEAD
     @FXML
     private void playBtn() throws LineUnavailableException, UnsupportedAudioFileException, IOException, BasicPlayerException, JavaLayerException 
     {
@@ -259,31 +225,6 @@ public class MyTunesController implements Initializable
              playMP3.play();
 }
     
-=======
-    private void playBtn() 
-    {
-        if (selectedSong == null)
-        {
-            listSongPlaylist.selectionModelProperty().get().select(0);
-        }
-        
-        selectedSong = listSongPlaylist.selectionModelProperty().getValue().getSelectedItem();
-        
-        if (!isPlaying)
-        {
-            songManager.playSong(selectedSong, false);
-           
-        }
-        
-        else 
-            
-        {
-            songManager.pauseSong();
-        }
-        
-        changePlayButton(isPlaying);
-    }
->>>>>>> 8df580b911f7d5ae049e5d58664f9ad3f649cbd5
 
     @FXML
     private void lastSong(MouseEvent event) 
@@ -291,13 +232,9 @@ public class MyTunesController implements Initializable
         System.out.println("last");
     }
 
-<<<<<<< HEAD
-    private void pause(MouseEvent event) {
-=======
     @FXML
     private void pause(MouseEvent event) 
     {
->>>>>>> 3efc38ca7ba44195450a30b924dbd92b8a353a85
         System.out.println("pause");
     }
 
@@ -313,60 +250,6 @@ public class MyTunesController implements Initializable
         
     }
 
-    
-    private void changePlayButton (boolean playing)
-    {
-        Image image;
-        if (playing)
-        {
-            image = new Image(getClass().getResourceAsStream("/mytunes/images/play.png"));
-            imgPlay.setImage(image);
-            isPlaying = false;
-        }
-        
-        else 
-        {
-            image = new Image(getClass().getResourceAsStream("/mytunes/images/pause.png"));
-            imgPlay.setImage(image);
-            isPlaying = true;
-        }
-    }
-
-    @FXML
-    private void nextSong(MouseEvent event) {
-    }
-
-    @FXML
-    private void play(MouseEvent event) {
-    }
-
-    @FXML
-    private void editPlaylist(ActionEvent event) {
-    }
-
-    @FXML
-    private void handlePlayButton()
-    {
-        // Making sure the song is never null before trying to play a song.
-        if (selectedSong == null)
-        {
-            listSongPlaylist.selectionModelProperty().get().select(0);
-        }
-
-        selectedSong = listSongPlaylist.selectionModelProperty().getValue().getSelectedItem();
-
-        //Play button pressed
-        if (!isPlaying)
-        {
-            songManager.playSong(selectedSong, false);
-        }
-        else
-        {
-            songManager.pauseSong();
-        }
-
-        changePlayButton(isPlaying);
-    }
     
  
 }

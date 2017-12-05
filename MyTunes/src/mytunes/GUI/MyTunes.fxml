@@ -44,6 +44,11 @@
             <TableColumn fx:id="listSongTime" prefWidth="69.0" text="Time" />
         </columns>
       </TableView>
+      <ImageView fx:id="playBtn" accessibleRole="BUTTON" fitHeight="27.0" fitWidth="21.0" layoutX="122.0" layoutY="10.0" onMouseClicked="#play">
+         <image>
+            <Image url="@../../Play%20knap.png" />
+         </image>
+      </ImageView>
       <ImageView fx:id="backBtn" accessibleRole="BUTTON" fitHeight="27.0" fitWidth="21.0" layoutX="33.0" layoutY="10.0" onMouseClicked="#lastSong">
          <image>
             <Image url="@../../arrows.png" />
@@ -54,11 +59,11 @@
             <Image url="@../../right.png" />
          </image>
       </ImageView>
-      <Button fx:id="playBtn" layoutX="97.0" layoutY="10.0" mnemonicParsing="false" onAction="#handlePlayButton" prefHeight="27.0" prefWidth="32.0" />
-      <ImageView fx:id="imgPlay" accessibleRole="BUTTON" fitHeight="27.0" fitWidth="21.0" layoutX="103.0" layoutY="10.0" onMouseClicked="#play">
+      <ImageView fx:id="pauseBtn" accessibleRole="BUTTON" fitHeight="39.0" fitWidth="39.0" layoutX="62.0" layoutY="4.0" onMouseClicked="#pause">
          <image>
-            <Image url="@../../Play%20knap.png" />
+            <Image url="@../../pause%20button.png" />
          </image>
       </ImageView>
+      <Button layoutX="197.0" layoutY="8.0" mnemonicParsing="false" onAction="#playBtn" text="Play" />
    </children>
 </AnchorPane>
