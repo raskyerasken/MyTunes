@@ -43,19 +43,17 @@ import mytunes.BLL.SongManager;
  */
 public class MyTunesController implements Initializable 
 {
-    private final SongManager songManager;
-    private Song selectedSong;
-    private boolean isPlaying;
+   /* 
+ 
+    
     private boolean isMuted;
     private double sliderVolumeValue;
 
-    public MyTunesController(SongManager songManager) {
-        this.songManager = songManager;
-    }
-    
-    
-    
-    
+    */
+    private boolean isPlaying;
+       private Song selectedSong;
+   SongManager songManager= new SongManager();
+   
     private Label label;
     @FXML
     private ListView<String> ListSongPlaylist ;
