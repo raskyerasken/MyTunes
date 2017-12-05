@@ -21,7 +21,7 @@ public class SongManager
     private MediaPlayer player;
 
     
-     private void playSong(Song song, boolean overwrite) 
+     public void playSong(Song song, boolean overwrite) 
      {
         pauseSong();
         if (this.song == null || overwrite)

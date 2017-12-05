@@ -26,12 +26,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import mytunes.BE.MyTunes;
+import mytunes.BE.Song;
+import mytunes.BLL.SongManager;
 
 
 /**
@@ -40,6 +43,18 @@ import mytunes.BE.MyTunes;
  */
 public class MyTunesController implements Initializable 
 {
+    private final SongManager songManager;
+    private Song selectedSong;
+    private boolean isPlaying;
+    private boolean isMuted;
+    private double sliderVolumeValue;
+
+    public MyTunesController(SongManager songManager) {
+        this.songManager = songManager;
+    }
+    
+    
+    
     
     private Label label;
     @FXML
@@ -64,13 +79,11 @@ public class MyTunesController implements Initializable
     @FXML
     private TableColumn<MyTunes, Integer> listSongTime;
     @FXML
-    private ImageView playBtn;
+    private Button playBtn;
     @FXML
     private ImageView backBtn;
     @FXML
     private ImageView nextBtn;
-    @FXML
-    private ImageView pauseBtn;
     private MediaPlayer player;
     MyTunesModel model= new MyTunesModel();
     @FXML
@@ -83,6 +96,8 @@ public class MyTunesController implements Initializable
     private MyTunesModel prevTrack;
     private MyTunesModel currentTrack;
     private Media currentMedia;
+    @FXML
+    private ImageView imgPlay;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -202,18 +217,45 @@ public class MyTunesController implements Initializable
 
 
     @FXML
-    private void playBtn() 
+    private void handlePlayButton() 
     {
-        System.out.println("lalal");
-        if(player != null) {
-            boolean playing = player.getStatus().equals(MediaPlayer.Status.PLAYING);
-            if(playing) {
-                player.pause();
-                System.out.println("lol");
-            } else {
-                player.play();
-                System.out.println("lolz");
-            }
+       if (selectedSong == null )
+       {
+           ListSongPlaylist.selectionModelProperty().get().select(0);
+       }
+       
+       selectedSong = (Song) ListSongPlaylist.selectionModelProperty().getValue().getSelectedItems();
+       
+       //if the play button gets pressed
+       if (!isPlaying)
+       {
+           songManager.playSong(selectedSong, false);
+       }
+       
+       else 
+       {
+           songManager.pauseSong();
+       }
+       
+       
+    }
+    
+    
+    
+    private void changePlayButton(boolean playing)
+    {
+        Image image;
+        if (playing)
+        {
+            image = new Image(getClass().getResourceAsStream("/mytunes/images/play.png"));
+            imgPlay.setImage(image);
+            isPlaying = false;
+        }
+        else
+        {
+            image = new Image(getClass().getResourceAsStream("/mytunes/images/pause.png"));
+            imgPlay.setImage(image);
+            isPlaying = true;
         }
     }
 
@@ -223,17 +265,11 @@ public class MyTunesController implements Initializable
         System.out.println("last");
     }
 
-    @FXML
     private void pause(MouseEvent event) 
     {
         System.out.println("pause");
     }
 
-    @FXML
-    private void play(MouseEvent event) 
-    {
-        
-    }
 
     @FXML
     private void nextSong(MouseEvent event) 
