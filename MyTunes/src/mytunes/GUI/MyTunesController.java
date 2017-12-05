@@ -47,8 +47,7 @@ public class MyTunesController implements Initializable
     private TableView<MyTunes> ListSongPlaylist ;
     @FXML
     private Label labelSongTheirIsPlaying;
-    private TextField textFieldFilter;
-    private ObservableList<String> playlist; 
+ 
     @FXML
     private TableColumn<MyTunes, String> columName;
     @FXML
