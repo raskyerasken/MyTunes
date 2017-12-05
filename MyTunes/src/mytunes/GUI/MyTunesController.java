@@ -54,7 +54,7 @@ public class MyTunesController implements Initializable
    
     private Label label;
     @FXML
-    private TableView<?> ListSongPlaylist ;
+    private TableView<MyTunes> ListSongPlaylist ;
     @FXML
     private Label labelSongTheirIsPlaying;
     @FXML
@@ -99,13 +99,14 @@ public class MyTunesController implements Initializable
     private Media currentMedia;
     private boolean isShuffleToggled;
     private boolean isRepeatToggled;
-    private final Random rand;
+   // private final Random rand;
     
     
     
     
     @FXML
     private ImageView imgPlay;
+   @FXML
     private Slider sliderVolume;
     @FXML
     private Button imgMute;
@@ -128,7 +129,7 @@ public class MyTunesController implements Initializable
         listSongTime.setCellValueFactory(
             new PropertyValueFactory("year"));
         
-        myTunes.setItems((ObservableList<MyTunes>) model.getAllSong());
+        ListSongPlaylist.setItems((ObservableList<MyTunes>) model.getAllSong());
     }   
 
     
@@ -137,9 +138,9 @@ public class MyTunesController implements Initializable
     
     
     
-    public MyTunesController(Random rand) {
+   /* public MyTunesController(Random rand) {
         this.rand = rand;
-    }
+    }*/
  
     @FXML
     private void newPlaylist(ActionEvent event) throws IOException {
@@ -201,26 +202,12 @@ public class MyTunesController implements Initializable
     private void DeleteSong(ActionEvent event) 
     {
         MyTunes selectedMyTunes
-                = myTunes.getSelectionModel().getSelectedItem();
+                = ListSongPlaylist.getSelectionModel().getSelectedItem();
 
         model.remove(selectedMyTunes);
     }
         
     
-
-    private void closeProgram(ActionEvent event) 
-    {
-        Alert alert = new Alert(AlertType.CONFIRMATION, "Do you want to close the player?", ButtonType.YES, ButtonType.NO);
-        alert.showAndWait();
-
-        if (alert.getResult() == ButtonType.YES) 
-        {
-            Platform.exit();
-        }
-        
-    }
-
-
     @FXML
     private void handlePlayButton() 
     {
@@ -285,7 +272,7 @@ public class MyTunesController implements Initializable
     }
     
     private void handleMuteSound()
-    {
+    {/*
         if (!isMuted)
         {
             sliderVolumeValue = sliderVolume.getValue();
@@ -298,12 +285,12 @@ public class MyTunesController implements Initializable
             sliderVolume.setValue(sliderVolumeValue);
             isMuted = false;
         }
-                    System.out.println("i muted it");
+                    System.out.println("i muted it");*/
 
     }
     
     private void VolumeSliderUpdate()
-    {
+    {/*
         sliderVolume.valueProperty().addListener((ObservableValue<? extends Number> listener, Number oldVal, Number newVal)
                 ->
                 {
@@ -313,7 +300,7 @@ public class MyTunesController implements Initializable
                         
                         isMuted = false;
                     }
-                });
+                });*/
     }
 
     @FXML
@@ -328,7 +315,7 @@ public class MyTunesController implements Initializable
     
     private void prevOrNextSong(boolean next)
     {
-        TableViewSelectionModel<Song> selectionModel = (TableViewSelectionModel<Song>) ListSongPlaylist.selectionModelProperty().getValue();
+        /*TableViewSelectionModel<Song> selectionModel = (TableViewSelectionModel<Song>) ListSongPlaylist.selectionModelProperty().getValue();
         int selectedSongIndex = selectionModel.getSelectedIndex();
         int tableSongsTotalItems = ListSongPlaylist.getItems().size() - 1;
         
@@ -363,7 +350,7 @@ public class MyTunesController implements Initializable
             selectedSong = selectionModel.getSelectedItem();
             songManager.playSong(selectedSong, true);
             songManager.adjustVolume(sliderVolume.getValue() / 100);
-        }
+        }*/
     }
 
     @FXML
