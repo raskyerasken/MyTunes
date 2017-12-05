@@ -7,6 +7,7 @@ package mytunes.GUI;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
@@ -100,10 +101,7 @@ public class MyTunesController implements Initializable
     private Media currentMedia;
     @FXML
     private ImageView imgPlay;
-    @FXML
     private Slider sliderVolume;
-    @FXML
-    private Button imgMute;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -225,7 +223,7 @@ public class MyTunesController implements Initializable
     @FXML
     private void handlePlayButton() 
     {
-       if (selectedSong == null )
+       /*if (selectedSong == null )
        {
            ListSongPlaylist.selectionModelProperty().get().select(0);
        }
@@ -241,7 +239,7 @@ public class MyTunesController implements Initializable
        else 
        {
            songManager.pauseSong();
-       }
+       }*/
        
        
     }
@@ -249,7 +247,7 @@ public class MyTunesController implements Initializable
     
     
     private void changePlayButton(boolean playing)
-    {
+    {/*
         Image image;
         if (playing)
         {
@@ -262,7 +260,7 @@ public class MyTunesController implements Initializable
             image = new Image(getClass().getResourceAsStream("/mytunes/src/images/pause.png"));
             imgPlay.setImage(image);
             isPlaying = true;
-        }
+        }*/
     }
 
     @FXML
@@ -313,6 +311,14 @@ public class MyTunesController implements Initializable
                         isMuted = false;
                     }
                 });
+    }
+
+    @FXML
+    private void update(ActionEvent event) throws SQLException {
+        String a=textFieldFilter.getText();
+        System.out.println(a);
+        myTunes.setItems((ObservableList<MyTunes>) model.getAllSongsByPlaylist(a));
+        
     }
 
     

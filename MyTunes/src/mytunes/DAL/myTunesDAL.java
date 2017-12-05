@@ -27,7 +27,7 @@ import mytunes.BE.MyTunes;
 public class myTunesDAL {
     private ConnectionManager cm = new ConnectionManager();
 
-    public List<MyTunes> getAllSongsByPlaylist(String songName, String Artist, String Album, int Year) throws SQLServerException, SQLException
+    public List<MyTunes> getAllSongsByPlaylist(String search) throws SQLServerException, SQLException
     {
        List<MyTunes> allSongs = new ArrayList();
         
@@ -38,12 +38,15 @@ public class myTunesDAL {
             
             String query 
                     = "SELECT * FROM myTunes "
-                    + "WHERE Name LIKE ? ";
+                    + "WHERE Artist = LIKE?  "
+                    +"Name = LIKE? "
+                    
+                    ;
             
             PreparedStatement pstmt
                     = con.prepareStatement(query);
-            pstmt.setString(1, "%" + songName + "%");
-            
+            pstmt.setString(1, "%" + search + "%");
+            pstmt.setString(2, "%" + search + "%");
             ResultSet rs = pstmt.executeQuery();
             while(rs.next())
             {
@@ -52,6 +55,9 @@ public class myTunesDAL {
                 m.setAlbum(rs.getString("Album"));
                 m.setArtist(rs.getString("Artist"));
                 m.setYear(rs.getInt("Year"));
+                m.setId(rs.getInt("id"));
+                m.setPath(rs.getString("path"));
+                m.setSongLength(rs.getInt("songLength"));
                 
                 allSongs.add(m);
             }

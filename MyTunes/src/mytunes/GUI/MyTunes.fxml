@@ -28,7 +28,7 @@
       <Label fx:id="labelSongTheirIsPlaying" layoutX="271.0" layoutY="31.0" text="Play a song" AnchorPane.bottomAnchor="423.0" AnchorPane.topAnchor="31.0" />
       <Label layoutX="551.0" layoutY="14.0" text="Filter" AnchorPane.rightAnchor="174.0" AnchorPane.topAnchor="14.0" />
       <TextField fx:id="textFieldFilter" layoutX="584.0" layoutY="10.0" prefHeight="25.0" prefWidth="81.0" AnchorPane.rightAnchor="87.0" AnchorPane.topAnchor="10.0" />
-      <Slider fx:id="sliderVolume" layoutX="43.0" layoutY="39.0" AnchorPane.leftAnchor="43.0" AnchorPane.topAnchor="39.0" />
+      <Slider layoutX="43.0" layoutY="39.0" AnchorPane.leftAnchor="43.0" AnchorPane.topAnchor="39.0" />
       <TableView layoutX="14.0" layoutY="80.0" prefHeight="325.0" prefWidth="205.0" AnchorPane.bottomAnchor="64.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="533.0" AnchorPane.topAnchor="82.0">
         <columns>
           <TableColumn fx:id="columName" prefWidth="82.0" text="Name" />
@@ -60,6 +60,6 @@
             <Image url="@../../../../src/Play%20knap.png" />
          </image>
       </ImageView>
-      <Button fx:id="imgMute" layoutX="200.0" layoutY="18.0" mnemonicParsing="false" text="Mute" />
+      <Button layoutX="677.0" layoutY="11.0" mnemonicParsing="false" onAction="#update" text="Button" />
    </children>
 </AnchorPane>
