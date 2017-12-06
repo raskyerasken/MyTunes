@@ -35,6 +35,10 @@ private ObservableList<Playlist> playlist
     {
     return songList;
     }
+     List<Playlist> getPlaylist()
+    {
+    return playlist;
+    }
     public void add (MyTunes mytunes) throws SQLException
     {   
         bllManager.add(mytunes);

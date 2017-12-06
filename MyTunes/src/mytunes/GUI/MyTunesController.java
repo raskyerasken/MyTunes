@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -236,6 +237,7 @@ controller.setModel(model);
        if (isPlaying)
        {
            songManager.playSong(selectedSong, false);
+           System.out.println(selectedSong.getPath());
        }
        
        else 
@@ -288,8 +290,9 @@ controller.setModel(model);
         
     }
     
+   @FXML
     private void handleMuteSound()
-    {/*
+    {
         if (!isMuted)
         {
             sliderVolumeValue = sliderVolume.getValue();
@@ -302,12 +305,13 @@ controller.setModel(model);
             sliderVolume.setValue(sliderVolumeValue);
             isMuted = false;
         }
-                    System.out.println("i muted it");*/
+                    System.out.println("i muted it");
 
     }
     
+   @FXML
     private void VolumeSliderUpdate()
-    {/*
+    {
         sliderVolume.valueProperty().addListener((ObservableValue<? extends Number> listener, Number oldVal, Number newVal)
                 ->
                 {
@@ -317,7 +321,7 @@ controller.setModel(model);
                         
                         isMuted = false;
                     }
-                });*/
+                });
     }
 
     @FXML

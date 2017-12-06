@@ -52,6 +52,10 @@ public class PlayListController implements Initializable {
 
     @FXML
     private void save(ActionEvent event) throws SQLException {
+      //  if(model.getPlaylist().)
+        {
+            
+        }
         songData.setplaylistName(txtPlaylist.getText());
         System.out.println(txtPlaylist.getText());
         songData.setSongID(1);

@@ -20,7 +20,7 @@
       <Label layoutX="475.0" layoutY="97.0" text="Songs" AnchorPane.bottomAnchor="408.0" />
       <Label fx:id="labelSongTheirIsPlaying" layoutX="300.0" layoutY="15.0" text="Update Song Name Here" AnchorPane.bottomAnchor="439.0" AnchorPane.topAnchor="15.0" />
       <Label layoutX="544.0" layoutY="52.0" text="Filter" AnchorPane.rightAnchor="176.0" AnchorPane.topAnchor="52.0" />
-      <Slider fx:id="sliderVolume" layoutX="44.0" layoutY="75.0" AnchorPane.leftAnchor="44.0" AnchorPane.topAnchor="75.0" />
+      <Slider fx:id="sliderVolume" layoutX="45.0" layoutY="76.0" onDragDetected="#VolumeSliderUpdate" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="76.0" />
       <TableView fx:id="listPlaylist" layoutX="12.0" layoutY="115.0" prefHeight="325.0" prefWidth="205.0" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="535.0" AnchorPane.topAnchor="115.0">
         <columns>
           <TableColumn fx:id="columName" prefWidth="82.0" text="Name" />
@@ -52,7 +52,7 @@
             <Image url="@../../../../src/Play%20knap.png" />
          </image>
       </ImageView>
-      <Button fx:id="imgMute" layoutX="194.0" layoutY="36.0" mnemonicParsing="false" text="Mute" />
+      <Button fx:id="imgMute" layoutX="194.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleMuteSound" text="Mute" />
       <ButtonBar prefHeight="40.0" prefWidth="200.0" />
       <MenuBar prefHeight="29.0" prefWidth="752.0">
         <menus>
