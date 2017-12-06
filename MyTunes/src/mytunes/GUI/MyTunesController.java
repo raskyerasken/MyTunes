@@ -81,8 +81,8 @@ public class MyTunesController implements Initializable
     private TableView<MyTunes> myTunes;
     private double sliderVolumeValue;
     private boolean isMuted;
-    private boolean isPlaying;
-    private Song selectedSong;
+    private boolean isPlaying = false;
+    private MyTunes selectedSong;
     private ObservableList<MyTunesModel> observableTracksView;
     private MyTunesModel nextTrack;
     private MyTunesModel prevTrack;
@@ -123,7 +123,7 @@ public class MyTunesController implements Initializable
             new PropertyValueFactory("year"));
         
         ListSongPlaylist.setItems((ObservableList<MyTunes>) model.getAllSong());
-        changePlayButton(true);
+        changePlayButton(isPlaying);
     }   
 
     
@@ -218,17 +218,18 @@ public class MyTunesController implements Initializable
        {
            ListSongPlaylist.selectionModelProperty().get().select(0);
        }
-       
-       selectedSong = (Song) ListSongPlaylist.selectionModelProperty().getValue().getSelectedItems();
+        
+       selectedSong = (MyTunes) ListSongPlaylist.getSelectionModel().getSelectedItem();
        
        //if the play button gets pressed
-       if (!isPlaying)
+       if (isPlaying)
        {
            songManager.playSong(selectedSong, false);
        }
        
        else 
        {
+          
            songManager.pauseSong();
        }
         
@@ -245,15 +246,16 @@ public class MyTunesController implements Initializable
         Image image;
         if (playing)
         {
-            image = new Image(getClass().getResourceAsStream("/play.png"));
+             image = new Image(getClass().getResourceAsStream("/pause.png"));
             imgPlay.setImage(image);
             isPlaying = false;
         }
         else
         {
-            image = new Image(getClass().getResourceAsStream("/pause.png"));
+             image = new Image(getClass().getResourceAsStream("/play.png"));
             imgPlay.setImage(image);
             isPlaying = true;
+           
         }
     }
 

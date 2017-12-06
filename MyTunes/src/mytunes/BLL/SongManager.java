@@ -8,6 +8,7 @@ package mytunes.BLL;
 import java.io.File;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import mytunes.BE.MyTunes;
 import mytunes.BE.Song;
 
 /**
@@ -17,16 +18,16 @@ import mytunes.BE.Song;
 public class SongManager 
 {
     
-    private Song song;
+    private MyTunes song;
     private MediaPlayer player;
 
     
-     public void playSong(Song song, boolean overwrite) 
+     public void playSong(MyTunes song, boolean overwrite) 
      {
         pauseSong();
-        if (this.song == null || overwrite)
+        if (this.song != song || overwrite)
         {
-            this.song = song;
+            this.song=song;
             File soundFile = new File(this.song.getPath());
             Media media = new Media(soundFile.toURI().toString());
             player = new MediaPlayer(media);
@@ -42,7 +43,7 @@ public class SongManager
         }
     }
     
-    public Song getCurrentlyPlayingSong()
+    public MyTunes getCurrentlyPlayingSong()
     {
         return this.song;
     }
