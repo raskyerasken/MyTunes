@@ -16,6 +16,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
@@ -195,15 +197,24 @@ public class MyTunesController implements Initializable
     {
         MyTunes selectedMyTunes
                 = ListSongPlaylist.getSelectionModel().getSelectedItem();
-
+        if(selectedMyTunes==null)
+        {
+              Alert alert = new Alert(AlertType.WARNING);
+              alert.setTitle("Nothing selectet");
+              alert.setHeaderText(null);
+              alert.setContentText("Cant delete nothing");
+              alert.showAndWait();}
+        else{
+        
         model.remove(selectedMyTunes);
+        }
     }
         
     
     @FXML
     private void handlePlayButton() 
     {
-       /*if (selectedSong == null )
+       if (selectedSong == null )
        {
            ListSongPlaylist.selectionModelProperty().get().select(0);
        }
@@ -219,7 +230,7 @@ public class MyTunesController implements Initializable
        else 
        {
            songManager.pauseSong();
-       }*/
+       }
         
        changePlayButton(isPlaying);
        
