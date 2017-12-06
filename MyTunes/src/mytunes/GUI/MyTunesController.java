@@ -25,6 +25,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -46,7 +47,9 @@ import mytunes.BLL.SongManager;
 public class MyTunesController implements Initializable 
 {
    SongManager songManager= new SongManager();
-   
+       int selectedSongIndex;
+    int tableSongsTotalItems;
+    TableViewSelectionModel<MyTunes> selectionModel;
     private Label label;
     @FXML
     private TableView<MyTunes> ListSongPlaylist ;
@@ -273,7 +276,6 @@ controller.setModel(model);
         }
     }
 
-    @FXML
     private void lastSong(MouseEvent event) 
     {
         System.out.println("last");
@@ -285,11 +287,6 @@ controller.setModel(model);
     }
 
 
-    @FXML
-    private void nextSong(MouseEvent event) 
-    {
-        
-    }
     
    @FXML
     private void handleMuteSound()
@@ -334,46 +331,6 @@ controller.setModel(model);
     }
 
     
-    
-    private void prevOrNextSong(boolean next)
-    {
-        /*TableViewSelectionModel<Song> selectionModel = (TableViewSelectionModel<Song>) ListSongPlaylist.selectionModelProperty().getValue();
-        int selectedSongIndex = selectionModel.getSelectedIndex();
-        int tableSongsTotalItems = ListSongPlaylist.getItems().size() - 1;
-        
-        if (next)
-        {
-            if (isShuffleToggled)
-            {
-                selectionModel.clearAndSelect(rand.nextInt(ListSongPlaylist.getItems().size()));
-            }
-            
-            else if (selectedSongIndex == tableSongsTotalItems || selectedSong == null)
-            {
-                selectionModel.clearAndSelect(0);
-            }
-            else
-            {
-                selectionModel.clearAndSelect(selectedSongIndex + 1);
-            }
-        }
-        
-        else if (songManager.getSongTimeElapsed().toMillis() <= 3500.0)
-        {
-            if (selectedSongIndex == 0 || selectedSong == null)
-            {
-                selectionModel.clearAndSelect(tableSongsTotalItems);
-            }
-            else 
-            {
-                selectionModel.clearAndSelect(selectedSongIndex);
-            }
-            
-            selectedSong = selectionModel.getSelectedItem();
-            songManager.playSong(selectedSong, true);
-            songManager.adjustVolume(sliderVolume.getValue() / 100);
-        }*/
-    }
 
     @FXML
     private void deletePlaylist(ActionEvent event) {
@@ -391,5 +348,48 @@ controller.setModel(model);
         model.removePlaylist(playlist);
         }
     }
+  
+    @FXML
+    private void nextSong(MouseEvent event) {
+       update();
+        System.out.println(selectedSongIndex );
+        System.out.println(tableSongsTotalItems);
+            if (selectedSongIndex == tableSongsTotalItems || ListSongPlaylist.getSelectionModel().getSelectedItem()==null)
+            {
+                
+                selectionModel.clearAndSelect(0);
+            }
+            else
+            {
+                System.out.println("hey");
+                selectionModel.clearAndSelect(selectedSongIndex + 1);
+            }
+        }
+
+    @FXML
+    private void prevSong(MouseEvent event) {
+        update();
+        if( ListSongPlaylist.getSelectionModel().getSelectedItem()==null)
+        {
+        selectionModel.clearAndSelect(0);
+        }
+        else if (selectedSongIndex == 0)
+         {
+                selectionModel.clearAndSelect(tableSongsTotalItems);
+            }
+        
+            else
+            {
+                selectionModel.clearAndSelect(selectedSongIndex -1);
+            }
+    }
+
+    private void update()
+    {
+    selectionModel = (TableViewSelectionModel<MyTunes>) ListSongPlaylist.selectionModelProperty().getValue();
+     selectedSongIndex = selectionModel.getSelectedIndex();
+     tableSongsTotalItems = ListSongPlaylist.getItems().size() - 1;
+    }
+    }
  
-}
+

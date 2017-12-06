@@ -63,19 +63,19 @@ public List<MyTunes> getAllSongsByPlaylist(String song) throws SQLException
 public void add (Playlist playlistSong) throws SQLException
     {   
         for (Playlist play :playlist ) {
-            System.out.println(play.getplaylistName()+"bdf");
-            System.out.println(playlistSong.getplaylistName()+"hey");
+           
             if(playlistSong.getplaylistName().equals(play.getplaylistName()))
             {
-                System.out.println("hey");
+                
                 playlistSong.setSongID(playlistSong.getSongID()+1);
             }
             else{
-          
+                bllManager.add(playlistSong);
+               playlist.add(playlistSong);
             }
+            bllManager.add(playlistSong);
         }
-             bllManager.add(playlistSong);
-            playlist.add(playlistSong);
+            
         
      
     }
