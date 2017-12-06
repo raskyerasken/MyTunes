@@ -226,13 +226,14 @@ controller.setModel(model);
     @FXML
     private void handlePlayButton() 
     {
+        selectedSong = (MyTunes) ListSongPlaylist.getSelectionModel().getSelectedItem();
        if (selectedSong == null )
        {
+           System.out.println("hey");
            ListSongPlaylist.selectionModelProperty().get().select(0);
        }
         
-       selectedSong = (MyTunes) ListSongPlaylist.getSelectionModel().getSelectedItem();
-       
+    
        //if the play button gets pressed
        if (isPlaying)
        {
