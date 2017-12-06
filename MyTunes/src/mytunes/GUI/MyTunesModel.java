@@ -10,6 +10,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import mytunes.BE.MyTunes;
+import mytunes.BE.Playlist;
 import mytunes.BLL.BLLManager;
 
 /**
@@ -21,6 +22,9 @@ public class MyTunesModel
     private BLLManager bllManager = new BLLManager();
 
      private ObservableList<MyTunes> songList
+            = FXCollections.observableArrayList();
+     
+private ObservableList<Playlist> playlist
             = FXCollections.observableArrayList();
 
     List<MyTunes> getAllSong() {
@@ -35,8 +39,7 @@ public class MyTunesModel
     {   
         bllManager.add(mytunes);
         songList.add(mytunes);
-        
-    
+     
     }
 
     public void remove(MyTunes selectedMyTunes) {
@@ -51,6 +54,22 @@ public List<MyTunes> getAllSongsByPlaylist(String song) throws SQLException
         songList.setAll(bllManager.getAllSongsByPlaylist(song));
         return songList;
         
+    }
+
+public void add (Playlist playlistSong) throws SQLException
+    {   
+        bllManager.add(playlistSong);
+        playlist.add(playlistSong);
+     
+    }
+ List<Playlist> getAllPlaylist() {
+        playlist.addAll(bllManager.getallPlaylist());
+        return playlist;
+    }
+
+    void removePlaylist(Playlist playlistSongs) {
+       bllManager.remove(playlistSongs);
+        playlist.remove(playlistSongs);
     }
 }
     

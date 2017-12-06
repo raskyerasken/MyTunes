@@ -7,7 +7,10 @@ package mytunes.BLL;
 
 import java.sql.SQLException;
 import java.util.List;
+import javafx.collections.ObservableList;
 import mytunes.BE.MyTunes;
+import mytunes.BE.Playlist;
+import mytunes.DAL.PlaylistDAL;
 import mytunes.DAL.myTunesDAL;
 
 
@@ -18,7 +21,7 @@ import mytunes.DAL.myTunesDAL;
 public class BLLManager 
 {
     myTunesDAL mtdal = new myTunesDAL();
-     
+     PlaylistDAL pldal=new PlaylistDAL();
     
     public List<MyTunes> getAllSongsByPlaylist(String song) throws SQLException
     {
@@ -30,6 +33,7 @@ public class BLLManager
     {
         mtdal.add(allSongs);
     }
+    
 
     public List<MyTunes> getallSong() 
     {
@@ -41,7 +45,19 @@ public class BLLManager
         mtdal.remove(selectedMyTunes);
     }
     
-    
+    public void add(Playlist playlist) throws SQLException
+    {
+        pldal.add(playlist);
+    }
+
+    public  List<Playlist> getallPlaylist() {
+       return mtdal.getAllPlaylist();
+    }
+
+    public void remove(Playlist playlistSongs) {
+      mtdal.removePlaylist(playlistSongs);
+    }
+
     
     
    

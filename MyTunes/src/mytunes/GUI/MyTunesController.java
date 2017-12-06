@@ -33,6 +33,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import mytunes.BE.MyTunes;
+import mytunes.BE.Playlist;
 import mytunes.BE.Song;
 import mytunes.BLL.SongManager;
 
@@ -109,6 +110,8 @@ public class MyTunesController implements Initializable
     private MenuItem newPlaylist;
     @FXML
     private TextField textField;
+    @FXML
+    private TableView<Playlist> listPlaylist;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -120,10 +123,18 @@ public class MyTunesController implements Initializable
         listSongCategory.setCellValueFactory(
             new PropertyValueFactory("album"));
         listSongTime.setCellValueFactory(
-            new PropertyValueFactory("year"));
+            new PropertyValueFactory("songLength"));
         
         ListSongPlaylist.setItems((ObservableList<MyTunes>) model.getAllSong());
         changePlayButton(isPlaying);
+        columName.setCellValueFactory(
+            new PropertyValueFactory("playlistName"));
+        columSongs.setCellValueFactory(
+            new PropertyValueFactory("SongID"));
+         colomTime.setCellValueFactory(
+            new PropertyValueFactory("SongID"));
+         listPlaylist.setItems((ObservableList<Playlist>) model.getAllPlaylist());
+        
     }   
 
     
@@ -144,7 +155,7 @@ public class MyTunesController implements Initializable
             Parent root = fxLoader.load();
             PlayListController controller
                     = fxLoader.getController();
-
+controller.setModel(model);
 
             Scene scene = new Scene(root);
             newStage.setScene(scene);
@@ -160,7 +171,7 @@ public class MyTunesController implements Initializable
             Parent root = fxLoader.load();
             PlayListController controller
                     = fxLoader.getController();
-
+controller.setModel(model);
 
             Scene scene = new Scene(root);
             newStage.setScene(scene);
@@ -361,6 +372,19 @@ public class MyTunesController implements Initializable
 
     @FXML
     private void deletePlaylist(ActionEvent event) {
+        Playlist playlist
+                = listPlaylist.getSelectionModel().getSelectedItem();
+        if(playlist==null)
+        {
+              Alert alert = new Alert(AlertType.WARNING);
+              alert.setTitle("Nothing selectet");
+              alert.setHeaderText(null);
+              alert.setContentText("Cant delete nothing");
+              alert.showAndWait();}
+        else{
+        
+        model.removePlaylist(playlist);
+        }
     }
  
 }

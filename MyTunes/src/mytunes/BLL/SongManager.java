@@ -24,6 +24,7 @@ public class SongManager
     
      public void playSong(MyTunes song, boolean overwrite) 
      {
+         
         pauseSong();
         if (this.song != song || overwrite)
         {
@@ -32,6 +33,7 @@ public class SongManager
             Media media = new Media(soundFile.toURI().toString());
             player = new MediaPlayer(media);
         }
+        
         player.play();
     }
     

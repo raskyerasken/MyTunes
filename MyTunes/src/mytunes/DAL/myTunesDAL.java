@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import mytunes.BE.MyTunes;
+import mytunes.BE.Playlist;
 
 
 /**
@@ -25,7 +26,7 @@ import mytunes.BE.MyTunes;
 
             
 public class myTunesDAL {
-    private ConnectionManager cm = new ConnectionManager();
+    private ConnectionManagerMyTunes cm = new ConnectionManagerMyTunes();
 
     public List<MyTunes> getAllSongsByPlaylist(String search) throws SQLServerException, SQLException
     {
@@ -140,6 +141,50 @@ public class myTunesDAL {
                     Level.SEVERE, null, ex);
         }
         return allSong;
+    }
+
+    public List<Playlist> getAllPlaylist() {
+        
+        List<Playlist> playlist
+                = new ArrayList();
+
+        try (Connection con = cm.getConnection()) 
+        {
+            PreparedStatement stmt
+                    = con.prepareStatement("SELECT * FROM Playlist");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) 
+            {
+                Playlist p = new Playlist();
+               
+                p.setplaylistName(rs.getString("Playlist"));
+                p.setSongID(rs.getInt("SongID"));
+               
+
+                 playlist.add(p);
+            }
+        }
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(myTunesDAL.class.getName()).log(
+                    Level.SEVERE, null, ex);
+        }
+        return  playlist;
+    
+    }
+
+    public void removePlaylist(Playlist playlistSongs) {
+     try (Connection con = cm.getConnection()) {
+        String sql = "DELETE FROM Playlist WHERE Playlist=?";
+        
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        pstmt.setString(1,playlistSongs.getplaylistName());
+        pstmt.execute();
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(myTunesDAL.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
     }
 }
     
