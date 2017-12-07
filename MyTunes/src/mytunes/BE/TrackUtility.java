@@ -21,14 +21,17 @@ import javax.swing.JFileChooser;
 public class TrackUtility {
     
     
-    String  title ;
+    String title;
     String artist;
     String album;
-    String year ; 
+    String year; 
     String URLAdressSong;
     double songLength;
+<<<<<<< HEAD
     int idminutes;
     double idseconds;
+=======
+>>>>>>> 36e419d18d5ed247fd584bbeb469a3fbb1aad1bf
     /**
      * Get all tracklists stored in user preferences
      *
@@ -36,74 +39,81 @@ public class TrackUtility {
      * @param trackTable
      * @return List
      */
-   private void choseFile() throws UnsupportedTagException, InvalidDataException, IOException, NotSupportedException {
-       JFileChooser chooser = new JFileChooser();
-chooser.setCurrentDirectory(new java.io.File("."));
-chooser.setDialogTitle("choosertitle");
+    private void choseFile() throws UnsupportedTagException, InvalidDataException, IOException, NotSupportedException {
+                                                                            JFileChooser chooser = new JFileChooser();
+    chooser.setCurrentDirectory(new java.io.File("."));
+    chooser.setDialogTitle("choosertitle");
 
 
 
-if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+    if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
  
-  System.out.println("getSelectedFile() : " + chooser.getSelectedFile());
-} else {
-  System.out.println("No Selection ");
-}
-        URLAdressSong=""+chooser.getSelectedFile();
-        Mp3File mp3file = new Mp3File(chooser.getSelectedFile());
-songLength=(int) mp3file.getLengthInSeconds();
-        System.out.println("Length of this mp3 is: " + mp3file.getLengthInSeconds() + " seconds");
-      
-        System.out.println("Has ID3v2 tag?: " + (mp3file.hasId3v2Tag() ? "YES" : "NO"));
+    System.out.println("getSelectedFile() : " + chooser.getSelectedFile());
+    } 
+    
+    else 
+    {
+        System.out.println("No Selection ");
+    }
+    URLAdressSong=""+chooser.getSelectedFile();
+    Mp3File mp3file = new Mp3File(chooser.getSelectedFile());
+    songLength=(int) mp3file.getLengthInSeconds();
+    System.out.println("Length of this mp3 is: " + mp3file.getLengthInSeconds() + " seconds");  
+    System.out.println("Has ID3v2 tag?: " + (mp3file.hasId3v2Tag() ? "YES" : "NO"));
        
-      if (mp3file.hasId3v2Tag()) {
-        	ID3v2 id3v2Tag = mp3file.getId3v2Tag();
-        	artist= id3v2Tag.getArtist();
-                title = id3v2Tag.getTitle();
-                album = id3v2Tag.getAlbum();
-                year = id3v2Tag.getYear();
-           }
+    if (mp3file.hasId3v2Tag()) 
+    {
+      	ID3v2 id3v2Tag = mp3file.getId3v2Tag();
+      	artist= id3v2Tag.getArtist();
+        title = id3v2Tag.getTitle();
+        album = id3v2Tag.getAlbum();
+        year = id3v2Tag.getYear();
+    }
         
-        if (mp3file.hasId3v2Tag()) {
-        	ID3v2 id3v2Tag = mp3file.getId3v2Tag();
-            byte[] imageData = id3v2Tag.getAlbumImage();
-            if (imageData != null) {
-				String mimeType = id3v2Tag.getAlbumImageMimeType();
-				System.out.println("Mime type: " + mimeType);
+    if (mp3file.hasId3v2Tag()) 
+    {
+      	ID3v2 id3v2Tag = mp3file.getId3v2Tag();
+        byte[] imageData = id3v2Tag.getAlbumImage();
+        if (imageData != null)  
+        {
+            String mimeType = id3v2Tag.getAlbumImageMimeType();
+	    System.out.println("Mime type: " + mimeType);
 				
-				RandomAccessFile file = new RandomAccessFile("album-artwork", "rw");
-				file.write(imageData);
-				file.close();
-            }
+            RandomAccessFile file = new RandomAccessFile("album-artwork", "rw");
+	    file.write(imageData);
+	    file.close();
         }
-	}
+    }
+}
 
     public MyTunes getdata() throws UnsupportedTagException, InvalidDataException, IOException, NotSupportedException {
         choseFile();
         MyTunes song = new MyTunes();
         if (year != null)
         {
-               int yearr= Integer.parseInt(year);   
-               song.setYear(yearr);
+            int yearr= Integer.parseInt(year);   
+            song.setYear(yearr);
         }
+<<<<<<< HEAD
         
         idminutes = (int) (songLength/60);
            System.out.println(idminutes);
         idseconds = songLength%60;
         song.setSongLength(idminutes+idseconds/100);
+=======
+        song.setSongLength(songLength);
+>>>>>>> 36e419d18d5ed247fd584bbeb469a3fbb1aad1bf
         song.setAlbum(album);
         song.setArtist(artist);
         song.setPath(URLAdressSong);
         song.setSongName(title);
         
-        
         return song;
-    
-       
     }
 
     @Override
-    public String toString() {
+    public String toString() 
+    {
         return "TrackUtility{" + "title=" + title + ", artist=" + artist + ", album=" + album + ", year=" + year +",URLAdressSong"+URLAdressSong+ '}';
     }
 }

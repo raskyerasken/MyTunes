@@ -22,14 +22,19 @@ import javafx.beans.property.StringProperty;
 public class MyTunes {
     List<MyTunes> allSongs = new ArrayList();
     
-    private final IntegerProperty id= new SimpleIntegerProperty();
+    private final IntegerProperty id = new SimpleIntegerProperty();
     private final StringProperty songName =  new SimpleStringProperty();
-    private final StringProperty artist= new SimpleStringProperty();
+    private final StringProperty artist = new SimpleStringProperty();
     private final StringProperty album =  new SimpleStringProperty();
-    private final IntegerProperty year= new SimpleIntegerProperty();
+    private final IntegerProperty year = new SimpleIntegerProperty();
     private final StringProperty path =  new SimpleStringProperty();
+<<<<<<< HEAD
     private final DoubleProperty songLength= new SimpleDoubleProperty();
    
+=======
+    private final DoubleProperty songLength = new SimpleDoubleProperty();
+    
+>>>>>>> 36e419d18d5ed247fd584bbeb469a3fbb1aad1bf
   
  public double getSongLength()
     {
@@ -38,11 +43,19 @@ public class MyTunes {
     
     public void setSongLength(double songLength)
     {
+<<<<<<< HEAD
           
         this.songLength.set(songLength);
     }
     public DoubleProperty songLengthProperty(){
     return songLength;
+=======
+        this.songLength.set(songLength);
+    }
+    public DoubleProperty songLengthProperty()
+    {
+        return songLength;
+>>>>>>> 36e419d18d5ed247fd584bbeb469a3fbb1aad1bf
     }
     
 
@@ -55,9 +68,13 @@ public class MyTunes {
     
     public void setId(int id)
     {
+<<<<<<< HEAD
      
+=======
+>>>>>>> 36e419d18d5ed247fd584bbeb469a3fbb1aad1bf
         this.id.set(id);
     }
+    
     public IntegerProperty idProperty(){
     return id;
     }

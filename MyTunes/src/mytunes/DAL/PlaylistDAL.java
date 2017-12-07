@@ -34,32 +34,35 @@ public class PlaylistDAL {
         pstmt.setString(1,selectedMyTunes.getSongName());
         pstmt.execute();
         }
-        catch (SQLException ex) {
+        catch (SQLException ex) 
+        {
             Logger.getLogger(myTunesDAL.class.getName()).log(Level.SEVERE, null, ex);
-            
         }
     }
     
     public void add (Playlist playlist) throws SQLException
     {
-                 try (Connection con = cm.getConnection())  {
-
-        String sql 
+        try (Connection con = cm.getConnection())  
+        {
+            String sql 
                 = "INSERT INTO Playlist"
                 + "(Playlist,SongID) "
                 + "VALUES(?,?)";
-           PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-           pstmt.setString(1, playlist.getplaylistName());
+            PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1, playlist.getplaylistName());
             pstmt.setInt(2, playlist.getSongID());
-            int affected = pstmt.executeUpdate();
-            if (affected<1){
-                    throw new SQLException("Playlist could not be added");}
-            
+            double affected = pstmt.executeUpdate();
+            if (affected<1)
+            {
+                    throw new SQLException("Playlist could not be added");
             }
-    catch (SQLException ex) {
-        Logger.getLogger(myTunesDAL.class.getName()).log(Level.SEVERE, null, ex);
-    }     
-  }
+            
+        }
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(myTunesDAL.class.getName()).log(Level.SEVERE, null, ex);
+        }     
+    }
 
     public List<MyTunes> getAllSong() 
     {
@@ -80,7 +83,7 @@ public class PlaylistDAL {
                 s.setArtist(rs.getString("Artist"));
                 s.setYear(rs.getInt("Year"));
                 s.setId(rs.getInt("id"));
-                s.setSongLength(rs.getInt("songLength"));
+                s.setSongLength(rs.getDouble("songLength"));
                 s.setPath(rs.getString("path"));
 
                 allSong.add(s);
