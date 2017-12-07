@@ -34,6 +34,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -90,7 +91,7 @@ public class MyTunesController implements Initializable
     private boolean hasBrowseButtonBeenClicked;
     private TableView<MyTunes> myTunes;
     private double sliderVolumeValue;
-    private boolean isMuted;
+    private boolean isMuted=false;
     private boolean isPlaying = false;
     private MyTunes selectedSong;
     private ObservableList<MyTunesModel> observableTracksView;
@@ -139,13 +140,12 @@ public class MyTunesController implements Initializable
         
         ListSongPlaylist.setItems((ObservableList<MyTunes>) model.getAllSong());
         changePlayButton(isPlaying);
-        columName.setCellValueFactory(
+        columnPlaylist.setCellValueFactory(
             new PropertyValueFactory("playlistName"));
-        columSongs.setCellValueFactory(
-            new PropertyValueFactory("SongID"));
-        colomTime.setCellValueFactory(
-            new PropertyValueFactory("SongID"));
+        
+            
         listPlaylist.setItems((ObservableList<Playlist>) model.getAllPlaylist());
+        sliderVolume.setValue(100);
     }   
 
  
@@ -305,24 +305,32 @@ public class MyTunesController implements Initializable
     {
         if (!isMuted)
         {
+            
             sliderVolumeValue = sliderVolume.getValue();
             sliderVolume.setValue(0.0);
+            songManager.adjustVolume(0);
             isMuted = true;
             changeMuteButton(isMuted);
         }
         else 
         {
             sliderVolume.setValue(sliderVolumeValue);
+             songManager.adjustVolume(sliderVolumeValue);
             isMuted = false;
         }
+<<<<<<< HEAD
         System.out.println("i muted it");
         
+=======
+
+>>>>>>> 6d9e3a8dc336ed3c7282204aef92c95e7c1657a7
 
     }
     
    @FXML
     private void VolumeSliderUpdate()
     {
+      
         sliderVolume.valueProperty().addListener((ObservableValue<? extends Number> listener, Number oldVal, Number newVal)
                 ->
                 {
@@ -492,6 +500,10 @@ public class MyTunesController implements Initializable
             
 //        }
 //    }
+
+    @FXML
+    private void closeProgram(DragEvent event) {
+    }
 }
  
 
