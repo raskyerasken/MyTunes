@@ -106,7 +106,7 @@ public class MyTunesController implements Initializable
     @FXML
     private Slider sliderVolume;
     @FXML
-    private Button imgMute;
+    private ImageView imgMute;
     @FXML
     private MenuItem newSong;
     @FXML
@@ -120,7 +120,7 @@ public class MyTunesController implements Initializable
     @FXML
     private ProgressBar progressBar;
     @FXML
-    private ImageView imgPlay1;
+    private Button muteBtn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -338,13 +338,13 @@ public class MyTunesController implements Initializable
             model.removePlaylist(playlist);
         }
     }
-    
-    private void macros(KeyEvent key)
-    {
-        if (key.getCode() == KeyCode.SPACE)
-        {
-            handlePlayButton();
-        }
+//    
+//    private void macros(KeyEvent key)
+//    {
+//        if (key.getCode() == KeyCode.SPACE)
+//        {
+//            handlePlayButton();
+//        }
         
 //        if (key.getCode() == KeyCode.DELETE)
 //        {
@@ -352,7 +352,7 @@ public class MyTunesController implements Initializable
 //        }
 
    
-    }
+//    }
   
     private void nextSong(MouseEvent event) 
     {
