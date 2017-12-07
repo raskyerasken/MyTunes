@@ -22,13 +22,13 @@ import javafx.beans.property.StringProperty;
 public class MyTunes {
     List<MyTunes> allSongs = new ArrayList();
     
-    private final IntegerProperty id= new SimpleIntegerProperty();
+    private final IntegerProperty id = new SimpleIntegerProperty();
     private final StringProperty songName =  new SimpleStringProperty();
-    private final StringProperty artist= new SimpleStringProperty();
+    private final StringProperty artist = new SimpleStringProperty();
     private final StringProperty album =  new SimpleStringProperty();
-    private final IntegerProperty year= new SimpleIntegerProperty();
+    private final IntegerProperty year = new SimpleIntegerProperty();
     private final StringProperty path =  new SimpleStringProperty();
-    private final DoubleProperty songLength= new SimpleDoubleProperty();
+    private final DoubleProperty songLength = new SimpleDoubleProperty();
     
   
  public double getSongLength()
@@ -38,7 +38,6 @@ public class MyTunes {
     
     public void setSongLength(double songLength)
     {
-        
         this.songLength.set(songLength);
     }
     public DoubleProperty songLengthProperty()
@@ -54,9 +53,9 @@ public class MyTunes {
     
     public void setId(int id)
     {
-        
         this.id.set(id);
     }
+    
     public IntegerProperty idProperty(){
     return id;
     }

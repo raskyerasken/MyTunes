@@ -21,10 +21,10 @@ import javax.swing.JFileChooser;
 public class TrackUtility {
     
     
-    String  title ;
+    String title;
     String artist;
     String album;
-    String year ; 
+    String year; 
     String URLAdressSong;
     double songLength;
     /**
