@@ -62,8 +62,7 @@ public class PlayListController implements Initializable
     {
         songData.setplaylistName(txtPlaylist.getText());
         System.out.println(txtPlaylist.getText());
-        songData.setSongID(1);
-        model.add(songData);
+         model.add(songData);
         Stage stage = (Stage) save.getScene().getWindow();
         // do what you have to do
         stage.close();

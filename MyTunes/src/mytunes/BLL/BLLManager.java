@@ -10,7 +10,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import mytunes.BE.MyTunes;
 import mytunes.BE.Playlist;
-import mytunes.DAL.PlaylistDAL;
+
 import mytunes.DAL.myTunesDAL;
 
 
@@ -21,7 +21,7 @@ import mytunes.DAL.myTunesDAL;
 public class BLLManager 
 {
     myTunesDAL mtdal = new myTunesDAL();
-     PlaylistDAL pldal=new PlaylistDAL();
+     
     
     public List<MyTunes> getAllSongsByPlaylist(String song) throws SQLException
     {
@@ -47,7 +47,7 @@ public class BLLManager
     
     public void add(Playlist playlist) throws SQLException
     {
-        pldal.add(playlist);
+        mtdal.addPlaylist(playlist);
     }
 
     public  List<Playlist> getallPlaylist() {

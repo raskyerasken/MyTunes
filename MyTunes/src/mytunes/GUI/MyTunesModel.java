@@ -30,6 +30,7 @@ public class MyTunesModel
     List<MyTunes> getAllSong() 
     {
         songList.addAll(bllManager.getallSong());
+       
         return songList;
     }
     List<MyTunes> updateAllSong()
@@ -43,7 +44,7 @@ public class MyTunesModel
     public void add (MyTunes mytunes) throws SQLException
     {   
         bllManager.add(mytunes);
-        songList.add(mytunes);
+       songList.add(mytunes);
      
     }
 
@@ -61,20 +62,10 @@ public class MyTunesModel
 
     public void add (Playlist playlistSong) throws SQLException
     {   
-        for (Playlist play :playlist ) 
-        {
-           
-            if(playlistSong.getplaylistName().equals(play.getplaylistName()))
-            {
-                playlistSong.setSongID(playlistSong.getSongID()+1);
-            }
-            else
-            {
+        
                 bllManager.add(playlistSong);
                 playlist.add(playlistSong);
-            }
-            bllManager.add(playlistSong);
-        }
+          
     }
 
     List<Playlist> getAllPlaylist() 

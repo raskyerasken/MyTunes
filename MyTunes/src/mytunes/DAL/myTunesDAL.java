@@ -38,7 +38,7 @@ public class myTunesDAL {
             //Statement stmt = con.createStatement();
             
             String query 
-                    = "SELECT * FROM myTunes "
+                    = "SELECT * FROM myTunes3 "
                     + "WHERE name LIKE ?  OR artist LIKE ?";
           
             PreparedStatement pstmt
@@ -55,7 +55,7 @@ public class myTunesDAL {
                 m.setYear(rs.getInt("Year"));
                 m.setId(rs.getInt("id"));
                 m.setPath(rs.getString("path"));
-                m.setSongLength(rs.getDouble("songLength"));
+                m.setSongLength(rs.getFloat("songLength"));
                 
                 allSongs.add(m);
             }
@@ -67,7 +67,7 @@ public class myTunesDAL {
     public void remove(MyTunes selectedMyTunes)
     {
         try (Connection con = cm.getConnection()) {
-        String sql = "DELETE FROM myTunes WHERE Name=?";
+        String sql = "DELETE FROM myTunes3 WHERE Name=?";
         
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1,selectedMyTunes.getSongName());
@@ -84,7 +84,7 @@ public class myTunesDAL {
                  try (Connection con = cm.getConnection())  {
 
         String sql 
-                = "INSERT INTO myTunes"
+                = "INSERT INTO myTunes3"
                 + "(name, album, year, path, songLength, artist) "
                 + "VALUES(?,?,?,?,?,?)";
            PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -92,7 +92,7 @@ public class myTunesDAL {
             pstmt.setString(2, allSongs.getAlbum());
             pstmt.setInt(3, allSongs.getYear());
             pstmt.setString(4, allSongs.getPath());
-            pstmt.setDouble(5,allSongs.getSongLength());
+            pstmt.setFloat(5,  allSongs.getSongLength());
             pstmt.setString(6, allSongs.getArtist());
             
             int affected = pstmt.executeUpdate();
@@ -119,7 +119,7 @@ public class myTunesDAL {
         try (Connection con = cm.getConnection()) 
         {
             PreparedStatement stmt
-                    = con.prepareStatement("SELECT * FROM myTunes");
+                    = con.prepareStatement("SELECT * FROM myTunes3");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) 
             {
@@ -129,7 +129,7 @@ public class myTunesDAL {
                 s.setArtist(rs.getString("Artist"));
                 s.setYear(rs.getInt("Year"));
                 s.setId(rs.getInt("id"));
-                s.setSongLength(rs.getDouble("songLength"));
+                s.setSongLength(rs.getFloat("songLength"));
                 s.setPath(rs.getString("path"));
 
                 allSong.add(s);
@@ -151,14 +151,14 @@ public class myTunesDAL {
         try (Connection con = cm.getConnection()) 
         {
             PreparedStatement stmt
-                    = con.prepareStatement("SELECT * FROM Playlist");
+                    = con.prepareStatement("SELECT * FROM Playlist1");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) 
             {
                 Playlist p = new Playlist();
                
-                p.setplaylistName(rs.getString("Playlist"));
-                p.setSongID(rs.getInt("SongID"));
+                p.setplaylistName(rs.getString("PlaylistName"));
+                p.setID(rs.getInt("ID"));
                
 
                  playlist.add(p);
@@ -175,7 +175,7 @@ public class myTunesDAL {
 
     public void removePlaylist(Playlist playlistSongs) {
      try (Connection con = cm.getConnection()) {
-        String sql = "DELETE FROM Playlist WHERE Playlist=?";
+        String sql = "DELETE FROM Playlist WHERE Playlist1=?";
         
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1,playlistSongs.getplaylistName());
@@ -186,6 +186,34 @@ public class myTunesDAL {
             
         }
     }
+
+    public void addPlaylist(Playlist playlist) {
+         try (Connection con = cm.getConnection())  {
+
+        String sql 
+                = "INSERT INTO playlist1"
+                + "(id, playlistName ) "
+                + "VALUES(?,?)";
+           PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+           pstmt.setString(1, playlist.getplaylistName());
+           
+            
+            
+            int affected = pstmt.executeUpdate();
+            if (affected<1){
+                    throw new SQLException("Song could not be added");}
+            
+            
+              ResultSet rs = pstmt.getGeneratedKeys();
+            if (rs.next()) {
+                playlist.setID(rs.getInt(1));
+           }
+                 }
+    catch (SQLException ex) {
+        Logger.getLogger(myTunesDAL.class.getName()).log(Level.SEVERE, null, ex);
+    }     
+    
+    } 
 }
     
   
