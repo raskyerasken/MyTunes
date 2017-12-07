@@ -18,12 +18,14 @@
 <AnchorPane id="AnchorPane" accessibleRole="BUTTON" prefHeight="522.0" prefWidth="752.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mytunes.GUI.MyTunesController">
    <children>
       <Button fx:id="muteBtn" layoutX="192.0" layoutY="71.0" mnemonicParsing="false" onAction="#handleMuteSound" prefHeight="27.0" prefWidth="32.0" />
-      <Label layoutX="78.0" layoutY="72.0" text="Playlists" AnchorPane.bottomAnchor="382.0" AnchorPane.leftAnchor="78.0" AnchorPane.topAnchor="72.0" />
       <Label layoutX="475.0" layoutY="97.0" text="Songs" AnchorPane.bottomAnchor="408.0" />
       <Label fx:id="labelSongTheirIsPlaying" layoutX="300.0" layoutY="15.0" text="Update Song Name Here" AnchorPane.bottomAnchor="439.0" AnchorPane.topAnchor="15.0" />
       <Label layoutX="547.0" layoutY="55.0" text="Filter" AnchorPane.rightAnchor="173.0" AnchorPane.topAnchor="55.0" />
       <Slider fx:id="sliderVolume" layoutX="45.0" layoutY="76.0" onDragDetected="#VolumeSliderUpdate" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="76.0" />
-      <TableView fx:id="listPlaylist" layoutX="12.0" layoutY="115.0" prefHeight="376.0" prefWidth="200.0" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="540.0" AnchorPane.topAnchor="115.0" />
+      <TableView fx:id="listPlaylist" layoutX="12.0" layoutY="115.0" prefHeight="376.0" prefWidth="200.0" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="540.0" AnchorPane.topAnchor="115.0">
+         <columns>
+            <TableColumn fx:id="columnPlaylist" prefWidth="203.0" text="Playlists" />
+         </columns></TableView>
       <TableView fx:id="ListSongPlaylist" layoutX="241.0" layoutY="115.0" prefHeight="376.0" prefWidth="531.0" AnchorPane.bottomAnchor="31.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="115.0">
         <columns>
           <TableColumn fx:id="listSongTitle" prefWidth="203.0" text="Title" />

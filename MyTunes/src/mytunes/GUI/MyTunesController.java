@@ -121,6 +121,8 @@ public class MyTunesController implements Initializable
     private ProgressBar progressBar;
     @FXML
     private Button muteBtn;
+    @FXML
+    private TableColumn<?, ?> columnPlaylist;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) 
