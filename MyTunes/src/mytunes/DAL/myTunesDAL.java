@@ -175,7 +175,7 @@ public class myTunesDAL {
 
     public void removePlaylist(Playlist playlistSongs) {
      try (Connection con = cm.getConnection()) {
-        String sql = "DELETE FROM Playlist WHERE Playlist1=?";
+        String sql = "DELETE FROM Playlist1 WHERE playlistName=?";
         
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1,playlistSongs.getplaylistName());
@@ -191,9 +191,9 @@ public class myTunesDAL {
          try (Connection con = cm.getConnection())  {
 
         String sql 
-                = "INSERT INTO playlist1"
-                + "(id, playlistName ) "
-                + "VALUES(?,?)";
+                = "INSERT INTO Playlist1"
+                + "(playlistName ) "
+                + "VALUES(?)";
            PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
            pstmt.setString(1, playlist.getplaylistName());
            
