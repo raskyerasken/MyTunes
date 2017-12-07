@@ -5,6 +5,7 @@
  */
 package mytunes.BE;
 
+import java.util.ArrayList;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -17,6 +18,7 @@ import javafx.beans.property.StringProperty;
 public class Playlist {
      private final IntegerProperty SongID= new SimpleIntegerProperty();
     private final StringProperty playlistName =  new SimpleStringProperty();
+    private ArrayList<Song> songList;
     
     public String getplaylistName()
     {
@@ -46,5 +48,11 @@ public class Playlist {
     }
     public IntegerProperty SongIDProperty(){
     return SongID;
+    }
+    
+    
+    public ArrayList<Song> getSongList()
+    {
+        return songList;
     }
 }
