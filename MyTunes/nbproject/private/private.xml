@@ -8,17 +8,23 @@
         <group>
             <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/src/mytunes/GUI/SongViewController.java</file>
             <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/src/mytunes/GUI/MyTunesModel.java</file>
+            <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/src/mytunes/BE/Song.java</file>
+            <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/src/mytunes/DAL/PlaylistDAL.java</file>
+            <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/src/mytunes/GUI/PlayListController.java</file>
             <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/src/mytunes/BE/MyTunes.java</file>
+            <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/src/mytunes/BE/Playlist.java</file>
             <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/src/mytunes/BLL/SongManager.java</file>
             <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/src/mytunes/BLL/BLLManager.java</file>
             <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/src/mytunes/GUI/MyTunesController.java</file>
             <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/nbproject/build-impl.xml</file>
             <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/src/mytunes/MainWindow.java</file>
+            <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/src/mytunes/BE/TrackUtility.java</file>
             <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/src/mytunes/GUI/songView.fxml</file>
+            <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/src/mytunes/GUI/model/SongModel.java</file>
             <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/nbproject/jfx-impl.xml</file>
             <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/src/mytunes/GUI/MyTunes.fxml</file>
             <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/src/mytunes/DAL/myTunesDAL.java</file>
-            <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/src/mytunes/DAL/ConnectionManager.java</file>
+            <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/src/mytunes/DAL/ConnectionManagerMyTunes.java</file>
             <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/src/mytunes/DAL/SongDAO.java</file>
         </group>
     </open-files>

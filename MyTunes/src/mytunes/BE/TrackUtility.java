@@ -26,9 +26,9 @@ public class TrackUtility {
     String album;
     String year; 
     String URLAdressSong;
-    double songLength;
+    float songLength;
 int idminutes;
-    double idseconds;
+    float idseconds;
 
     /**
      * Get all tracklists stored in user preferences

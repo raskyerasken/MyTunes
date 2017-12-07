@@ -8,8 +8,10 @@ package mytunes.BE;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.FloatProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -29,21 +31,21 @@ public class MyTunes {
     private final IntegerProperty year = new SimpleIntegerProperty();
     private final StringProperty path =  new SimpleStringProperty();
 
-    private final DoubleProperty songLength= new SimpleDoubleProperty();
+    private final FloatProperty songLength= new SimpleFloatProperty();
 
   
- public double getSongLength()
+ public float getSongLength()
     {
         return songLength.get();
     }
     
-    public void setSongLength(double songLength)
+    public void setSongLength(float songLength)
     {
 
           
         this.songLength.set(songLength);
     }
-    public DoubleProperty songLengthProperty(){
+    public FloatProperty songLengthProperty(){
     return songLength;}
 
 

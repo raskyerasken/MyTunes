@@ -15,7 +15,7 @@ import javafx.beans.property.StringProperty;
  * @author jacob
  */
 public class Playlist {
-     private final IntegerProperty SongID= new SimpleIntegerProperty();
+     private final IntegerProperty ID= new SimpleIntegerProperty();
     private final StringProperty playlistName =  new SimpleStringProperty();
     
     public String getplaylistName()
@@ -34,17 +34,17 @@ public class Playlist {
     }
     
 
-    public int getSongID()
+    public int getID()
     {
-        return SongID.get();
+        return ID.get();
     }
     
-    public void setSongID(int SongID)
+    public void setID(int ID)
     {
         
-        this.SongID.set(SongID);
+        this.ID.set(ID);
     }
-    public IntegerProperty SongIDProperty(){
-    return SongID;
+    public IntegerProperty IDProperty(){
+    return ID;
     }
 }
