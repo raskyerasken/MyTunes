@@ -260,6 +260,7 @@ public class MyTunesController implements Initializable
             image = new Image(getClass().getResourceAsStream("/pause.png"));
             imgPlay.setImage(image);
             isPlaying = false;
+            
         }
         else
         {
@@ -267,6 +268,7 @@ public class MyTunesController implements Initializable
             imgPlay.setImage(image);
             isPlaying = true;
         }
+      
     }
     
     
@@ -277,13 +279,14 @@ public class MyTunesController implements Initializable
     {
         image = new Image(getClass().getResourceAsStream("/mute.png"));
         imgMute.setImage(image);
-        isMuted = false;
+        
     }
     else 
     {
         image = new Image(getClass().getResourceAsStream("/unmute.png"));
+        System.out.println("wars");
         imgMute.setImage(image);
-        isMuted = true;
+        
     }
         
     }
@@ -303,6 +306,7 @@ public class MyTunesController implements Initializable
     @FXML
     private void handleMuteSound()
     {
+        
         if (!isMuted)
         {
             
@@ -310,21 +314,17 @@ public class MyTunesController implements Initializable
             sliderVolume.setValue(0.0);
             songManager.adjustVolume(0);
             isMuted = true;
-            changeMuteButton(isMuted);
+            
+              
         }
         else 
         {
             sliderVolume.setValue(sliderVolumeValue);
              songManager.adjustVolume(sliderVolumeValue);
+           
             isMuted = false;
         }
-<<<<<<< HEAD
-        System.out.println("i muted it");
-        
-=======
-
->>>>>>> 6d9e3a8dc336ed3c7282204aef92c95e7c1657a7
-
+  changeMuteButton(isMuted);
     }
     
    @FXML
@@ -464,46 +464,6 @@ public class MyTunesController implements Initializable
     
     
     
-//    private void moveSong(boolean up)
-//    {
-//        System.out.println(ListSongPlaylist.getSelectionModel().getSelectedIndex());
-//        int nowIndex = ListSongPlaylist.getSelectionModel().getSelectedIndex();
-//        
-//        int changeIndex = nowIndex;
-//        boolean change = false;
-//        
-//        if (up && nowIndex != 0)
-//        {
-//            changeIndex = nowIndex -1;
-//            change = true;
-//           
-//        }
-//        else if (!up && nowIndex != ListSongPlaylist.getItems().size() -1)
-//        {
-//            changeIndex = nowIndex +1;
-//            change = true;
-//        }
-//        
-//        if (change)
-//        {
-//            MyTunes changeSong = ListSongPlaylist.getItems().get(changeIndex);
-//            ListSongPlaylist.getItems().set(changeIndex, selectedSong);
-//            ListSongPlaylist.getItems().set(nowIndex, selectedSong);
-//            selectedSong = ListSongPlaylist.getItems().get(changeIndex);
-//            if (!hasBrowseButtonBeenClicked)
-//            {
-//                selectedPlaylist.getSongList().set(changeIndex, selectedSong);
-//                selectedPlaylist.getSongList().set(nowIndex, changeSong);
-//            }
-//                    
-//             
-            
-//        }
-//    }
-
-    @FXML
-    private void closeProgram(DragEvent event) {
-    }
 }
  
 
