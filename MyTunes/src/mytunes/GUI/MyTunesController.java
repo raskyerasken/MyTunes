@@ -34,6 +34,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -90,7 +91,7 @@ public class MyTunesController implements Initializable
     private boolean hasBrowseButtonBeenClicked;
     private TableView<MyTunes> myTunes;
     private double sliderVolumeValue;
-    private boolean isMuted;
+    private boolean isMuted=false;
     private boolean isPlaying = false;
     private MyTunes selectedSong;
     private ObservableList<MyTunesModel> observableTracksView;
@@ -144,6 +145,7 @@ public class MyTunesController implements Initializable
         
             
         listPlaylist.setItems((ObservableList<Playlist>) model.getAllPlaylist());
+        sliderVolume.setValue(100);
     }   
 
  
@@ -283,22 +285,26 @@ public class MyTunesController implements Initializable
     {
         if (!isMuted)
         {
+            
             sliderVolumeValue = sliderVolume.getValue();
             sliderVolume.setValue(0.0);
+            songManager.adjustVolume(0);
             isMuted = true;
         }
         else 
         {
             sliderVolume.setValue(sliderVolumeValue);
+             songManager.adjustVolume(sliderVolumeValue);
             isMuted = false;
         }
-        System.out.println("i muted it");
+
 
     }
     
    @FXML
     private void VolumeSliderUpdate()
     {
+      
         sliderVolume.valueProperty().addListener((ObservableValue<? extends Number> listener, Number oldVal, Number newVal)
                 ->
                 {
@@ -467,6 +473,10 @@ public class MyTunesController implements Initializable
             
 //        }
 //    }
+
+    @FXML
+    private void closeProgram(DragEvent event) {
+    }
 }
  
 
