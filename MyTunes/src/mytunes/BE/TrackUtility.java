@@ -26,7 +26,7 @@ public class TrackUtility {
     String album;
     String year ; 
     String URLAdressSong;
-    int songLength;
+    double songLength;
     /**
      * Get all tracklists stored in user preferences
      *
@@ -49,7 +49,7 @@ if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 }
         URLAdressSong=""+chooser.getSelectedFile();
         Mp3File mp3file = new Mp3File(chooser.getSelectedFile());
-songLength=(int) mp3file.getLengthInSeconds();
+        songLength=(int) mp3file.getLengthInSeconds();
         System.out.println("Length of this mp3 is: " + mp3file.getLengthInSeconds() + " seconds");
       
         System.out.println("Has ID3v2 tag?: " + (mp3file.hasId3v2Tag() ? "YES" : "NO"));

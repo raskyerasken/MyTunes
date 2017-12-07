@@ -124,6 +124,7 @@ public class MyTunesController implements Initializable
         listSongTime.setCellValueFactory(
             new PropertyValueFactory("songLength"));
         
+        
         ListSongPlaylist.setItems((ObservableList<MyTunes>) model.getAllSong());
         changePlayButton(isPlaying);
         columName.setCellValueFactory(
@@ -214,7 +215,7 @@ public class MyTunesController implements Initializable
     @FXML
     private void handlePlayButton() 
     {
-        selectedSong = (MyTunes) ListSongPlaylist.getSelectionModel().getSelectedItem();
+       selectedSong = (MyTunes) ListSongPlaylist.getSelectionModel().getSelectedItem();
        if (selectedSong == null )
        {
            System.out.println("hey");
@@ -312,14 +313,14 @@ public class MyTunesController implements Initializable
                 = listPlaylist.getSelectionModel().getSelectedItem();
         if(playlist==null)
         {
-              Alert alert = new Alert(AlertType.WARNING);
-              alert.setTitle("Nothing selectet");
-              alert.setHeaderText(null);
-              alert.setContentText("Cant delete nothing");
-              alert.showAndWait();}
-        else{
-        
-        model.removePlaylist(playlist);
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Nothing selectet");
+            alert.setHeaderText(null);
+            alert.setContentText("Cant delete nothing");
+            alert.showAndWait();}
+        else
+        {
+            model.removePlaylist(playlist);
         }
     }
   
@@ -327,17 +328,18 @@ public class MyTunesController implements Initializable
     private void nextSong(MouseEvent event) 
     {
         update();
-        System.out.println(selectedSongIndex );
-        System.out.println(tableSongsTotalItems);
+
         if (selectedSongIndex == tableSongsTotalItems || ListSongPlaylist.getSelectionModel().getSelectedItem()==null)
         {
-            selectionModel.clearAndSelect(0);
+            selectionModel.clearAndSelect(0);            
         }
         else
         {
             System.out.println("hey");
             selectionModel.clearAndSelect(selectedSongIndex + 1);
         }
+        selectedSong = (MyTunes) ListSongPlaylist.getSelectionModel().getSelectedItem();
+        songManager.playSong(selectedSong, false);
     }
 
     @FXML
@@ -346,7 +348,7 @@ public class MyTunesController implements Initializable
         update();
         if( ListSongPlaylist.getSelectionModel().getSelectedItem()==null)
         {
-        selectionModel.clearAndSelect(0);
+            selectionModel.clearAndSelect(0);
         }
         else if (selectedSongIndex == 0)
         {
@@ -356,6 +358,8 @@ public class MyTunesController implements Initializable
         {
             selectionModel.clearAndSelect(selectedSongIndex -1);
         }
+        selectedSong = (MyTunes) ListSongPlaylist.getSelectionModel().getSelectedItem();
+        songManager.playSong(selectedSong, false);
     }
 
     private void update()
