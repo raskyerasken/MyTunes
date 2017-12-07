@@ -324,7 +324,14 @@ public class MyTunesController implements Initializable
            
             isMuted = false;
         }
+<<<<<<< HEAD
   changeMuteButton(isMuted);
+=======
+        System.out.println("i muted it");
+        
+
+
+>>>>>>> 06273ec733d62448e77e1655db52129ed40afdbb
     }
     
    @FXML
