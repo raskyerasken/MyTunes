@@ -25,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -37,6 +38,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import mytunes.BE.MyTunes;
 import mytunes.BE.Playlist;
 import mytunes.BLL.SongManager;
@@ -111,6 +113,8 @@ public class MyTunesController implements Initializable
     private TextField textField;
     @FXML
     private TableView<Playlist> listPlaylist;
+    @FXML
+    private ProgressBar progressBar;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -378,7 +382,21 @@ public class MyTunesController implements Initializable
         {
             Platform.exit();
         } 
+    } 
+
+     @FXML
+    private void handleProgressBar(MouseEvent event)
+    {
+        double mousePos = event.getX();
+        double width = progressBar.getWidth();
+        double diff = 100 / width * mousePos;
+        double length = songManager.getSongLength().toSeconds();
+        double lenghtDiff = length / 100 * diff;
+
+        songManager.getMediaPlayer().seek(Duration.seconds(lenghtDiff));
     }
+    
+    
 }
  
 
