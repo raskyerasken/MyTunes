@@ -268,6 +268,26 @@ public class MyTunesController implements Initializable
             isPlaying = true;
         }
     }
+    
+    
+    private void changeMuteButton(boolean muted)
+    {
+        Image image;
+        if (muted)
+    {
+        image = new Image(getClass().getResourceAsStream("/mute.png"));
+        imgMute.setImage(image);
+        isMuted = false;
+    }
+    else 
+    {
+        image = new Image(getClass().getResourceAsStream("/unmute.png"));
+        imgMute.setImage(image);
+        isMuted = true;
+    }
+        
+    }
+    
 
     private void lastSong(MouseEvent event) 
     {
@@ -288,6 +308,7 @@ public class MyTunesController implements Initializable
             sliderVolumeValue = sliderVolume.getValue();
             sliderVolume.setValue(0.0);
             isMuted = true;
+            changeMuteButton(isMuted);
         }
         else 
         {
@@ -295,6 +316,7 @@ public class MyTunesController implements Initializable
             isMuted = false;
         }
         System.out.println("i muted it");
+        
 
     }
     
@@ -306,6 +328,7 @@ public class MyTunesController implements Initializable
                 {
                     if (songManager.getMediaPlayer() != null)
                     {
+                       
                         songManager.adjustVolume(newVal.doubleValue() / 100);
                         
                         isMuted = false;
@@ -341,12 +364,12 @@ public class MyTunesController implements Initializable
         }
     }
 //    
-//    private void macros(KeyEvent key)
-//    {
-//        if (key.getCode() == KeyCode.SPACE)
-//        {
-//            handlePlayButton();
-//        }
+    private void macros(KeyEvent key)
+    {
+        if (key.getCode() == KeyCode.SPACE)
+        {
+            handlePlayButton();
+        }
         
 //        if (key.getCode() == KeyCode.DELETE)
 //        {
@@ -354,7 +377,7 @@ public class MyTunesController implements Initializable
 //        }
 
    
-//    }
+  }
   
     private void nextSong(MouseEvent event) 
     {
