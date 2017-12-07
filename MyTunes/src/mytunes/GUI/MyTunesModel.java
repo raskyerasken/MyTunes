@@ -21,13 +21,14 @@ public class MyTunesModel
 {  
     private BLLManager bllManager = new BLLManager();
 
-     private ObservableList<MyTunes> songList
+    private ObservableList<MyTunes> songList
             = FXCollections.observableArrayList();
      
-private ObservableList<Playlist> playlist
+    private ObservableList<Playlist> playlist
             = FXCollections.observableArrayList();
 
-    List<MyTunes> getAllSong() {
+    List<MyTunes> getAllSong() 
+    {
         songList.addAll(bllManager.getallSong());
         return songList;
     }
@@ -46,45 +47,44 @@ private ObservableList<Playlist> playlist
      
     }
 
-    public void remove(MyTunes selectedMyTunes) {
-       
-    bllManager.remove(selectedMyTunes);
+    public void remove(MyTunes selectedMyTunes) 
+    {
+        bllManager.remove(selectedMyTunes);
         songList.remove(selectedMyTunes);
-   
+    }
     
-     }
-public List<MyTunes> getAllSongsByPlaylist(String song) throws SQLException
+    public List<MyTunes> getAllSongsByPlaylist(String song) throws SQLException
     {
         songList.setAll(bllManager.getAllSongsByPlaylist(song));
-        return songList;
-        
+        return songList;        
     }
 
-public void add (Playlist playlistSong) throws SQLException
+    public void add (Playlist playlistSong) throws SQLException
     {   
-        for (Playlist play :playlist ) {
+        for (Playlist play :playlist ) 
+        {
            
             if(playlistSong.getplaylistName().equals(play.getplaylistName()))
             {
-                
                 playlistSong.setSongID(playlistSong.getSongID()+1);
             }
-            else{
+            else
+            {
                 bllManager.add(playlistSong);
-               playlist.add(playlistSong);
+                playlist.add(playlistSong);
             }
             bllManager.add(playlistSong);
         }
-            
-        
-     
     }
- List<Playlist> getAllPlaylist() {
+
+    List<Playlist> getAllPlaylist() 
+    {
         playlist.addAll(bllManager.getallPlaylist());
         return playlist;
     }
 
-    void removePlaylist(Playlist playlistSongs) {
+    void removePlaylist(Playlist playlistSongs) 
+    {
        bllManager.remove(playlistSongs);
         playlist.remove(playlistSongs);
     }

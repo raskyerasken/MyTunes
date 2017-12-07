@@ -60,7 +60,7 @@
             <items>
               <MenuItem fx:id="newSong" mnemonicParsing="false" onAction="#newSong" text="New song" />
                   <MenuItem fx:id="newPlaylist" mnemonicParsing="false" onAction="#newPlaylist" text="New Playlist" />
-                  <MenuItem fx:id="closeBtn" mnemonicParsing="false" text="Close" />
+                  <MenuItem mnemonicParsing="false" onAction="#closeProgram" text="Close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">

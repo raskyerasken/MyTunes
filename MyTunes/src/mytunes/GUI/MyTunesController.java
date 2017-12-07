@@ -8,7 +8,9 @@ package mytunes.GUI;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Slider;
@@ -46,8 +49,8 @@ import mytunes.BLL.SongManager;
  */
 public class MyTunesController implements Initializable 
 {
-   SongManager songManager= new SongManager();
-       int selectedSongIndex;
+    SongManager songManager= new SongManager();
+    int selectedSongIndex;
     int tableSongsTotalItems;
     TableViewSelectionModel<MyTunes> selectionModel;
     private Label label;
@@ -102,12 +105,10 @@ public class MyTunesController implements Initializable
     
     @FXML
     private ImageView imgPlay;
-   @FXML
+    @FXML
     private Slider sliderVolume;
     @FXML
     private Button imgMute;
-    @FXML
-    private MenuItem closeBtn;
     @FXML
     private MenuItem newSong;
     @FXML
@@ -120,7 +121,7 @@ public class MyTunesController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-      listSongTitle.setCellValueFactory(
+        listSongTitle.setCellValueFactory(
             new PropertyValueFactory("songName"));
         listSongArtist.setCellValueFactory(
             new PropertyValueFactory("artist"));
@@ -135,31 +136,23 @@ public class MyTunesController implements Initializable
             new PropertyValueFactory("playlistName"));
         columSongs.setCellValueFactory(
             new PropertyValueFactory("SongID"));
-         colomTime.setCellValueFactory(
+        colomTime.setCellValueFactory(
             new PropertyValueFactory("SongID"));
-         listPlaylist.setItems((ObservableList<Playlist>) model.getAllPlaylist());
+        listPlaylist.setItems((ObservableList<Playlist>) model.getAllPlaylist());
         
     }   
 
-    
-    
-    
-    
-    
-    
-   /* public MyTunesController(Random rand) {
-        this.rand = rand;
-    }*/
  
     @FXML
-    private void newPlaylist(ActionEvent event) throws IOException {
+    private void newPlaylist(ActionEvent event) throws IOException 
+    {
          Stage newStage = new Stage();
             FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("playListView.fxml"));
 
             Parent root = fxLoader.load();
             PlayListController controller
                     = fxLoader.getController();
-controller.setModel(model);
+            controller.setModel(model);
 
             Scene scene = new Scene(root);
             newStage.setScene(scene);
@@ -235,44 +228,34 @@ controller.setModel(model);
            System.out.println("hey");
            ListSongPlaylist.selectionModelProperty().get().select(0);
        }
-        
-    
        //if the play button gets pressed
        if (isPlaying)
        {
            songManager.playSong(selectedSong, false);
            System.out.println(selectedSong.getPath());
        }
-       
        else 
        {
-          
            songManager.pauseSong();
        }
-        
        changePlayButton(isPlaying);
-       
-       }
+    }
     
    
-    
-    
-
     private void changePlayButton(boolean playing)
     {
         Image image;
         if (playing)
         {
-             image = new Image(getClass().getResourceAsStream("/pause.png"));
+            image = new Image(getClass().getResourceAsStream("/pause.png"));
             imgPlay.setImage(image);
             isPlaying = false;
         }
         else
         {
-             image = new Image(getClass().getResourceAsStream("/play.png"));
+            image = new Image(getClass().getResourceAsStream("/play.png"));
             imgPlay.setImage(image);
             isPlaying = true;
-           
         }
     }
 
@@ -323,17 +306,18 @@ controller.setModel(model);
     }
 
     @FXML
-    private void update(ActionEvent event) throws SQLException {
+    private void update(ActionEvent event) throws SQLException 
+    {
         String a=textField.getText();
         System.out.println(a);
         ListSongPlaylist.setItems((ObservableList<MyTunes>) model.getAllSongsByPlaylist(a));
-        
     }
 
     
 
     @FXML
-    private void deletePlaylist(ActionEvent event) {
+    private void deletePlaylist(ActionEvent event) 
+    {
         Playlist playlist
                 = listPlaylist.getSelectionModel().getSelectedItem();
         if(playlist==null)
@@ -350,46 +334,61 @@ controller.setModel(model);
     }
   
     @FXML
-    private void nextSong(MouseEvent event) {
-       update();
+    private void nextSong(MouseEvent event) 
+    {
+        update();
         System.out.println(selectedSongIndex );
         System.out.println(tableSongsTotalItems);
-            if (selectedSongIndex == tableSongsTotalItems || ListSongPlaylist.getSelectionModel().getSelectedItem()==null)
-            {
-                
-                selectionModel.clearAndSelect(0);
-            }
-            else
-            {
-                System.out.println("hey");
-                selectionModel.clearAndSelect(selectedSongIndex + 1);
-            }
+        if (selectedSongIndex == tableSongsTotalItems || ListSongPlaylist.getSelectionModel().getSelectedItem()==null)
+        {
+            selectionModel.clearAndSelect(0);
         }
+        else
+        {
+            System.out.println("hey");
+            selectionModel.clearAndSelect(selectedSongIndex + 1);
+        }
+    }
 
     @FXML
-    private void prevSong(MouseEvent event) {
+    private void prevSong(MouseEvent event) 
+    {
         update();
         if( ListSongPlaylist.getSelectionModel().getSelectedItem()==null)
         {
         selectionModel.clearAndSelect(0);
         }
         else if (selectedSongIndex == 0)
-         {
-                selectionModel.clearAndSelect(tableSongsTotalItems);
-            }
-        
-            else
-            {
-                selectionModel.clearAndSelect(selectedSongIndex -1);
-            }
+        {
+            selectionModel.clearAndSelect(tableSongsTotalItems);
+        }
+        else
+        {
+            selectionModel.clearAndSelect(selectedSongIndex -1);
+        }
     }
 
     private void update()
     {
-    selectionModel = (TableViewSelectionModel<MyTunes>) ListSongPlaylist.selectionModelProperty().getValue();
-     selectedSongIndex = selectionModel.getSelectedIndex();
-     tableSongsTotalItems = ListSongPlaylist.getItems().size() - 1;
+        selectionModel = (TableViewSelectionModel<MyTunes>) ListSongPlaylist.selectionModelProperty().getValue();
+        selectedSongIndex = selectionModel.getSelectedIndex();
+        tableSongsTotalItems = ListSongPlaylist.getItems().size() - 1;
     }
+
+    @FXML
+    private void closeProgram(ActionEvent event) 
+    {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to exit this awesome mp3 player?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK)
+        {
+            Platform.exit();
+        } 
     }
+}
  
 

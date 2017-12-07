@@ -22,7 +22,8 @@ import mytunes.BE.Playlist;
  *
  * @author Kentg
  */
-public class PlayListController implements Initializable {
+public class PlayListController implements Initializable 
+{
 
     @FXML
     private TextField txtPlaylist;
@@ -35,14 +36,20 @@ public class PlayListController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) 
+    {
         
-    }    MyTunesModel model;
-   Playlist songData =new Playlist();
+    } 
+    
+    MyTunesModel model;
+    Playlist songData =new Playlist();
+    
     @FXML
     private void closeButton(ActionEvent event) 
     {
-        
+        Stage stage = (Stage) close.getScene().getWindow();
+        // do what you have to do
+        stage.close();
     }
 
     void setModel(MyTunesModel model) 
@@ -51,13 +58,13 @@ public class PlayListController implements Initializable {
     }
 
     @FXML
-    private void save(ActionEvent event) throws SQLException {
-        
+    private void save(ActionEvent event) throws SQLException 
+    {
         songData.setplaylistName(txtPlaylist.getText());
         System.out.println(txtPlaylist.getText());
         songData.setSongID(1);
         model.add(songData);
-       Stage stage = (Stage) save.getScene().getWindow();
+        Stage stage = (Stage) save.getScene().getWindow();
         // do what you have to do
         stage.close();
     }
