@@ -55,7 +55,7 @@ public class myTunesDAL {
                 m.setYear(rs.getInt("Year"));
                 m.setId(rs.getInt("id"));
                 m.setPath(rs.getString("path"));
-                m.setSongLength(rs.getInt("songLength"));
+                m.setSongLength(rs.getDouble("songLength"));
                 
                 allSongs.add(m);
             }
@@ -92,7 +92,7 @@ public class myTunesDAL {
             pstmt.setString(2, allSongs.getAlbum());
             pstmt.setInt(3, allSongs.getYear());
             pstmt.setString(4, allSongs.getPath());
-            pstmt.setInt(5,allSongs.getSongLength());
+            pstmt.setDouble(5,allSongs.getSongLength());
             pstmt.setString(6, allSongs.getArtist());
             
             int affected = pstmt.executeUpdate();
@@ -129,7 +129,7 @@ public class myTunesDAL {
                 s.setArtist(rs.getString("Artist"));
                 s.setYear(rs.getInt("Year"));
                 s.setId(rs.getInt("id"));
-                s.setSongLength(rs.getInt("songLength"));
+                s.setSongLength(rs.getDouble("songLength"));
                 s.setPath(rs.getString("path"));
 
                 allSong.add(s);

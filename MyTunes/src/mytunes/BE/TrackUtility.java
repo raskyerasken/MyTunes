@@ -26,7 +26,9 @@ public class TrackUtility {
     String album;
     String year ; 
     String URLAdressSong;
-    int songLength;
+    double songLength;
+    int idminutes;
+    double idseconds;
     /**
      * Get all tracklists stored in user preferences
      *
@@ -85,8 +87,10 @@ songLength=(int) mp3file.getLengthInSeconds();
                song.setYear(yearr);
         }
         
-        
-        song.setSongLength(songLength);
+        idminutes = (int) (songLength/60);
+           System.out.println(idminutes);
+        idseconds = songLength%60;
+        song.setSongLength(idminutes+idseconds/100);
         song.setAlbum(album);
         song.setArtist(artist);
         song.setPath(URLAdressSong);

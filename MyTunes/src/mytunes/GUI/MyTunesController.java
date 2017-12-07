@@ -25,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -111,6 +112,10 @@ public class MyTunesController implements Initializable
     private TextField textField;
     @FXML
     private TableView<Playlist> listPlaylist;
+    @FXML
+    private Label songLength;
+    @FXML
+    private ProgressBar prograssSongProgress;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -215,14 +220,15 @@ public class MyTunesController implements Initializable
     private void handlePlayButton() 
     {
         selectedSong = (MyTunes) ListSongPlaylist.getSelectionModel().getSelectedItem();
+       
        if (selectedSong == null )
        {
-           System.out.println("hey");
-           ListSongPlaylist.selectionModelProperty().get().select(0);
+            ListSongPlaylist.selectionModelProperty().get().select(0);
        }
        //if the play button gets pressed
        if (isPlaying)
        {
+          
            songManager.playSong(selectedSong, false);
            System.out.println(selectedSong.getPath());
        }
@@ -230,7 +236,10 @@ public class MyTunesController implements Initializable
        {
            songManager.pauseSong();
        }
+        
+        songLength.setText(selectedSong.getSongLength()+"");
        changePlayButton(isPlaying);
+      
     }
     
    
@@ -338,6 +347,9 @@ public class MyTunesController implements Initializable
             System.out.println("hey");
             selectionModel.clearAndSelect(selectedSongIndex + 1);
         }
+         selectedSong = (MyTunes) ListSongPlaylist.getSelectionModel().getSelectedItem();
+         songManager.playSong(selectedSong, false);
+         
     }
 
     @FXML
@@ -356,6 +368,8 @@ public class MyTunesController implements Initializable
         {
             selectionModel.clearAndSelect(selectedSongIndex -1);
         }
+          selectedSong = (MyTunes) ListSongPlaylist.getSelectionModel().getSelectedItem();
+         songManager.playSong(selectedSong, false);
     }
 
     private void update()
