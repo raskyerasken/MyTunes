@@ -34,6 +34,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -41,6 +43,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import mytunes.BE.MyTunes;
 import mytunes.BE.Playlist;
+import mytunes.BE.Song;
 import mytunes.BLL.SongManager;
 
 
@@ -60,11 +63,8 @@ public class MyTunesController implements Initializable
     @FXML
     private Label labelSongTheirIsPlaying;
  
-    @FXML
     private TableColumn<MyTunes, String> columName;
-    @FXML
     private TableColumn<MyTunes, String> columSongs;
-    @FXML
     private TableColumn<MyTunes, Integer> colomTime;
     @FXML
     private TableColumn<MyTunes, String> listSongTitle;
@@ -77,16 +77,17 @@ public class MyTunesController implements Initializable
     @FXML
     private Button playBtn;
     @FXML
-    private ImageView backBtn;
+    private Button backBtn;
     @FXML
-    private ImageView nextBtn;
+    private Button nextBtn;
     
     MyTunesModel model= new MyTunesModel();
     SongViewController songview = new SongViewController();
-
+    
     
     final Button play = new Button("Pause"); 
     private MediaPlayer player;
+    private boolean hasBrowseButtonBeenClicked;
     private TableView<MyTunes> myTunes;
     private double sliderVolumeValue;
     private boolean isMuted;
@@ -97,6 +98,7 @@ public class MyTunesController implements Initializable
     private MyTunesModel prevTrack;
     private MyTunesModel currentTrack;
     private Media currentMedia;
+    private Playlist selectedPlaylist;
     private boolean isShuffleToggled;
     private boolean isRepeatToggled;
     @FXML
@@ -116,9 +118,9 @@ public class MyTunesController implements Initializable
     @FXML
     private Label songLength;
     @FXML
-    private ProgressBar prograssSongProgress;
-    @FXML
     private ProgressBar progressBar;
+    @FXML
+    private ImageView imgPlay1;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -336,8 +338,22 @@ public class MyTunesController implements Initializable
             model.removePlaylist(playlist);
         }
     }
+    
+    private void macros(KeyEvent key)
+    {
+        if (key.getCode() == KeyCode.SPACE)
+        {
+            handlePlayButton();
+        }
+        
+//        if (key.getCode() == KeyCode.DELETE)
+//        {
+//            deletePlaylist();
+//        }
+
+   
+    }
   
-    @FXML
     private void nextSong(MouseEvent event) 
     {
         update();
@@ -414,6 +430,43 @@ public class MyTunesController implements Initializable
     }
     
     
+    
+//    private void moveSong(boolean up)
+//    {
+//        System.out.println(ListSongPlaylist.getSelectionModel().getSelectedIndex());
+//        int nowIndex = ListSongPlaylist.getSelectionModel().getSelectedIndex();
+//        
+//        int changeIndex = nowIndex;
+//        boolean change = false;
+//        
+//        if (up && nowIndex != 0)
+//        {
+//            changeIndex = nowIndex -1;
+//            change = true;
+//           
+//        }
+//        else if (!up && nowIndex != ListSongPlaylist.getItems().size() -1)
+//        {
+//            changeIndex = nowIndex +1;
+//            change = true;
+//        }
+//        
+//        if (change)
+//        {
+//            MyTunes changeSong = ListSongPlaylist.getItems().get(changeIndex);
+//            ListSongPlaylist.getItems().set(changeIndex, selectedSong);
+//            ListSongPlaylist.getItems().set(nowIndex, selectedSong);
+//            selectedSong = ListSongPlaylist.getItems().get(changeIndex);
+//            if (!hasBrowseButtonBeenClicked)
+//            {
+//                selectedPlaylist.getSongList().set(changeIndex, selectedSong);
+//                selectedPlaylist.getSongList().set(nowIndex, changeSong);
+//            }
+//                    
+//             
+            
+//        }
+//    }
 }
  
 

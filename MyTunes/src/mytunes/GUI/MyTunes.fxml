@@ -17,43 +17,27 @@
 
 <AnchorPane id="AnchorPane" accessibleRole="BUTTON" prefHeight="522.0" prefWidth="752.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mytunes.GUI.MyTunesController">
    <children>
+      <Button fx:id="imgMute" layoutX="192.0" layoutY="71.0" mnemonicParsing="false" onAction="#handleMuteSound" prefHeight="27.0" prefWidth="32.0" />
       <Label layoutX="78.0" layoutY="72.0" text="Playlists" AnchorPane.bottomAnchor="382.0" AnchorPane.leftAnchor="78.0" AnchorPane.topAnchor="72.0" />
       <Label layoutX="475.0" layoutY="97.0" text="Songs" AnchorPane.bottomAnchor="408.0" />
       <Label fx:id="labelSongTheirIsPlaying" layoutX="300.0" layoutY="15.0" text="Update Song Name Here" AnchorPane.bottomAnchor="439.0" AnchorPane.topAnchor="15.0" />
-      <Label layoutX="544.0" layoutY="52.0" text="Filter" AnchorPane.rightAnchor="176.0" AnchorPane.topAnchor="52.0" />
+      <Label layoutX="547.0" layoutY="55.0" text="Filter" AnchorPane.rightAnchor="173.0" AnchorPane.topAnchor="55.0" />
       <Slider fx:id="sliderVolume" layoutX="45.0" layoutY="76.0" onDragDetected="#VolumeSliderUpdate" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="76.0" />
-      <TableView fx:id="listPlaylist" layoutX="12.0" layoutY="115.0" prefHeight="325.0" prefWidth="205.0" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="535.0" AnchorPane.topAnchor="115.0">
+      <TableView fx:id="listPlaylist" layoutX="12.0" layoutY="115.0" prefHeight="376.0" prefWidth="200.0" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="540.0" AnchorPane.topAnchor="115.0" />
+      <TableView fx:id="ListSongPlaylist" layoutX="241.0" layoutY="115.0" prefHeight="376.0" prefWidth="531.0" AnchorPane.bottomAnchor="31.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="115.0">
         <columns>
-          <TableColumn fx:id="columName" prefWidth="82.0" text="Name" />
-          <TableColumn fx:id="columSongs" prefWidth="57.0" text="Songs" />
-            <TableColumn fx:id="colomTime" prefWidth="65.0" text="time" />
+          <TableColumn fx:id="listSongTitle" prefWidth="203.0" text="Title" />
+          <TableColumn fx:id="listSongArtist" prefWidth="158.0" text="Artist" />
+            <TableColumn fx:id="listSongCategory" prefWidth="114.0" text="Category" />
+            <TableColumn fx:id="listSongTime" prefWidth="55.0" text="Time" />
         </columns>
       </TableView>
-      <TableView fx:id="ListSongPlaylist" layoutX="241.0" layoutY="115.0" prefHeight="325.0" prefWidth="506.0" AnchorPane.bottomAnchor="31.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="115.0">
-        <columns>
-          <TableColumn fx:id="listSongTitle" prefWidth="94.0" text="Title" />
-          <TableColumn fx:id="listSongArtist" prefWidth="81.0" text="Artist" />
-            <TableColumn fx:id="listSongCategory" prefWidth="75.0" text="Category" />
-            <TableColumn fx:id="listSongTime" prefWidth="69.0" text="Time" />
-        </columns>
-      </TableView>
-      <ImageView fx:id="backBtn" accessibleRole="BUTTON" fitHeight="27.0" fitWidth="21.0" layoutX="34.0" layoutY="35.0" onMouseClicked="#prevSong">
-         <image>
-            <Image url="@../../arrows.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="nextBtn" accessibleRole="BUTTON" fitHeight="27.0" fitWidth="21.0" layoutX="159.0" layoutY="35.0" onMouseClicked="#nextSong">
-         <image>
-            <Image url="@../../right.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="playBtn" layoutX="95.0" layoutY="36.0" mnemonicParsing="false" onAction="#handlePlayButton" prefHeight="27.0" prefWidth="39.0" />
-      <ImageView fx:id="imgPlay" fitHeight="27.0" fitWidth="21.0" layoutX="104.0" layoutY="37.0" onMouseReleased="#handlePlayButton" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="playBtn" layoutX="95.0" layoutY="39.0" mnemonicParsing="false" onAction="#handlePlayButton" prefHeight="27.0" prefWidth="39.0" style="-fx-background-radius: 10; -fx-border-radius: 30;" />
+      <ImageView fx:id="imgPlay" fitHeight="27.0" fitWidth="21.0" layoutX="105.0" layoutY="41.0" onMouseReleased="#handlePlayButton" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../src/Play%20knap.png" />
          </image>
       </ImageView>
-      <Button fx:id="imgMute" layoutX="194.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleMuteSound" text="Mute" />
       <ButtonBar prefHeight="40.0" prefWidth="200.0" />
       <MenuBar prefHeight="29.0" prefWidth="752.0">
         <menus>
@@ -80,10 +64,30 @@
         </menus>
       </MenuBar>
       <TextField fx:id="textField" layoutX="586.0" layoutY="50.0" prefHeight="25.0" prefWidth="92.0" />
-      <Button layoutX="686.0" layoutY="48.0" mnemonicParsing="false" onAction="#update" text="Button" />
+      <Button layoutX="686.0" layoutY="50.0" mnemonicParsing="false" onAction="#update" text="Search" />
+      <ProgressBar fx:id="progressBar" layoutX="277.0" layoutY="73.0" onMouseDragged="#handleProgressBar" prefWidth="200.0" progress="0.0" />
+      <Button fx:id="backBtn" layoutX="45.0" layoutY="39.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="39.0" style="-fx-background-radius: 10;" />
+      <Button fx:id="nextBtn" layoutX="146.0" layoutY="39.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="39.0" style="-fx-background-radius: 10; -fx-border-radius: ;" />
+      <ImageView accessibleRole="BUTTON" fitHeight="27.0" fitWidth="21.0" layoutX="155.0" layoutY="39.0" onMouseClicked="#prevSong">
+         <image>
+            <Image url="@../../arrows.png" />
+      
+        
+            <Image url="@../../right.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgPlay1" fitHeight="27.0" fitWidth="21.0" layoutX="198.0" layoutY="74.0" onMouseReleased="#handlePlayButton" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../src/2000px-Mute_Icon.svg.png" />
+         </image>
+      </ImageView>
 
       <Label fx:id="songLength" layoutX="447.0" layoutY="64.0" />
-<ProgressBar fx:id="progressBar" layoutX="288.0" layoutY="67.0" onMouseReleased="#handleProgressBar" prefHeight="10.0" prefWidth="200.0" progress="0.0" />
+      <ImageView accessibleRole="BUTTON" fitHeight="27.0" fitWidth="21.0" layoutX="54.0" layoutY="39.0" onMouseClicked="#prevSong">
+         <image>
+            <Image url="@../../arrows.png" />
+         </image>
+      </ImageView>
 
    </children>
 </AnchorPane>
