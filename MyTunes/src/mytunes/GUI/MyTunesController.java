@@ -139,12 +139,10 @@ public class MyTunesController implements Initializable
         
         ListSongPlaylist.setItems((ObservableList<MyTunes>) model.getAllSong());
         changePlayButton(isPlaying);
-        columName.setCellValueFactory(
+        columnPlaylist.setCellValueFactory(
             new PropertyValueFactory("playlistName"));
-        columSongs.setCellValueFactory(
-            new PropertyValueFactory("SongID"));
-        colomTime.setCellValueFactory(
-            new PropertyValueFactory("SongID"));
+        
+            
         listPlaylist.setItems((ObservableList<Playlist>) model.getAllPlaylist());
     }   
 
