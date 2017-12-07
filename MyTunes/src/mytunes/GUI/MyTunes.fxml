@@ -81,11 +81,9 @@
       </MenuBar>
       <TextField fx:id="textField" layoutX="586.0" layoutY="50.0" prefHeight="25.0" prefWidth="92.0" />
       <Button layoutX="686.0" layoutY="48.0" mnemonicParsing="false" onAction="#update" text="Button" />
-<<<<<<< HEAD
+
       <Label fx:id="songLength" layoutX="447.0" layoutY="64.0" />
-      <ProgressBar fx:id="prograssSongProgress" layoutX="267.0" layoutY="64.0" prefWidth="200.0" progress="0.0" />
-=======
-      <ProgressBar fx:id="progressBar" layoutX="288.0" layoutY="67.0" onMouseReleased="#handleProgressBar" prefHeight="10.0" prefWidth="200.0" progress="0.0" />
->>>>>>> 36e419d18d5ed247fd584bbeb469a3fbb1aad1bf
+<ProgressBar fx:id="progressBar" layoutX="288.0" layoutY="67.0" onMouseReleased="#handleProgressBar" prefHeight="10.0" prefWidth="200.0" progress="0.0" />
+
    </children>
 </AnchorPane>

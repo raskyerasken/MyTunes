@@ -114,14 +114,12 @@ public class MyTunesController implements Initializable
     @FXML
     private TableView<Playlist> listPlaylist;
     @FXML
-<<<<<<< HEAD
     private Label songLength;
     @FXML
     private ProgressBar prograssSongProgress;
-=======
+    @FXML
     private ProgressBar progressBar;
->>>>>>> 36e419d18d5ed247fd584bbeb469a3fbb1aad1bf
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
@@ -225,12 +223,9 @@ public class MyTunesController implements Initializable
     @FXML
     private void handlePlayButton() 
     {
-<<<<<<< HEAD
-        selectedSong = (MyTunes) ListSongPlaylist.getSelectionModel().getSelectedItem();
-       
-=======
+
        selectedSong = (MyTunes) ListSongPlaylist.getSelectionModel().getSelectedItem();
->>>>>>> 36e419d18d5ed247fd584bbeb469a3fbb1aad1bf
+
        if (selectedSong == null )
        {
             ListSongPlaylist.selectionModelProperty().get().select(0);
@@ -356,14 +351,10 @@ public class MyTunesController implements Initializable
             System.out.println("hey");
             selectionModel.clearAndSelect(selectedSongIndex + 1);
         }
-<<<<<<< HEAD
-         selectedSong = (MyTunes) ListSongPlaylist.getSelectionModel().getSelectedItem();
-         songManager.playSong(selectedSong, false);
-         
-=======
+
         selectedSong = (MyTunes) ListSongPlaylist.getSelectionModel().getSelectedItem();
         songManager.playSong(selectedSong, false);
->>>>>>> 36e419d18d5ed247fd584bbeb469a3fbb1aad1bf
+
     }
 
     @FXML
@@ -382,13 +373,10 @@ public class MyTunesController implements Initializable
         {
             selectionModel.clearAndSelect(selectedSongIndex -1);
         }
-<<<<<<< HEAD
-          selectedSong = (MyTunes) ListSongPlaylist.getSelectionModel().getSelectedItem();
-         songManager.playSong(selectedSong, false);
-=======
+
         selectedSong = (MyTunes) ListSongPlaylist.getSelectionModel().getSelectedItem();
         songManager.playSong(selectedSong, false);
->>>>>>> 36e419d18d5ed247fd584bbeb469a3fbb1aad1bf
+
     }
 
     private void update()

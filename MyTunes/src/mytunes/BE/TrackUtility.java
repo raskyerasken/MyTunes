@@ -27,11 +27,9 @@ public class TrackUtility {
     String year; 
     String URLAdressSong;
     double songLength;
-<<<<<<< HEAD
-    int idminutes;
+int idminutes;
     double idseconds;
-=======
->>>>>>> 36e419d18d5ed247fd584bbeb469a3fbb1aad1bf
+
     /**
      * Get all tracklists stored in user preferences
      *
@@ -94,16 +92,14 @@ public class TrackUtility {
             int yearr= Integer.parseInt(year);   
             song.setYear(yearr);
         }
-<<<<<<< HEAD
+
         
         idminutes = (int) (songLength/60);
            System.out.println(idminutes);
         idseconds = songLength%60;
+
         song.setSongLength(idminutes+idseconds/100);
-=======
-        song.setSongLength(songLength);
->>>>>>> 36e419d18d5ed247fd584bbeb469a3fbb1aad1bf
-        song.setAlbum(album);
+song.setAlbum(album);
         song.setArtist(artist);
         song.setPath(URLAdressSong);
         song.setSongName(title);
