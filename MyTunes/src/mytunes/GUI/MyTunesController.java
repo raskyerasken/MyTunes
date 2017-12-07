@@ -318,12 +318,9 @@ public class MyTunesController implements Initializable
              songManager.adjustVolume(sliderVolumeValue);
             isMuted = false;
         }
-<<<<<<< HEAD
         System.out.println("i muted it");
         
-=======
 
->>>>>>> 6d9e3a8dc336ed3c7282204aef92c95e7c1657a7
 
     }
     
