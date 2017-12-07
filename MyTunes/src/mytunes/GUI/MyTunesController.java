@@ -39,7 +39,6 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import mytunes.BE.MyTunes;
 import mytunes.BE.Playlist;
-import mytunes.BE.Song;
 import mytunes.BLL.SongManager;
 
 
@@ -98,11 +97,6 @@ public class MyTunesController implements Initializable
     private Media currentMedia;
     private boolean isShuffleToggled;
     private boolean isRepeatToggled;
-   // private final Random rand;
-    
-    
-    
-    
     @FXML
     private ImageView imgPlay;
     @FXML
@@ -139,40 +133,37 @@ public class MyTunesController implements Initializable
         colomTime.setCellValueFactory(
             new PropertyValueFactory("SongID"));
         listPlaylist.setItems((ObservableList<Playlist>) model.getAllPlaylist());
-        
     }   
 
  
     @FXML
     private void newPlaylist(ActionEvent event) throws IOException 
     {
-         Stage newStage = new Stage();
-            FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("playListView.fxml"));
-
-            Parent root = fxLoader.load();
-            PlayListController controller
-                    = fxLoader.getController();
-            controller.setModel(model);
-
-            Scene scene = new Scene(root);
-            newStage.setScene(scene);
-            newStage.show();
+        Stage newStage = new Stage();
+        FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("playListView.fxml"));
+        Parent root = fxLoader.load();
+        PlayListController controller
+              = fxLoader.getController();
+        controller.setModel(model);
+        Scene scene = new Scene(root);
+        newStage.setScene(scene);
+        newStage.show();
     }
    
     @FXML
     private void editPlaylist(ActionEvent event) throws IOException 
     {
-         Stage newStage = new Stage();
-            FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("playListView.fxml"));
+        Stage newStage = new Stage();
+        FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("playListView.fxml"));
 
-            Parent root = fxLoader.load();
-            PlayListController controller
+        Parent root = fxLoader.load();
+        PlayListController controller
                     = fxLoader.getController();
-controller.setModel(model);
+        controller.setModel(model);
 
-            Scene scene = new Scene(root);
-            newStage.setScene(scene);
-            newStage.show();
+        Scene scene = new Scene(root);
+        newStage.setScene(scene);
+        newStage.show();
     }
 
   
@@ -207,14 +198,15 @@ controller.setModel(model);
                 = ListSongPlaylist.getSelectionModel().getSelectedItem();
         if(selectedMyTunes==null)
         {
-              Alert alert = new Alert(AlertType.WARNING);
-              alert.setTitle("Nothing selectet");
-              alert.setHeaderText(null);
-              alert.setContentText("Cant delete nothing");
-              alert.showAndWait();}
-        else{
-        
-        model.remove(selectedMyTunes);
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Nothing selectet");
+            alert.setHeaderText(null);
+            alert.setContentText("Cant delete nothing");
+            alert.showAndWait();
+        }
+        else
+        {
+            model.remove(selectedMyTunes);
         }
     }
         
@@ -270,8 +262,7 @@ controller.setModel(model);
     }
 
 
-    
-   @FXML
+    @FXML
     private void handleMuteSound()
     {
         if (!isMuted)
@@ -279,14 +270,13 @@ controller.setModel(model);
             sliderVolumeValue = sliderVolume.getValue();
             sliderVolume.setValue(0.0);
             isMuted = true;
-            
         }
         else 
         {
             sliderVolume.setValue(sliderVolumeValue);
             isMuted = false;
         }
-                    System.out.println("i muted it");
+        System.out.println("i muted it");
 
     }
     
