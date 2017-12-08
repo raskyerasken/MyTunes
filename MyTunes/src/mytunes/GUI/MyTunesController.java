@@ -77,10 +77,6 @@ public class MyTunesController implements Initializable
     private TableColumn<MyTunes, Integer> listSongTime;
     @FXML
     private Button playBtn;
-    @FXML
-    private Button backBtn;
-    @FXML
-    private Button nextBtn;
     
     MyTunesModel model= new MyTunesModel();
     SongViewController songview = new SongViewController();
@@ -387,6 +383,7 @@ public class MyTunesController implements Initializable
    
   }
   
+    @FXML
     private void nextSong(MouseEvent event) 
     {
         update();
