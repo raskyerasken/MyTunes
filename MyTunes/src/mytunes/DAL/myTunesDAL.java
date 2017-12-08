@@ -30,7 +30,7 @@ public class myTunesDAL {
 
     public List<MyTunes> getAllSongsByPlaylist(String search) throws SQLServerException, SQLException
     {
-       List<MyTunes> allSongs = new ArrayList();
+        List<MyTunes> allSongs = new ArrayList();
         
         try (Connection con = cm.getConnection())
         {
@@ -45,7 +45,7 @@ public class myTunesDAL {
                     = con.prepareStatement(query);
             pstmt.setString(1, "%" + search + "%");
             pstmt.setString(2, "%" + search + "%");
-           ResultSet rs = pstmt.executeQuery();
+            ResultSet rs = pstmt.executeQuery();
             while(rs.next())
             {
                 MyTunes m = new MyTunes();
@@ -112,7 +112,6 @@ public class myTunesDAL {
 
     public List<MyTunes> getAllSong() 
     {
-      
         List<MyTunes> allSong
                 = new ArrayList();
 
