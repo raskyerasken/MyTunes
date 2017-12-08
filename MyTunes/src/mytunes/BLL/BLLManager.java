@@ -22,7 +22,6 @@ public class BLLManager
 {
     myTunesDAL mtdal = new myTunesDAL();
      
-    
     public List<MyTunes> getAllSongsByPlaylist(String song) throws SQLException
     {
         return mtdal.getAllSongsByPlaylist(song);

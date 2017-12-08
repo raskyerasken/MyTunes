@@ -458,9 +458,6 @@ public class MyTunesController implements Initializable
 
         songManager.getMediaPlayer().seek(Duration.seconds(lenghtDiff));
     }
-    
-    
-    
 }
  
 
