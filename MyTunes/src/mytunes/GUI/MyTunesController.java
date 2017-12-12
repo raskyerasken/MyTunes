@@ -129,6 +129,10 @@ public class MyTunesController implements Initializable
     private Button arrowDown;
     @FXML
     private Button arrowUp;
+    @FXML
+    private ImageView arrowUpPic;
+    @FXML
+    private ImageView arrowDownPic;
 
    
 
@@ -499,6 +503,47 @@ public class MyTunesController implements Initializable
         newStage.initOwner(primaryStage);
 
         newStage.show();
+    }
+    
+    
+    
+    private void moveSong(boolean up)
+    {
+        System.out.println(ListSongPlaylist.getSelectionModel().getSelectedIndex());
+        int cIndex = ListSongPlaylist.getSelectionModel().getSelectedIndex();
+        int changeIndex = cIndex;
+        boolean change = false;
+        
+        if (up && cIndex != 0)
+        {
+            changeIndex = cIndex -1;
+            change = true;
+        }
+        else if (!up && cIndex != ListSongPlaylist.getItems().size()-1)
+        {
+            changeIndex = cIndex +1;
+            change = true;
+        }
+        
+        
+        if (change)
+        {
+            MyTunes changeSong = ListSongPlaylist.getItems().get(changeIndex);
+            ListSongPlaylist.getItems().set(changeIndex, selectedSong);
+            ListSongPlaylist.getItems().set(cIndex, changeSong);
+            selectedSong = ListSongPlaylist.getItems().get(changeIndex);
+            
+        }
+    }
+
+    @FXML
+    private void handleSongDown(ActionEvent event) {
+        moveSong(false);
+    }
+
+    @FXML
+    private void handleSongUp(ActionEvent event) {
+        moveSong(true);
     }
 }
  
