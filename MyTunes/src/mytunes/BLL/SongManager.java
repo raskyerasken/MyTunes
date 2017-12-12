@@ -23,6 +23,7 @@ public class SongManager
 
     
      public void playSong(MyTunes song, boolean overwrite) 
+             //allows for playing & pausing song
      {
          
         pauseSong();

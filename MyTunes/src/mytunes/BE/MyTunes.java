@@ -16,6 +16,7 @@ import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import static sun.audio.AudioPlayer.player;
 
 
 /**
@@ -25,7 +26,7 @@ import javafx.beans.property.StringProperty;
 public class MyTunes 
 {
     List<MyTunes> allSongs = new ArrayList();
-    
+    private MyTunes song;
     private final IntegerProperty id = new SimpleIntegerProperty();
     private final StringProperty songName =  new SimpleStringProperty();
     private final StringProperty artist = new SimpleStringProperty();
@@ -36,6 +37,10 @@ public class MyTunes
  
     private StringProperty genre = new SimpleStringProperty();
 
+    public MyTunes() {
+        this.song = song;
+    }
+   
 
   
     public float getSongLength()
@@ -147,6 +152,7 @@ public class MyTunes
     }
  
    
+     
     
     public void setGenre(String genre)
     {
@@ -159,6 +165,7 @@ public class MyTunes
         return genre;
     }
     
+     
     
     
     @Override

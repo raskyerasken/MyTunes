@@ -23,12 +23,14 @@ public class BLLManager
     myTunesDAL mtdal = new myTunesDAL();
      
     public List<MyTunes> getAllSongsByPlaylist(String song) throws SQLException
+            //creates the list used to getting songs for each playlist
     {
         return mtdal.getAllSongsByPlaylist(song);
     }
     
     
     public void add(MyTunes allSongs) throws SQLException
+            //adds songs to the allSongs playlist
     {
         mtdal.add(allSongs);
     }

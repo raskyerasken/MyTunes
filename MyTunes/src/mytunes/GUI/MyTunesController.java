@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+import static javafx.beans.binding.Bindings.length;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -43,6 +44,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import static javax.swing.Spring.width;
 import mytunes.BE.MyTunes;
 import mytunes.BE.Playlist;
 import mytunes.BE.Song;
@@ -57,6 +59,7 @@ import mytunes.GUI.model.SongModel;
 public class MyTunesController implements Initializable 
 {
     SongManager songManager= new SongManager();
+//    MyTunes myTunes = new MyTunes();
     TableViewSelectionModel<MyTunes> selectionModel;
     
     
@@ -166,6 +169,7 @@ public class MyTunesController implements Initializable
  
     @FXML
     private void newPlaylist(ActionEvent event) throws IOException 
+//loads the playListView so you can create a new playlist
    {
         Stage newStage = new Stage();
         FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("playListView.fxml"));
@@ -180,6 +184,7 @@ public class MyTunesController implements Initializable
    
     @FXML
     private void editPlaylist(ActionEvent event) throws IOException 
+            //loads playlistview so you can edit playlists
     {
         Stage newStage = new Stage();
         FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("playListView.fxml"));
@@ -230,6 +235,7 @@ public class MyTunesController implements Initializable
 
     @FXML
     private void DeleteSong(ActionEvent event) 
+            //allows you to delete a song
     {
         MyTunes selectedMyTunes
                 = ListSongPlaylist.getSelectionModel().getSelectedItem();
@@ -250,6 +256,7 @@ public class MyTunesController implements Initializable
     
     @FXML
     private void handlePlayButton() 
+            //handles playing the song, and making sure its not null before playing
     {
 
        selectedSong = (MyTunes) ListSongPlaylist.getSelectionModel().getSelectedItem();
@@ -277,6 +284,7 @@ public class MyTunesController implements Initializable
     
     
     private void showErrorDialog(String title, String header, String message)
+            //allows us to create error messages
     {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle(title);
@@ -287,6 +295,7 @@ public class MyTunesController implements Initializable
     }
    
     private void changePlayButton(boolean playing)
+            //changes the image of the playbutton when the song is playing
     {
         Image image;
         if (playing)
@@ -307,6 +316,7 @@ public class MyTunesController implements Initializable
     
     
     private void changeMuteButton(boolean muted)
+            //changes the image of the mute button when its muted
     {
         Image image;
         if (muted)
@@ -329,6 +339,7 @@ public class MyTunesController implements Initializable
 
     @FXML
     private void handleMuteSound()
+            //allows the user to mute the sound
     {
         
         if (!isMuted)
@@ -353,6 +364,7 @@ public class MyTunesController implements Initializable
     
    @FXML
     private void VolumeSliderUpdate()
+            //updates the volume based on where the user positions the slider
     {
       
         sliderVolume.valueProperty().addListener((ObservableValue<? extends Number> listener, Number oldVal, Number newVal)
@@ -462,6 +474,7 @@ public class MyTunesController implements Initializable
 
     @FXML
     private void closeProgram(ActionEvent event) 
+            //allows the user to close the program, and does a pop-up making sure the user actually wants to
     {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
@@ -477,6 +490,7 @@ public class MyTunesController implements Initializable
 
      @FXML
     private void handleProgressBar(MouseEvent event)
+            //handles the progress bar
     {
         double mousePos = event.getX();
         double width = progressBar.getWidth();
@@ -507,6 +521,7 @@ public class MyTunesController implements Initializable
     
     
     private void moveSong(boolean up)
+            //allows the user to move the song up or down, depending on the button clicked
     {
         System.out.println(ListSongPlaylist.getSelectionModel().getSelectedIndex());
         int cIndex = ListSongPlaylist.getSelectionModel().getSelectedIndex();
@@ -543,6 +558,21 @@ public class MyTunesController implements Initializable
     @FXML
     private void handleSongUp(ActionEvent event) {
         moveSong(true);
+    }
+
+    private void handleSongDown(MouseEvent event) {
+        moveSong(false);
+    }
+
+    private void handleSongUp(MouseEvent event) {
+        moveSong(true);
+    }
+    
+    
+    @FXML
+    private void songLengthUpdate()
+    {
+                  
     }
 }
 

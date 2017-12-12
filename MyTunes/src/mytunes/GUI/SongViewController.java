@@ -56,7 +56,8 @@ public class SongViewController implements Initializable {
     
 
     @FXML
-    private void chooseDirectory(ActionEvent event) throws UnsupportedTagException, InvalidDataException, IOException, NotSupportedException, SQLException 
+    private void chooseDirectory(ActionEvent event) throws UnsupportedTagException, InvalidDataException, IOException, NotSupportedException, SQLException
+            //opens the directory on the PC for choosing a song
     {
         TrackUtility  choser= new TrackUtility();
         songData = choser.getdata();
@@ -69,6 +70,7 @@ public class SongViewController implements Initializable {
 
     @FXML
     private void closeSongview(ActionEvent event) 
+            //closes the songview
     {
         Stage stage = (Stage) closeButton.getScene().getWindow();
         // do what you have to do
