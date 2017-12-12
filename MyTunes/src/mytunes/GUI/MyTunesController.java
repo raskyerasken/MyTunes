@@ -489,8 +489,8 @@ public class MyTunesController implements Initializable
     private void moveSong(boolean up)
             //allows the user to move the song up or down, depending on the button clicked
     {
-        System.out.println(ListSongPlaylist.getSelectionModel().getSelectedIndex());
-       /* int cIndex = ListSongPlaylist.getSelectionModel().getSelectedIndex();
+      
+        int cIndex = ListSongPlaylist.getSelectionModel().getSelectedIndex();
         int changeIndex = cIndex;
         boolean change = false;
         
@@ -509,32 +509,24 @@ public class MyTunesController implements Initializable
         if (change)
         {
             MyTunes changeSong = ListSongPlaylist.getItems().get(changeIndex);
-            ListSongPlaylist.getItems().set(changeIndex, selectedSong);
+            ListSongPlaylist.getItems().set(changeIndex, ListSongPlaylist.getSelectionModel().getSelectedItem());
             ListSongPlaylist.getItems().set(cIndex, changeSong);
-            selectedSong = ListSongPlaylist.getItems().get(changeIndex);
             
-        }*/
+        }
     }
 
     @FXML
-    private void handleSongDown(ActionEvent event) 
-    {
+    private void handleSongDown() {
         moveSong(false);
     }
 
     @FXML
-    private void handleSongUp(ActionEvent event) 
-    {
+    private void handleSongUp() {
         moveSong(true);
     }
 
-    @FXML
-    private void handleSongUp(MouseEvent event) {
-    }
+    
 
-    @FXML
-    private void handleSongDown(MouseEvent event) {
-    }
 }
 
 
