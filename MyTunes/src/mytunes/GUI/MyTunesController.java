@@ -13,11 +13,16 @@ import java.text.DecimalFormat;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+<<<<<<< HEAD
 
 import static javafx.beans.binding.Bindings.length;
 
 import javafx.beans.value.ChangeListener;
 
+=======
+import static javafx.beans.binding.Bindings.length;
+import javafx.beans.value.ChangeListener;
+>>>>>>> 7a3bfd260dba1af563cb2dfbb0c16c849825457d
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -113,6 +118,8 @@ public class MyTunesController implements Initializable
     private Playlist selectedPlaylist;
     private boolean isShuffleToggled;
     private boolean isRepeatToggled;
+    DecimalFormat df = new DecimalFormat("#.##");
+
     @FXML
     private ImageView imgPlay;
     @FXML
@@ -170,17 +177,26 @@ public class MyTunesController implements Initializable
         sliderVolume.setValue(100);
     }   
 
+<<<<<<< HEAD
+=======
+    
+    
+>>>>>>> 7a3bfd260dba1af563cb2dfbb0c16c849825457d
      
  
     @FXML
     private void newPlaylist(ActionEvent event) throws IOException 
 //loads the playListView so you can create a new playlist
    {
+<<<<<<< HEAD
       newFXMLplayListView();
     }
      void newFXMLplayListView() throws IOException{
        Stage newStage = new Stage();
 
+=======
+        Stage newStage = new Stage();
+>>>>>>> 7a3bfd260dba1af563cb2dfbb0c16c849825457d
         FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("playListView.fxml"));
         Parent root = fxLoader.load();
         PlayListController controller= fxLoader.getController();
@@ -188,17 +204,31 @@ public class MyTunesController implements Initializable
         Scene scene = new Scene(root);
         newStage.setScene(scene);
         newStage.show();
+<<<<<<< HEAD
    }
       void newsongView() throws IOException{
        Stage newStage = new Stage();
 
         FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("songView.fxml"));
+=======
+      
+    }
+   
+    @FXML
+    private void editPlaylist(ActionEvent event) throws IOException 
+            //loads playlistview so you can edit playlists
+    {
+        Stage newStage = new Stage();
+        FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("playListView.fxml"));
+
+>>>>>>> 7a3bfd260dba1af563cb2dfbb0c16c849825457d
         Parent root = fxLoader.load();
         SongViewController controller= fxLoader.getController();
         controller.setModel(model);
         Scene scene = new Scene(root);
         newStage.setScene(scene);
         newStage.show();
+<<<<<<< HEAD
    }
        
        
@@ -210,6 +240,12 @@ public class MyTunesController implements Initializable
         newFXMLplayListView();
    }
    
+=======
+      
+    }
+    
+ 
+>>>>>>> 7a3bfd260dba1af563cb2dfbb0c16c849825457d
   @FXML
     private void newSong(ActionEvent event) throws IOException 
    {
@@ -228,13 +264,13 @@ public class MyTunesController implements Initializable
             }
             else
             {
-            showErrorDialog("I/O Exception", "DATASTREAM FAILED!", "Please select a song first.");
-            }
+          
             }
         catch(IOException ex){
             showErrorDialog("I/O Exception", "DATASTREAM FAILED!", "Please select a song first.");
         }
-       }
+      }
+    }  
 
     @FXML
     private void DeleteSong(ActionEvent event) 
@@ -455,7 +491,13 @@ public class MyTunesController implements Initializable
 
      @FXML
     private void handleProgressBar(MouseEvent event)
+<<<<<<< HEAD
     {
+=======
+            //handles the progress bar
+    
+    {        
+>>>>>>> 7a3bfd260dba1af563cb2dfbb0c16c849825457d
         double mousePos = event.getX();
         double width = progressBar.getWidth();
         double diff = 100 / width * mousePos;
@@ -463,8 +505,7 @@ public class MyTunesController implements Initializable
         double lenghtDiff = length / 100 * diff;
         songManager.getMediaPlayer().seek(Duration.seconds(lenghtDiff));
     }
-    
-    DecimalFormat df = new DecimalFormat("#.##");
+   
     private void progressBarTimeHandler()
     {
         songManager.getMediaPlayer().currentTimeProperty().addListener((ObservableValue<? extends Duration> listener, Duration oldVal, Duration newVal)
@@ -524,17 +565,33 @@ public class MyTunesController implements Initializable
     }
 
     @FXML
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7a3bfd260dba1af563cb2dfbb0c16c849825457d
     private void handleSongDown(MouseEvent event) {
         moveSong(false);
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7a3bfd260dba1af563cb2dfbb0c16c849825457d
     @FXML
     private void handleSongUp(MouseEvent event) {
         moveSong(true);
+  
     }
+<<<<<<< HEAD
 
+=======
+    
+    @FXML
+    private void songLengthUpdate()
+    {
+                  
+    }
+>>>>>>> 7a3bfd260dba1af563cb2dfbb0c16c849825457d
 }
 
 
