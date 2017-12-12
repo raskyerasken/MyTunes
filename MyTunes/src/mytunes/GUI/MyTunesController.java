@@ -126,7 +126,7 @@ public class MyTunesController implements Initializable
     @FXML
     private TableColumn<?, ?> columnPlaylist;
     @FXML
-    private ImageView arrowDown;
+    private Button arrowDown;
     @FXML
     private Button arrowUp;
     @FXML
@@ -396,7 +396,6 @@ public class MyTunesController implements Initializable
         }
     }
 //    
-    @FXML
     private void macros(KeyEvent key)
     {
         if (key.getCode() == KeyCode.SPACE)
