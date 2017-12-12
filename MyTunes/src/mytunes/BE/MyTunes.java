@@ -33,19 +33,9 @@ public class MyTunes
     private final IntegerProperty year = new SimpleIntegerProperty();
     private final StringProperty path =  new SimpleStringProperty();
     private final FloatProperty songLength= new SimpleFloatProperty();
-    private final String duration;
+ 
     private StringProperty genre = new SimpleStringProperty();
 
-    public MyTunes(String duration)
-    {
-   
-        this.duration = duration;
-        
-    }
-
-    public MyTunes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
   
     public float getSongLength()
@@ -155,11 +145,7 @@ public class MyTunes
         return genre;
        
     }
-    
-    public String getDuration()
-    {
-        return duration;
-    }
+ 
    
     
     public void setGenre(String genre)
