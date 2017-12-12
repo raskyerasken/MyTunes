@@ -126,9 +126,14 @@ public class MyTunesController implements Initializable
     @FXML
     private TableColumn<?, ?> columnPlaylist;
     @FXML
-    private ImageView arrowDown;
+    private Button arrowDown;
     @FXML
-    private ImageView arrowUp;
+    private Button arrowUp;
+    @FXML
+    private ImageView arrowUpPic;
+    @FXML
+    private ImageView arrowDownPic;
+
 
    
 
@@ -351,7 +356,6 @@ public class MyTunesController implements Initializable
         }
     }
 //    
-    @FXML
     private void macros(KeyEvent key)
     {
         if (key.getCode() == KeyCode.SPACE)
@@ -437,13 +441,70 @@ public class MyTunesController implements Initializable
         songManager.getMediaPlayer().seek(Duration.seconds(lenghtDiff));
     }
     
+<<<<<<< HEAD
+=======
+    
+    private void loadStage(String viewName) throws IOException
+    {
+        primaryStage = (Stage) ListSongPlaylist.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunes/gui/view/" + viewName));
+        Parent root = loader.load();
+
+        Stage newStage = new Stage();
+        newStage.setScene(new Scene(root));
+
+        newStage.initModality(Modality.WINDOW_MODAL);
+        newStage.initOwner(primaryStage);
+
+        newStage.show();
+    }
+
+    
+    
+    
+    private void moveSong(boolean up)
+    {
+        System.out.println(ListSongPlaylist.getSelectionModel().getSelectedIndex());
+        int cIndex = ListSongPlaylist.getSelectionModel().getSelectedIndex();
+        int changeIndex = cIndex;
+        boolean change = false;
+        
+        if (up && cIndex != 0)
+        {
+            changeIndex = cIndex -1;
+            change = true;
+        }
+        else if (!up && cIndex != ListSongPlaylist.getItems().size()-1)
+        {
+            changeIndex = cIndex +1;
+            change = true;
+        }
+        
+        
+        if (change)
+        {
+            MyTunes changeSong = ListSongPlaylist.getItems().get(changeIndex);
+            ListSongPlaylist.getItems().set(changeIndex, selectedSong);
+            ListSongPlaylist.getItems().set(cIndex, changeSong);
+            selectedSong = ListSongPlaylist.getItems().get(changeIndex);
+            
+        }
+    }
+
+>>>>>>> d8a64ce3354b2f7efd3a86d6143ca654cae82441
     @FXML
-    private void handleMuteSound(ActionEvent event) {
+    private void handleSongDown(ActionEvent event) {
+        moveSong(false);
     }
 
     @FXML
-    private void handleMuteSound(MouseEvent event) {
+    private void handleSongUp(ActionEvent event) {
+        moveSong(true);
     }
 }
+
+
+
+    
  
 

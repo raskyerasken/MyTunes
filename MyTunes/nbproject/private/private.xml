@@ -26,9 +26,7 @@
         </group>
         <group name="Alt">
             <file>file:/Users/kasper/Documents/GitHub/MyTunes/MyTunes/src/mytunes/GUI/MyTunesController.java</file>
-            <file>file:/Users/kasper/Documents/GitHub/MyTunes/MyTunes/src/mytunes/BE/Song.java</file>
-            <file>file:/Users/kasper/Documents/GitHub/MyTunes/MyTunes/src/mytunes/BE/TrackUtility.java</file>
-            <file>file:/Users/kasper/Documents/GitHub/MyTunes/MyTunes/src/mytunes/BE/Playlist.java</file>
+            <file>file:/Users/kasper/Documents/GitHub/MyTunes/MyTunes/src/mytunes/GUI/MyTunesModel.java</file>
         </group>
     </open-files>
 </project-private>
