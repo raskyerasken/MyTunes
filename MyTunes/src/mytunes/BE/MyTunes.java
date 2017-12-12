@@ -36,9 +36,15 @@ public class MyTunes
     private final String duration;
     private StringProperty genre = new SimpleStringProperty();
 
-
-    public MyTunes(String duration) {
+    public MyTunes(String duration)
+    {
+   
         this.duration = duration;
+        
+    }
+
+    public MyTunes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
   
@@ -142,9 +148,7 @@ public class MyTunes
     {
         this.songName.set(songName);
     }
-     
-   
-  
+ 
     
     public StringProperty getGenre()
     {
@@ -158,9 +162,9 @@ public class MyTunes
     }
    
     
-    public void setGenre(StringProperty genre)
+    public void setGenre(String genre)
     {
-        this.genre = genre;
+        this.genre.set(genre);
     }
     
     
