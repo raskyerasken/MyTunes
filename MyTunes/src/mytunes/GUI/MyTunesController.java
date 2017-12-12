@@ -228,7 +228,8 @@ public class MyTunesController implements Initializable
         catch(IOException ex){
             showErrorDialog("I/O Exception", "DATASTREAM FAILED!", "Please select a song first.");
         }
-        }}  
+      }
+    }  
 
     @FXML
     private void DeleteSong(ActionEvent event) 
@@ -518,31 +519,22 @@ public class MyTunesController implements Initializable
         moveSong(true);
     }
 
-<<<<<<< HEAD
     @FXML
-=======
->>>>>>> 39db1e258db6760d188c4035a8ec08494cc448c3
     private void handleSongDown(MouseEvent event) {
         moveSong(false);
     }
 
-<<<<<<< HEAD
     @FXML
     private void handleSongUp(MouseEvent event) {
         moveSong(true);
+  
     }
-=======
-    private void handleSongUp(MouseEvent event) {
-        moveSong(true);
-    }
-    
     
     @FXML
     private void songLengthUpdate()
     {
                   
     }
->>>>>>> 39db1e258db6760d188c4035a8ec08494cc448c3
 }
 
 
