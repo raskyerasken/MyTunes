@@ -13,11 +13,11 @@ import java.text.DecimalFormat;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
-<<<<<<< HEAD
+
 import static javafx.beans.binding.Bindings.length;
-=======
+
 import javafx.beans.value.ChangeListener;
->>>>>>> 9119b8589f41f7633f7341ce3d21c1743b702192
+
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -170,20 +170,17 @@ public class MyTunesController implements Initializable
         sliderVolume.setValue(100);
     }   
 
-    
-<<<<<<< HEAD
-    
      
  
     @FXML
     private void newPlaylist(ActionEvent event) throws IOException 
 //loads the playListView so you can create a new playlist
    {
-        Stage newStage = new Stage();
-=======
-    void newFXMLplayListView() throws IOException{
+      newFXMLplayListView();
+    }
+     void newFXMLplayListView() throws IOException{
        Stage newStage = new Stage();
->>>>>>> 9119b8589f41f7633f7341ce3d21c1743b702192
+
         FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("playListView.fxml"));
         Parent root = fxLoader.load();
         PlayListController controller= fxLoader.getController();
@@ -191,43 +188,28 @@ public class MyTunesController implements Initializable
         Scene scene = new Scene(root);
         newStage.setScene(scene);
         newStage.show();
-      
-    }
-<<<<<<< HEAD
-   
-    @FXML
-    private void editPlaylist(ActionEvent event) throws IOException 
-            //loads playlistview so you can edit playlists
-    {
-        Stage newStage = new Stage();
-        FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("playListView.fxml"));
-
-=======
-     void newsongView() throws IOException{
+   }
+      void newsongView() throws IOException{
        Stage newStage = new Stage();
+
         FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("songView.fxml"));
->>>>>>> 9119b8589f41f7633f7341ce3d21c1743b702192
         Parent root = fxLoader.load();
         SongViewController controller= fxLoader.getController();
         controller.setModel(model);
         Scene scene = new Scene(root);
         newStage.setScene(scene);
         newStage.show();
-      
-    }
-    
-    @FXML
-    private void newPlaylist(ActionEvent event) throws IOException 
-    {
-       newFXMLplayListView();
-    }
-   
+   }
+       
+       
+  
     @FXML
     private void editPlaylist(ActionEvent event) throws IOException 
+            //loads playlistview so you can edit playlists
     {
         newFXMLplayListView();
-    }
-
+   }
+   
   @FXML
     private void newSong(ActionEvent event) throws IOException 
    {
@@ -473,12 +455,7 @@ public class MyTunesController implements Initializable
 
      @FXML
     private void handleProgressBar(MouseEvent event)
-<<<<<<< HEAD
-            //handles the progress bar
     {
-=======
-    {        
->>>>>>> 9119b8589f41f7633f7341ce3d21c1743b702192
         double mousePos = event.getX();
         double width = progressBar.getWidth();
         double diff = 100 / width * mousePos;
@@ -546,31 +523,18 @@ public class MyTunesController implements Initializable
         moveSong(true);
     }
 
-<<<<<<< HEAD
     @FXML
-=======
->>>>>>> 39db1e258db6760d188c4035a8ec08494cc448c3
+
     private void handleSongDown(MouseEvent event) {
         moveSong(false);
     }
 
-<<<<<<< HEAD
+
     @FXML
     private void handleSongUp(MouseEvent event) {
         moveSong(true);
     }
-=======
-    private void handleSongUp(MouseEvent event) {
-        moveSong(true);
-    }
-    
-    
-    @FXML
-    private void songLengthUpdate()
-    {
-                  
-    }
->>>>>>> 39db1e258db6760d188c4035a8ec08494cc448c3
+
 }
 
 

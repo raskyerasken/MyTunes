@@ -83,11 +83,10 @@
             <Image url="@../../unmute.png" />
          </image>
       </ImageView>
-<<<<<<< HEAD
-=======
+
 
       <Label fx:id="songLength" layoutX="555.0" layoutY="85.0" prefHeight="21.0" prefWidth="92.0" text="timeElapsed" />
->>>>>>> 9119b8589f41f7633f7341ce3d21c1743b702192
+
       <ImageView accessibleRole="BUTTON" fitHeight="27.0" fitWidth="21.0" layoutX="54.0" layoutY="39.0" onMouseClicked="#prevSong">
          <image>
             <Image url="@../../arrows.png" />
@@ -106,7 +105,7 @@
             <Image url="@../../arrowdown.png" />
          </image>
       </ImageView>
-      <Label fx:id="songLength" layoutX="489.0" layoutY="75.0" prefHeight="17.0" prefWidth="54.0" />
+     
 
    </children>
 </AnchorPane>
