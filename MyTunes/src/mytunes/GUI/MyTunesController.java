@@ -128,15 +128,12 @@ public class MyTunesController implements Initializable
     @FXML
     private ImageView arrowDown;
     @FXML
-<<<<<<< HEAD
     private Button arrowUp;
     @FXML
     private ImageView arrowUpPic;
     @FXML
     private ImageView arrowDownPic;
-=======
-    private ImageView arrowUp;
->>>>>>> 1e7d87e3f3ec2fc44c39c76d095d8877006cdc9e
+
 
    
 
@@ -506,7 +503,7 @@ public class MyTunesController implements Initializable
 
         newStage.show();
     }
-<<<<<<< HEAD
+
     
     
     
@@ -547,16 +544,11 @@ public class MyTunesController implements Initializable
     @FXML
     private void handleSongUp(ActionEvent event) {
         moveSong(true);
-=======
-
-    @FXML
-    private void handleMuteSound(ActionEvent event) {
-    }
-
-    @FXML
-    private void handleMuteSound(MouseEvent event) {
->>>>>>> 1e7d87e3f3ec2fc44c39c76d095d8877006cdc9e
     }
 }
+
+
+
+    
  
 
