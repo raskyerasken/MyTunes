@@ -40,12 +40,14 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import mytunes.BE.MyTunes;
 import mytunes.BE.Playlist;
 import mytunes.BE.Song;
 import mytunes.BLL.SongManager;
+import mytunes.GUI.model.SongModel;
 
 
 /**
@@ -55,12 +57,12 @@ import mytunes.BLL.SongManager;
 public class MyTunesController implements Initializable 
 {
     SongManager songManager= new SongManager();
-    int selectedSongIndex;
-    int tableSongsTotalItems;
     TableViewSelectionModel<MyTunes> selectionModel;
+    
+    
     private Label label;
     @FXML
-    private TableView<MyTunes> ListSongPlaylist ;
+    private TableView<MyTunes> ListSongPlaylist;
     @FXML
     private Label labelSongTheirIsPlaying;
  
@@ -81,8 +83,11 @@ public class MyTunesController implements Initializable
     MyTunesModel model= new MyTunesModel();
     SongViewController songview = new SongViewController();
     
-    
+    private final SongModel songModel;
+    private Stage primaryStage;
     final Button play = new Button("Pause"); 
+    int selectedSongIndex;
+    int tableSongsTotalItems;
     private MediaPlayer player;
     private boolean hasBrowseButtonBeenClicked;
     private TableView<MyTunes> myTunes;
@@ -121,6 +126,8 @@ public class MyTunesController implements Initializable
     @FXML
     private TableColumn<?, ?> columnPlaylist;
 
+   
+
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
@@ -144,6 +151,11 @@ public class MyTunesController implements Initializable
         sliderVolume.setValue(100);
     }   
 
+    
+    
+     public MyTunesController(SongModel songModel) {
+        this.songModel = songModel;
+    }
  
     @FXML
     private void newPlaylist(ActionEvent event) throws IOException 
@@ -197,7 +209,16 @@ public class MyTunesController implements Initializable
     @FXML
     private void editSong(ActionEvent event) 
     {
-        
+
+       songModel.setContextSong(ListSongPlaylist.getSelectionModel().getSelectedItem());
+        try
+        {
+            loadStage("songView.fxml");
+        }
+        catch (IOException ex)
+        {
+            showErrorDialog("I/O Exception", "DATASTREAM FAILED!", "Please select a song first.");
+        }
     }
 
     @FXML
@@ -247,6 +268,16 @@ public class MyTunesController implements Initializable
       
     }
     
+    
+    private void showErrorDialog(String title, String header, String message)
+    {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(message);
+        
+        alert.showAndWait();
+    }
    
     private void changePlayButton(boolean playing)
     {
@@ -358,7 +389,7 @@ public class MyTunesController implements Initializable
         if(playlist==null)
         {
             Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("Nothing selectet");
+            alert.setTitle("Nothing selected");
             alert.setHeaderText(null);
             alert.setContentText("Cant delete nothing");
             alert.showAndWait();}
@@ -457,6 +488,22 @@ public class MyTunesController implements Initializable
         double lenghtDiff = length / 100 * diff;
 
         songManager.getMediaPlayer().seek(Duration.seconds(lenghtDiff));
+    }
+    
+    
+    private void loadStage(String viewName) throws IOException
+    {
+        primaryStage = (Stage) ListSongPlaylist.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunes/gui/view/" + viewName));
+        Parent root = loader.load();
+
+        Stage newStage = new Stage();
+        newStage.setScene(new Scene(root));
+
+        newStage.initModality(Modality.WINDOW_MODAL);
+        newStage.initOwner(primaryStage);
+
+        newStage.show();
     }
 }
  

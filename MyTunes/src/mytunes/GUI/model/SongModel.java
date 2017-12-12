@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import mytunes.BE.MyTunes;
 import mytunes.BE.Song;
 import mytunes.DAL.SongDAO;
 
@@ -19,13 +20,13 @@ import mytunes.DAL.SongDAO;
  */
 public class SongModel {
     
-    private Song contextSong;
+    private MyTunes contextSong;
     
     private SongDAO songDAO;
     
     private static SongModel instance;
         
-    ObservableList<Song> songs = FXCollections.observableArrayList();
+    ObservableList<MyTunes> songs = FXCollections.observableArrayList();
     
     public static SongModel getInstance()
     {
@@ -43,18 +44,18 @@ public class SongModel {
     }
     
     
-    public void addSong(Song song)
+    public void addSong(MyTunes myTunes)
     {
-        songs.add(song);
+        songs.add(myTunes);
         
     }
     
     
-    public void editSong(Song contextSong)
+    public void editSong(MyTunes contextSong)
     {
         for (int i = 0; i < songs.size(); i++)
         {
-            Song song = songs.get(i);
+            MyTunes song = songs.get(i);
             if (song.getId() == contextSong.getId())
             {
                 song.setSongName(contextSong.getSongName());
@@ -66,35 +67,37 @@ public class SongModel {
         }
     }
     
-    public ObservableList<Song> getSongs()
+    public ObservableList<MyTunes> getSongs()
     {
         return songs;
     }
     
-    public Song getContextSong()
+    public MyTunes getContextSong()
     {
         return contextSong;
     }
     
-    public void setContextSong(Song contextSong)
+    public void setContextSong(MyTunes contextSong)
     {
         this.contextSong = contextSong;
     }
     
-    public void saveSongDataOffline() throws IOException 
-    {
-        ArrayList<Song> songsToSave = new ArrayList<>();
-        for (Song song : songs)
-        {
-            songsToSave.add(song);
-        }
-        songDAO.writeObjectData(songsToSave, "SongsData.dat");
-    }
+//    public void saveSongDataOffline() throws IOException 
+//    {
+//        ArrayList<Song> songsToSave = new ArrayList<>();
+//        for (MyTunes song : songs)
+//        {
+//            songsToSave.add(song);
+//        }
+//        songDAO.writeObjectData(songsToSave, "SongsData.dat");
+//    }
+//    
+//    public void loadSongDataOffline() throws FileNotFoundException 
+//    {
+//        songs.clear();
+//        songs.addAll(songDAO.readObjectData("SongsData.dat"));
+//    }
     
-    public void loadSongDataOffline() throws FileNotFoundException 
-    {
-        songs.clear();
-        songs.addAll(songDAO.readObjectData("SongsData.dat"));
-    }
+    
     
 }

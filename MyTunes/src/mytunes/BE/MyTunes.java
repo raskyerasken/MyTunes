@@ -7,6 +7,7 @@ package mytunes.BE;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.IntegerProperty;
@@ -31,8 +32,14 @@ public class MyTunes
     private final StringProperty album =  new SimpleStringProperty();
     private final IntegerProperty year = new SimpleIntegerProperty();
     private final StringProperty path =  new SimpleStringProperty();
-
     private final FloatProperty songLength= new SimpleFloatProperty();
+    private final String duration;
+    private StringProperty genre = new SimpleStringProperty();
+
+
+    public MyTunes(String duration) {
+        this.duration = duration;
+    }
 
   
     public float getSongLength()
@@ -136,6 +143,34 @@ public class MyTunes
         this.songName.set(songName);
     }
      
+   
+  
+    
+    public StringProperty getGenre()
+    {
+        return genre;
+       
+    }
+    
+    public String getDuration()
+    {
+        return duration;
+    }
+   
+    
+    public void setGenre(StringProperty genre)
+    {
+        this.genre = genre;
+    }
+    
+    
+    public StringProperty genreProperty()
+    {
+        return genre;
+    }
+    
+    
+    
     @Override
     public String toString() 
     {
