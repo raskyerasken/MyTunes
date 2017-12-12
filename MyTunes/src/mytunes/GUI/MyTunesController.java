@@ -83,7 +83,7 @@ public class MyTunesController implements Initializable
     MyTunesModel model= new MyTunesModel();
     SongViewController songview = new SongViewController();
     
-    private final SongModel songModel;
+    
     private Stage primaryStage;
     final Button play = new Button("Pause"); 
     int selectedSongIndex;
@@ -126,13 +126,17 @@ public class MyTunesController implements Initializable
     @FXML
     private TableColumn<?, ?> columnPlaylist;
     @FXML
-    private Button arrowDown;
+    private ImageView arrowDown;
     @FXML
+<<<<<<< HEAD
     private Button arrowUp;
     @FXML
     private ImageView arrowUpPic;
     @FXML
     private ImageView arrowDownPic;
+=======
+    private ImageView arrowUp;
+>>>>>>> 1e7d87e3f3ec2fc44c39c76d095d8877006cdc9e
 
    
 
@@ -150,7 +154,7 @@ public class MyTunesController implements Initializable
         
         
         ListSongPlaylist.setItems((ObservableList<MyTunes>) model.getAllSong());
-        changePlayButton(isPlaying);
+        //changePlayButton(isPlaying);
         columnPlaylist.setCellValueFactory(
             new PropertyValueFactory("playlistName"));
         
@@ -161,13 +165,11 @@ public class MyTunesController implements Initializable
 
     
     
-     public MyTunesController(SongModel songModel) {
-        this.songModel = songModel;
-    }
+     
  
     @FXML
     private void newPlaylist(ActionEvent event) throws IOException 
-    {
+   {
         Stage newStage = new Stage();
         FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("playListView.fxml"));
         Parent root = fxLoader.load();
@@ -200,7 +202,7 @@ public class MyTunesController implements Initializable
 
     @FXML
     private void newSong(ActionEvent event) throws IOException 
-    {
+   {
          Stage newStage = new Stage();
             FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("songView.fxml"));
 
@@ -217,7 +219,7 @@ public class MyTunesController implements Initializable
     @FXML
     private void editSong(ActionEvent event) 
     {
-
+/*
        songModel.setContextSong(ListSongPlaylist.getSelectionModel().getSelectedItem());
         try
         {
@@ -226,7 +228,7 @@ public class MyTunesController implements Initializable
         catch (IOException ex)
         {
             showErrorDialog("I/O Exception", "DATASTREAM FAILED!", "Please select a song first.");
-        }
+        }*/
     }
 
     @FXML
@@ -404,8 +406,8 @@ public class MyTunesController implements Initializable
         {
             handlePlayButton();
         }
-        
-//        if (key.getCode() == KeyCode.DELETE)
+//        
+//       if (key.getCode() == KeyCode.DELETE)
 //        {
 //            deletePlaylist();
 //        }
@@ -504,6 +506,7 @@ public class MyTunesController implements Initializable
 
         newStage.show();
     }
+<<<<<<< HEAD
     
     
     
@@ -544,6 +547,15 @@ public class MyTunesController implements Initializable
     @FXML
     private void handleSongUp(ActionEvent event) {
         moveSong(true);
+=======
+
+    @FXML
+    private void handleMuteSound(ActionEvent event) {
+    }
+
+    @FXML
+    private void handleMuteSound(MouseEvent event) {
+>>>>>>> 1e7d87e3f3ec2fc44c39c76d095d8877006cdc9e
     }
 }
  

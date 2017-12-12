@@ -90,9 +90,15 @@
             <Image url="@../../arrows.png" />
          </image>
       </ImageView>
+<<<<<<< HEAD
       <Button fx:id="arrowDown" layoutX="475.0" layoutY="511.0" mnemonicParsing="false" onAction="#handleSongDown" prefHeight="23.0" prefWidth="39.0" style="-fx-background-radius: 30;" />
       <Button fx:id="arrowUp" layoutX="410.0" layoutY="511.0" mnemonicParsing="false" onAction="#handleSongUp" prefHeight="27.0" prefWidth="39.0" style="-fx-background-radius: 30;" />
       <ImageView fx:id="arrowUpPic" fitHeight="29.0" fitWidth="39.0" layoutX="414.0" layoutY="511.0" pickOnBounds="true" preserveRatio="true">
+=======
+      <Button layoutX="475.0" layoutY="511.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="39.0" style="-fx-background-radius: 30;" />
+      <Button layoutX="410.0" layoutY="511.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="39.0" style="-fx-background-radius: 30;" />
+      <ImageView fx:id="arrowUp" fitHeight="29.0" fitWidth="39.0" layoutX="414.0" layoutY="511.0" pickOnBounds="true" preserveRatio="true">
+>>>>>>> 1e7d87e3f3ec2fc44c39c76d095d8877006cdc9e
          <image>
             <Image url="@../../arrowup.png" />
          </image>
