@@ -455,20 +455,18 @@ public class MyTunesController implements Initializable
             double timeElapsed = newVal.toMillis() / songManager.getSongLength().toMillis();
             this.progressBar.setProgress(timeElapsed);
             
-            df.setMinimumIntegerDigits(1);
+            df.setMinimumFractionDigits(2);
             int idMinutes = (int) (newVal.toSeconds()/60);
             double idSeconds = (int) (newVal.toSeconds()%60);
             songLength.setText(df.format(idMinutes+idSeconds / 100) + "");
         }
-        
-        
         );
     }
    
     private void moveSong(boolean up)
     {
         System.out.println(ListSongPlaylist.getSelectionModel().getSelectedIndex());
-        int cIndex = ListSongPlaylist.getSelectionModel().getSelectedIndex();
+       /* int cIndex = ListSongPlaylist.getSelectionModel().getSelectedIndex();
         int changeIndex = cIndex;
         boolean change = false;
         
@@ -491,7 +489,7 @@ public class MyTunesController implements Initializable
             ListSongPlaylist.getItems().set(cIndex, changeSong);
             selectedSong = ListSongPlaylist.getItems().get(changeIndex);
             
-        }
+        }*/
     }
 
     @FXML
@@ -503,6 +501,16 @@ public class MyTunesController implements Initializable
     @FXML
     private void handleSongUp(ActionEvent event) 
     {
+        moveSong(true);
+    }
+
+    @FXML
+    private void handleSongDown(MouseEvent event) {
+        moveSong(false);
+    }
+
+    @FXML
+    private void handleSongUp(MouseEvent event) {
         moveSong(true);
     }
 }

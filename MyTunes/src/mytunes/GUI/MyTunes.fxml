@@ -92,13 +92,13 @@
       </ImageView>
       <Button fx:id="arrowDown" layoutX="475.0" layoutY="511.0" mnemonicParsing="false" onAction="#handleSongDown" prefHeight="23.0" prefWidth="39.0" style="-fx-background-radius: 30;" />
       <Button fx:id="arrowUp" layoutX="410.0" layoutY="511.0" mnemonicParsing="false" onAction="#handleSongUp" prefHeight="27.0" prefWidth="39.0" style="-fx-background-radius: 30;" />
-      <ImageView fx:id="arrowUpPic" fitHeight="29.0" fitWidth="39.0" layoutX="414.0" layoutY="511.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="arrowUpPic" fitHeight="29.0" fitWidth="39.0" layoutX="414.0" layoutY="511.0" onMouseClicked="#handleSongUp" pickOnBounds="true" preserveRatio="true">
 
          <image>
             <Image url="@../../arrowup.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="arrowDownPic" fitHeight="29.0" fitWidth="39.0" layoutX="480.0" layoutY="511.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="arrowDownPic" fitHeight="29.0" fitWidth="39.0" layoutX="480.0" layoutY="511.0" onMousePressed="#handleSongDown" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../arrowdown.png" />
          </image>
