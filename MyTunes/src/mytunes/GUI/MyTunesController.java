@@ -5,12 +5,15 @@
  */
 package mytunes.GUI;
 
+import java.awt.Cursor;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,6 +29,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -256,6 +260,7 @@ public class MyTunesController implements Initializable
        }
        songLength.setText(selectedSong.getSongLength()+"");
        changePlayButton(isPlaying);
+       progressBarTimeHandler();
     }
     
     private void showErrorDialog(String title, String header, String message)
@@ -432,13 +437,32 @@ public class MyTunesController implements Initializable
 
      @FXML
     private void handleProgressBar(MouseEvent event)
-    {
+    {        
         double mousePos = event.getX();
         double width = progressBar.getWidth();
         double diff = 100 / width * mousePos;
         double length = songManager.getSongLength().toSeconds();
         double lenghtDiff = length / 100 * diff;
         songManager.getMediaPlayer().seek(Duration.seconds(lenghtDiff));
+    }
+    
+    DecimalFormat df = new DecimalFormat("#.##");
+    private void progressBarTimeHandler()
+    {
+        songManager.getMediaPlayer().currentTimeProperty().addListener((ObservableValue<? extends Duration> listener, Duration oldVal, Duration newVal)
+        ->
+        {
+            double timeElapsed = newVal.toMillis() / songManager.getSongLength().toMillis();
+            this.progressBar.setProgress(timeElapsed);
+            
+            df.setMinimumIntegerDigits(1);
+            int idMinutes = (int) (newVal.toSeconds()/60);
+            double idSeconds = (int) (newVal.toSeconds()%60);
+            songLength.setText(df.format(idMinutes+idSeconds / 100) + "");
+        }
+        
+        
+        );
     }
    
     private void moveSong(boolean up)
@@ -471,12 +495,14 @@ public class MyTunesController implements Initializable
     }
 
     @FXML
-    private void handleSongDown(ActionEvent event) {
+    private void handleSongDown(ActionEvent event) 
+    {
         moveSong(false);
     }
 
     @FXML
-    private void handleSongUp(ActionEvent event) {
+    private void handleSongUp(ActionEvent event) 
+    {
         moveSong(true);
     }
 }
