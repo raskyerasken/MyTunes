@@ -125,6 +125,10 @@ public class MyTunesController implements Initializable
     private Button muteBtn;
     @FXML
     private TableColumn<?, ?> columnPlaylist;
+    @FXML
+    private Button arrowDown;
+    @FXML
+    private Button arrowUp;
 
    
 
@@ -317,17 +321,7 @@ public class MyTunesController implements Initializable
     }
         
     }
-    
-
-    private void lastSong(MouseEvent event) 
-    {
-        System.out.println("last");
-    }
-
-    private void pause(MouseEvent event) 
-    {
-        System.out.println("pause");
-    }
+  
 
 
     @FXML
@@ -399,6 +393,7 @@ public class MyTunesController implements Initializable
         }
     }
 //    
+    @FXML
     private void macros(KeyEvent key)
     {
         if (key.getCode() == KeyCode.SPACE)

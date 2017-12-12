@@ -38,6 +38,12 @@ public class SongViewController implements Initializable {
     private Button closeButton;
     @FXML
     private TextField txtCategory;
+    @FXML
+    private TextField txtArtist;
+    @FXML
+    private TextField txtSongName;
+    @FXML
+    private TextField txtYear;
     
     /**
      * Initializes the controller class.
