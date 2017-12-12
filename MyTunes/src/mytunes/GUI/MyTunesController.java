@@ -440,28 +440,7 @@ public class MyTunesController implements Initializable
         double lenghtDiff = length / 100 * diff;
         songManager.getMediaPlayer().seek(Duration.seconds(lenghtDiff));
     }
-    
-<<<<<<< HEAD
-=======
-    
-    private void loadStage(String viewName) throws IOException
-    {
-        primaryStage = (Stage) ListSongPlaylist.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunes/gui/view/" + viewName));
-        Parent root = loader.load();
-
-        Stage newStage = new Stage();
-        newStage.setScene(new Scene(root));
-
-        newStage.initModality(Modality.WINDOW_MODAL);
-        newStage.initOwner(primaryStage);
-
-        newStage.show();
-    }
-
-    
-    
-    
+   
     private void moveSong(boolean up)
     {
         System.out.println(ListSongPlaylist.getSelectionModel().getSelectedIndex());
@@ -491,7 +470,6 @@ public class MyTunesController implements Initializable
         }
     }
 
->>>>>>> d8a64ce3354b2f7efd3a86d6143ca654cae82441
     @FXML
     private void handleSongDown(ActionEvent event) {
         moveSong(false);
