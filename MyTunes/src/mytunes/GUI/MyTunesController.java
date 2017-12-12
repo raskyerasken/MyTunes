@@ -13,7 +13,11 @@ import java.text.DecimalFormat;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+<<<<<<< HEAD
+import static javafx.beans.binding.Bindings.length;
+=======
 import javafx.beans.value.ChangeListener;
+>>>>>>> 9119b8589f41f7633f7341ce3d21c1743b702192
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -47,6 +51,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import static javax.swing.Spring.width;
 import mytunes.BE.MyTunes;
 import mytunes.BE.Playlist;
 import mytunes.BE.Song;
@@ -61,6 +66,7 @@ import mytunes.GUI.model.SongModel;
 public class MyTunesController implements Initializable 
 {
     SongManager songManager= new SongManager();
+//    MyTunes myTunes = new MyTunes();
     TableViewSelectionModel<MyTunes> selectionModel;
     
     
@@ -165,8 +171,19 @@ public class MyTunesController implements Initializable
     }   
 
     
+<<<<<<< HEAD
+    
+     
+ 
+    @FXML
+    private void newPlaylist(ActionEvent event) throws IOException 
+//loads the playListView so you can create a new playlist
+   {
+        Stage newStage = new Stage();
+=======
     void newFXMLplayListView() throws IOException{
        Stage newStage = new Stage();
+>>>>>>> 9119b8589f41f7633f7341ce3d21c1743b702192
         FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("playListView.fxml"));
         Parent root = fxLoader.load();
         PlayListController controller= fxLoader.getController();
@@ -176,9 +193,20 @@ public class MyTunesController implements Initializable
         newStage.show();
       
     }
+<<<<<<< HEAD
+   
+    @FXML
+    private void editPlaylist(ActionEvent event) throws IOException 
+            //loads playlistview so you can edit playlists
+    {
+        Stage newStage = new Stage();
+        FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("playListView.fxml"));
+
+=======
      void newsongView() throws IOException{
        Stage newStage = new Stage();
         FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("songView.fxml"));
+>>>>>>> 9119b8589f41f7633f7341ce3d21c1743b702192
         Parent root = fxLoader.load();
         SongViewController controller= fxLoader.getController();
         controller.setModel(model);
@@ -228,6 +256,7 @@ public class MyTunesController implements Initializable
 
     @FXML
     private void DeleteSong(ActionEvent event) 
+            //allows you to delete a song
     {
         MyTunes selectedMyTunes = ListSongPlaylist.getSelectionModel().getSelectedItem();
         if(selectedMyTunes==null)
@@ -242,6 +271,7 @@ public class MyTunesController implements Initializable
         
     @FXML
     private void handlePlayButton() 
+            //handles playing the song, and making sure its not null before playing
     {
        selectedSong = (MyTunes) ListSongPlaylist.getSelectionModel().getSelectedItem();
        if (selectedSong == null )
@@ -264,6 +294,7 @@ public class MyTunesController implements Initializable
     }
     
     private void showErrorDialog(String title, String header, String message)
+            //allows us to create error messages
     {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle(title);
@@ -274,6 +305,7 @@ public class MyTunesController implements Initializable
     }
    
     private void changePlayButton(boolean playing)
+            //changes the image of the playbutton when the song is playing
     {
         if (playing)
         {
@@ -293,6 +325,7 @@ public class MyTunesController implements Initializable
     }
     
     private void changeMuteButton(boolean muted)
+            //changes the image of the mute button when its muted
     {
         if (muted)
     {
@@ -306,6 +339,7 @@ public class MyTunesController implements Initializable
   
     @FXML
     private void handleMuteSound()
+            //allows the user to mute the sound
     {
         if (!isMuted)
         {
@@ -325,6 +359,7 @@ public class MyTunesController implements Initializable
     
    @FXML
     private void VolumeSliderUpdate()
+            //updates the volume based on where the user positions the slider
     {
       
         sliderVolume.valueProperty().addListener((ObservableValue<? extends Number> listener, Number oldVal, Number newVal)
@@ -422,6 +457,7 @@ public class MyTunesController implements Initializable
 
     @FXML
     private void closeProgram(ActionEvent event) 
+            //allows the user to close the program, and does a pop-up making sure the user actually wants to
     {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
@@ -437,7 +473,12 @@ public class MyTunesController implements Initializable
 
      @FXML
     private void handleProgressBar(MouseEvent event)
+<<<<<<< HEAD
+            //handles the progress bar
+    {
+=======
     {        
+>>>>>>> 9119b8589f41f7633f7341ce3d21c1743b702192
         double mousePos = event.getX();
         double width = progressBar.getWidth();
         double diff = 100 / width * mousePos;
@@ -464,6 +505,7 @@ public class MyTunesController implements Initializable
     }
    
     private void moveSong(boolean up)
+            //allows the user to move the song up or down, depending on the button clicked
     {
         System.out.println(ListSongPlaylist.getSelectionModel().getSelectedIndex());
        /* int cIndex = ListSongPlaylist.getSelectionModel().getSelectedIndex();
@@ -504,15 +546,31 @@ public class MyTunesController implements Initializable
         moveSong(true);
     }
 
+<<<<<<< HEAD
     @FXML
+=======
+>>>>>>> 39db1e258db6760d188c4035a8ec08494cc448c3
     private void handleSongDown(MouseEvent event) {
         moveSong(false);
     }
 
+<<<<<<< HEAD
     @FXML
     private void handleSongUp(MouseEvent event) {
         moveSong(true);
     }
+=======
+    private void handleSongUp(MouseEvent event) {
+        moveSong(true);
+    }
+    
+    
+    @FXML
+    private void songLengthUpdate()
+    {
+                  
+    }
+>>>>>>> 39db1e258db6760d188c4035a8ec08494cc448c3
 }
 
 

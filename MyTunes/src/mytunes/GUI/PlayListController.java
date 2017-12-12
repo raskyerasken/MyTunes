@@ -46,6 +46,7 @@ public class PlayListController implements Initializable
     
     @FXML
     private void closeButton(ActionEvent event) 
+            
     {
         Stage stage = (Stage) close.getScene().getWindow();
         // do what you have to do
@@ -59,6 +60,7 @@ public class PlayListController implements Initializable
 
     @FXML
     private void save(ActionEvent event) throws SQLException 
+            //saves the playlist 
     {
         songData.setplaylistName(txtPlaylist.getText());
         System.out.println(txtPlaylist.getText());

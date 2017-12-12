@@ -52,6 +52,7 @@ public class SongModel {
     
     
     public void editSong(MyTunes contextSong)
+            //allows for editing the song after you've added it
     {
         for (int i = 0; i < songs.size(); i++)
         {

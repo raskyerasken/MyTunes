@@ -65,6 +65,7 @@ public class myTunesDAL {
     
     
     public void remove(MyTunes selectedMyTunes)
+            
     {
         try (Connection con = cm.getConnection()) {
         String sql = "DELETE FROM myTunes3 WHERE Name=?";
