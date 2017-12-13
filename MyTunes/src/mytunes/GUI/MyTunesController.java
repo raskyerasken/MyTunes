@@ -397,7 +397,7 @@ public class MyTunesController implements Initializable
   }
   
     @FXML
-    private void nextSong(MouseEvent event) 
+    private void nextSong() 
     {
         update();
         if (selectedSongIndex == tableSongsTotalItems || ListSongPlaylist.getSelectionModel().getSelectedItem()==null)
@@ -406,7 +406,6 @@ public class MyTunesController implements Initializable
         }
         else
         {
-            System.out.println("hey");
             selectionModel.clearAndSelect(selectedSongIndex + 1);
         }
         selectedSong = (MyTunes) ListSongPlaylist.getSelectionModel().getSelectedItem();
@@ -483,11 +482,10 @@ public class MyTunesController implements Initializable
             int idMinutes = (int) (newVal.toSeconds()/60);
             double idSeconds = (int) (newVal.toSeconds()%60);
             songLength.setText(df.format(idMinutes+idSeconds / 100) + "");
-            if(progressBar.getProgress()==1){
-             ListSongPlaylist.selectionModelProperty().get().select(selecSong+1);
-           System.out.println("hey");
-                isPlaying=true;
-                handlePlayButton();
+            if(progressBar.getProgress()==1)
+            {
+                nextSong();
+                progressBarTimeHandler();
             }
              
         }
@@ -550,12 +548,12 @@ public class MyTunesController implements Initializable
 
     @FXML
     private void handleAbout(ActionEvent event) {  //sets the "About Us"
-             String contentText = "Hello, and welcome to our MyTunes.\n"
-                +"In the file menu you can find\n"
+             String contentText = "\t Hello, and welcome to our MyTunes.\n"
+                +"\t In the file menu you can find\n"
                 +"\t how to create a new song\n"
                 +"\t how to create a new playlist\n"
                 +"\t how to close the program \n"
-                +"\tIn the edit menu you can find\n"
+                +"\t In the edit menu you can find\n"
                 +"\t how to edit a song\n"
                 +"\t how to edit a playlist\n"
                 +"\t how to delete a song\n"
