@@ -119,6 +119,8 @@ public class MyTunesController implements Initializable
     private boolean isShuffleToggled;
     private boolean isRepeatToggled;
     DecimalFormat df = new DecimalFormat("#.##");
+    boolean search=false; 
+
 
     @FXML
     private ImageView imgPlay;
@@ -363,19 +365,6 @@ public class MyTunesController implements Initializable
                 });
     }
 
-<<<<<<< HEAD
-   
-=======
-    @FXML
-    private void updateFilter(ActionEvent event) throws SQLException 
-    {
-        String a=textField.getText();
-        System.out.println(a);
-        ListSongPlaylist.setItems((ObservableList<MyTunes>) model.getAllSongsByPlaylist(a));
-    }
->>>>>>> a67f9a794a39187955cc455e13829f6e537fd135
-
-
     @FXML
     private void deletePlaylist(ActionEvent event) 
     {
@@ -545,12 +534,7 @@ public class MyTunesController implements Initializable
         moveSong(true);
     }
 
-    @FXML
-<<<<<<< HEAD
-    private void handleAbout()
-            //sets the "About Us"
-=======
-
+    
     private void addSongsToPlaylist(ActionEvent event) throws SQLException {
        
        
@@ -563,7 +547,6 @@ public class MyTunesController implements Initializable
 
     @FXML
     private void getPlaylist(MouseEvent event) throws SQLException 
->>>>>>> 7733091b8e7598889808dea85ab413f080877db3
     {
            int playlistID
                 =listPlaylist.getSelectionModel().getSelectedItem().getID();
@@ -600,11 +583,7 @@ public class MyTunesController implements Initializable
         about.resizableProperty().set(true);
         about.showAndWait();
     }
-<<<<<<< HEAD
-    private void addSongsToPlaylist(ActionEvent event) {
-    }
-=======
-boolean search=false; 
+   
     @FXML
     private void updateFilter(ActionEvent event) throws SQLException {
      
@@ -623,7 +602,6 @@ boolean search=false;
        }
     
     }}
->>>>>>> 7733091b8e7598889808dea85ab413f080877db3
 
     
 
