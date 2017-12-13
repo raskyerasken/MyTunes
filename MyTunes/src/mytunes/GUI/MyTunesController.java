@@ -525,7 +525,35 @@ public class MyTunesController implements Initializable
         moveSong(true);
     }
 
-    
+    @FXML
+    private void handleAbout()
+            //sets the "About Us"
+    {
+        String contentText = "Hello, and welcome to our MyTunes.\n"
+                +"In the file menu you can find\n"
+                +"\t how to create a new song\n"
+                +"\t how to create a new playlist\n"
+                +"\t how to close the program \n"
+                +"\tIn the edit menu you can find\n"
+                +"\t how to edit a song\n"
+                +"\t how to edit a playlist\n"
+                +"\t how to delete a song\n"
+                +"\t how to delete a playlist\n"
+                +"\t We are a couple of students who made this\n"
+                +"\t if you have any problems at all\n"
+                +"\t you're very welcome to stream into a wall \n"
+                +"\t as there will be roughly zero support from us \n"
+                +"\t proudly presented by \n"
+                +"\t Jacob, Kristófer, Kent & Kasper\n";
+                
+        Alert about = new Alert(AlertType.INFORMATION);
+        about.setTitle("About us");
+        about.setHeaderText("About MyTunes");
+        about.setContentText(contentText);
+        about.getDialogPane().setPrefWidth(480);
+        about.resizableProperty().set(true);
+        about.showAndWait();
+    }
 
 }
 
