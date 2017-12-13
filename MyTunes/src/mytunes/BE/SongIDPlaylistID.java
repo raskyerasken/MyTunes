@@ -12,7 +12,8 @@ import javafx.beans.property.SimpleIntegerProperty;
  *
  * @author jacob
  */
-public class SongIDPlaylistID {
+public class SongIDPlaylistID 
+{
     private final IntegerProperty IDSong= new SimpleIntegerProperty();
     private final IntegerProperty IDPlaylist= new SimpleIntegerProperty();
        

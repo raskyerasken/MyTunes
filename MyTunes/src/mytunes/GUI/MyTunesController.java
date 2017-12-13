@@ -149,6 +149,10 @@ public class MyTunesController implements Initializable
     private ImageView arrowUpPic;
     @FXML
     private ImageView arrowDownPic;
+    @FXML
+    private TableView<?> songsOnPlaylistTable;
+    @FXML
+    private TableColumn<?, ?> songsOnPlaylistClmn;
 
 
    
@@ -523,6 +527,10 @@ public class MyTunesController implements Initializable
     @FXML
     private void handleSongUp() {
         moveSong(true);
+    }
+
+    @FXML
+    private void addSongsToPlaylist(ActionEvent event) {
     }
 
     
