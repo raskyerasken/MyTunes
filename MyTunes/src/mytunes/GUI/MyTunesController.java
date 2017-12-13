@@ -74,7 +74,7 @@ public class MyTunesController implements Initializable
 //    MyTunes myTunes = new MyTunes();
     TableViewSelectionModel<MyTunes> selectionModel;
     
-    
+    boolean search=false; 
     private Label label;
     @FXML
     private TableView<MyTunes> ListSongPlaylist;
@@ -363,9 +363,7 @@ public class MyTunesController implements Initializable
                 });
     }
 
-<<<<<<< HEAD
-   
-=======
+
     @FXML
     private void updateFilter(ActionEvent event) throws SQLException 
     {
@@ -373,7 +371,7 @@ public class MyTunesController implements Initializable
         System.out.println(a);
         ListSongPlaylist.setItems((ObservableList<MyTunes>) model.getAllSongsByPlaylist(a));
     }
->>>>>>> a67f9a794a39187955cc455e13829f6e537fd135
+
 
 
     @FXML
@@ -595,25 +593,9 @@ public class MyTunesController implements Initializable
         about.resizableProperty().set(true);
         about.showAndWait();
     }
-boolean search=false; 
-    @FXML
-    private void updateFilter(ActionEvent event) throws SQLException {
-     
-       if(search)
-       {
-         search=false;
-       searchFilter.setText("Search");
-       ListSongPlaylist.setItems((ObservableList<MyTunes>) model.getAllSong());
-       }
-       else
-       {
-        String a=textField.getText();
-        ListSongPlaylist.setItems((ObservableList<MyTunes>) model.getAllSongsByPlaylist(a));
-       search=true;
-       searchFilter.setText("All song");
-       }
-    
-    }}
+
+
+    }
 
     
 
