@@ -26,7 +26,7 @@
          <columns>
             <TableColumn fx:id="columnPlaylist" prefWidth="227.0" text="Playlists" />
          </columns></TableView>
-      <TableView fx:id="ListSongPlaylist" layoutX="241.0" layoutY="115.0" prefHeight="396.0" prefWidth="411.0" AnchorPane.bottomAnchor="31.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="115.0">
+      <TableView fx:id="ListSongPlaylist" layoutX="442.0" layoutY="115.0" prefHeight="396.0" prefWidth="411.0" AnchorPane.bottomAnchor="31.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="115.0">
         <columns>
           <TableColumn fx:id="listSongTitle" prefWidth="122.0" text="Title" />
           <TableColumn fx:id="listSongArtist" prefWidth="110.0" text="Artist" />

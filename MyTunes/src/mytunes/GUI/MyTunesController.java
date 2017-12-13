@@ -531,7 +531,7 @@ public class MyTunesController implements Initializable
     }
 
     @FXML
-<<<<<<< HEAD
+
     private void addSongsToPlaylist(ActionEvent event) throws SQLException {
        
        
@@ -543,17 +543,19 @@ public class MyTunesController implements Initializable
     }
 
     @FXML
-    private void getPlaylist(MouseEvent event) throws SQLException {
+    private void getPlaylist(MouseEvent event) throws SQLException 
+    {
            int playlistID
                 =listPlaylist.getSelectionModel().getSelectedItem().getID();
              
             songsOnPlaylistTable.setItems(model.getSelectedPlaylist(playlistID));
-=======
-<<<<<<< HEAD
-    private void handleAbout()
-            //sets the "About Us"
-    {
-        String contentText = "Hello, and welcome to our MyTunes.\n"
+    }
+
+   
+
+    @FXML
+    private void handleAbout(ActionEvent event) {  //sets the "About Us"
+             String contentText = "Hello, and welcome to our MyTunes.\n"
                 +"In the file menu you can find\n"
                 +"\t how to create a new song\n"
                 +"\t how to create a new playlist\n"
@@ -578,15 +580,12 @@ public class MyTunesController implements Initializable
         about.resizableProperty().set(true);
         about.showAndWait();
     }
-=======
-    private void addSongsToPlaylist(ActionEvent event) {
->>>>>>> 0370d69ac8ee1804e1a3db2e8571442061523074
     }
 
     
->>>>>>> 5c80f43563422c1f641d75e906bac7face540236
 
-}
+
+
 
 
     
