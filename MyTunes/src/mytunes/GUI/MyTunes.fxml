@@ -66,7 +66,7 @@
         </menus>
       </MenuBar>
       <TextField fx:id="textField" layoutX="688.0" layoutY="55.0" prefHeight="25.0" prefWidth="92.0" />
-      <Button layoutX="782.0" layoutY="55.0" mnemonicParsing="false" onAction="#update" text="Search" />
+      <Button fx:id="searchFilter" layoutX="782.0" layoutY="55.0" mnemonicParsing="false" onAction="#updateFilter" text="Search" />
       <ProgressBar fx:id="progressBar" layoutX="239.0" layoutY="39.0" onMouseDragged="#handleProgressBar" prefHeight="18.0" prefWidth="304.0" progress="0.0" />
       <Button layoutX="45.0" layoutY="39.0" mnemonicParsing="false" onMouseClicked="#prevSong" prefHeight="27.0" prefWidth="39.0" style="-fx-background-radius: 10;" />
       <Button layoutX="146.0" layoutY="39.0" mnemonicParsing="false" onMouseClicked="#nextSong" prefHeight="27.0" prefWidth="39.0" style="-fx-background-radius: 10; -fx-border-radius: ;" />

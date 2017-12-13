@@ -154,6 +154,8 @@ public class MyTunesController implements Initializable
     private TableView<MyTunes> songsOnPlaylistTable;
     @FXML
     private TableColumn<MyTunes, String> songsOnPlaylistClmn;
+    @FXML
+    private Button searchFilter;
 
 
    
@@ -363,13 +365,7 @@ public class MyTunesController implements Initializable
                 });
     }
 
-    @FXML
-    private void update(ActionEvent event) throws SQLException 
-    {
-        String a=textField.getText();
-        System.out.println(a);
-        ListSongPlaylist.setItems((ObservableList<MyTunes>) model.getAllSongsByPlaylist(a));
-    }
+   
 
     @FXML
     private void deletePlaylist(ActionEvent event) 
@@ -480,6 +476,7 @@ public class MyTunesController implements Initializable
         songManager.getMediaPlayer().currentTimeProperty().addListener((ObservableValue<? extends Duration> listener, Duration oldVal, Duration newVal)
         ->
         {
+            int selecSong = ListSongPlaylist.getSelectionModel().getSelectedIndex();
             double timeElapsed = newVal.toMillis() / songManager.getSongLength().toMillis();
             this.progressBar.setProgress(timeElapsed);
             
@@ -487,6 +484,15 @@ public class MyTunesController implements Initializable
             int idMinutes = (int) (newVal.toSeconds()/60);
             double idSeconds = (int) (newVal.toSeconds()%60);
             songLength.setText(df.format(idMinutes+idSeconds / 100) + "");
+            if(progressBar.getProgress()==1){
+             ListSongPlaylist.selectionModelProperty().get().select(selecSong+1);
+           System.out.println("hey");
+                isPlaying=true;
+                handlePlayButton();
+            }
+           
+                
+            
         }
         );
     }
@@ -580,7 +586,25 @@ public class MyTunesController implements Initializable
         about.resizableProperty().set(true);
         about.showAndWait();
     }
-    }
+boolean search=false; 
+    @FXML
+    private void updateFilter(ActionEvent event) throws SQLException {
+     
+       if(search)
+       {
+         search=false;
+       searchFilter.setText("Search");
+       ListSongPlaylist.setItems((ObservableList<MyTunes>) model.getAllSong());
+       }
+       else
+       {
+        String a=textField.getText();
+        ListSongPlaylist.setItems((ObservableList<MyTunes>) model.getAllSongsByPlaylist(a));
+       search=true;
+       searchFilter.setText("All song");
+       }
+    
+    }}
 
     
 
