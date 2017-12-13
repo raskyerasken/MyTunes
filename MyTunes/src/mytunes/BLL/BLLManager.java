@@ -7,7 +7,6 @@ package mytunes.BLL;
 
 import java.sql.SQLException;
 import java.util.List;
-import javafx.collections.ObservableList;
 import mytunes.BE.MyTunes;
 import mytunes.BE.Playlist;
 import mytunes.BE.SongIDPlaylistID;
@@ -29,13 +28,11 @@ public class BLLManager
         return mtdal.getAllSongsByPlaylist(song);
     }
     
-    
     public void add(MyTunes allSongs) throws SQLException
             //adds songs to the allSongs playlist
     {
         mtdal.add(allSongs);
     }
-    
 
     public List<MyTunes> getallSong() 
     {
@@ -72,7 +69,6 @@ public class BLLManager
     public List<SongIDPlaylistID> getSelectedPlaylist(int playlistID) throws SQLException {
    return mtdal.getSelectedPlaylist(playlistID);
            }
-    
    
 }
 
