@@ -544,6 +544,10 @@ public class MyTunesController implements Initializable
     }
 
     @FXML
+<<<<<<< HEAD
+    private void handleAbout()
+            //sets the "About Us"
+=======
 
     private void addSongsToPlaylist(ActionEvent event) throws SQLException {
        
@@ -557,6 +561,7 @@ public class MyTunesController implements Initializable
 
     @FXML
     private void getPlaylist(MouseEvent event) throws SQLException 
+>>>>>>> 7733091b8e7598889808dea85ab413f080877db3
     {
            int playlistID
                 =listPlaylist.getSelectionModel().getSelectedItem().getID();
@@ -593,9 +598,36 @@ public class MyTunesController implements Initializable
         about.resizableProperty().set(true);
         about.showAndWait();
     }
+<<<<<<< HEAD
 
 
     }
+=======
+<<<<<<< HEAD
+    private void addSongsToPlaylist(ActionEvent event) {
+    }
+=======
+boolean search=false; 
+    @FXML
+    private void updateFilter(ActionEvent event) throws SQLException {
+     
+       if(search)
+       {
+         search=false;
+       searchFilter.setText("Search");
+       ListSongPlaylist.setItems((ObservableList<MyTunes>) model.getAllSong());
+       }
+       else
+       {
+        String a=textField.getText();
+        ListSongPlaylist.setItems((ObservableList<MyTunes>) model.getAllSongsByPlaylist(a));
+       search=true;
+       searchFilter.setText("All song");
+       }
+    
+    }}
+>>>>>>> 7733091b8e7598889808dea85ab413f080877db3
+>>>>>>> c8ee5979e36b5e976167b42d65440600ace788e8
 
     
 

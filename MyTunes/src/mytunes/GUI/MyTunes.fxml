@@ -22,11 +22,19 @@
       <Label fx:id="labelSongTheirIsPlaying" layoutX="308.0" layoutY="-31.0" prefHeight="40.0" prefWidth="153.0" text="Update Song Name Here" AnchorPane.bottomAnchor="531.0" AnchorPane.topAnchor="-31.0" />
       <Label layoutX="647.0" layoutY="60.0" text="Filter" AnchorPane.rightAnchor="181.0" AnchorPane.topAnchor="60.0" />
       <Slider fx:id="sliderVolume" layoutX="45.0" layoutY="76.0" onDragDetected="#VolumeSliderUpdate" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="76.0" />
+<<<<<<< HEAD
+      <TableView fx:id="listPlaylist" layoutX="12.0" layoutY="115.0" prefHeight="557.0" prefWidth="228.0" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="621.0" AnchorPane.topAnchor="115.0">
+         <columns>
+            <TableColumn fx:id="columnPlaylist" prefWidth="227.0" text="Playlists" />
+         </columns></TableView>
+      <TableView fx:id="ListSongPlaylist" layoutX="241.0" layoutY="115.0" prefHeight="557.0" prefWidth="411.0" AnchorPane.bottomAnchor="32.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="115.0">
+=======
       <TableView fx:id="listPlaylist" layoutX="12.0" layoutY="115.0" onMouseClicked="#getPlaylist" prefHeight="557.0" prefWidth="228.0" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="621.0" AnchorPane.topAnchor="115.0">
          <columns>
             <TableColumn fx:id="columnPlaylist" prefWidth="227.0" text="Playlists" />
          </columns></TableView>
       <TableView fx:id="ListSongPlaylist" layoutX="442.0" layoutY="115.0" prefHeight="396.0" prefWidth="411.0" AnchorPane.bottomAnchor="31.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="115.0">
+>>>>>>> 7733091b8e7598889808dea85ab413f080877db3
         <columns>
           <TableColumn fx:id="listSongTitle" prefWidth="122.0" text="Title" />
           <TableColumn fx:id="listSongArtist" prefWidth="110.0" text="Artist" />
@@ -92,15 +100,15 @@
             <Image url="@../../arrows.png" />
          </image>
       </ImageView>
-      <Button fx:id="arrowDown" layoutX="247.0" layoutY="670.0" mnemonicParsing="false" onAction="#handleSongDown" prefHeight="23.0" prefWidth="39.0" style="-fx-background-radius: 30;" />
-      <Button fx:id="arrowUp" layoutX="407.0" layoutY="670.0" mnemonicParsing="false" onAction="#handleSongUp" prefHeight="27.0" prefWidth="39.0" style="-fx-background-radius: 30;" />
-      <ImageView fx:id="arrowUpPic" fitHeight="29.0" fitWidth="39.0" layoutX="412.0" layoutY="671.0" onMouseReleased="#handleSongUp" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="arrowDown" layoutX="256.0" layoutY="675.0" mnemonicParsing="false" onAction="#handleSongDown" prefHeight="23.0" prefWidth="39.0" style="-fx-background-radius: 30;" />
+      <Button fx:id="arrowUp" layoutX="366.0" layoutY="675.0" mnemonicParsing="false" onAction="#handleSongUp" prefHeight="27.0" prefWidth="39.0" style="-fx-background-radius: 30;" />
+      <ImageView fx:id="arrowUpPic" fitHeight="29.0" fitWidth="39.0" layoutX="370.0" layoutY="675.0" onMouseReleased="#handleSongUp" pickOnBounds="true" preserveRatio="true">
 
          <image>
             <Image url="@../../arrowup.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="arrowDownPic" fitHeight="29.0" fitWidth="39.0" layoutX="252.0" layoutY="672.0" onMouseReleased="#handleSongDown" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="arrowDownPic" fitHeight="29.0" fitWidth="39.0" layoutX="260.0" layoutY="675.0" onMouseReleased="#handleSongDown" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../arrowdown.png" />
          </image>
