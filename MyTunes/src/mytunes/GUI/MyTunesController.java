@@ -595,7 +595,12 @@ public class MyTunesController implements Initializable
        searchFilter.setText("All song");
        }
     
-    }}
+    }
+
+    @FXML
+    private void addSongsToPlaylist(MouseEvent event) {
+    }
+}
 
     
 
