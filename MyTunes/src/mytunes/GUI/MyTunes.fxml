@@ -57,7 +57,7 @@
             <items>
               <MenuItem mnemonicParsing="false" onAction="#editPlaylist" text="Edit Playlist" />
                   <MenuItem mnemonicParsing="false" onAction="#editSong" text="Edit Song" />
-                  <MenuItem fx:id="removeSongFromPlaylist" mnemonicParsing="false" text="Remove song from playlist" />
+                  <MenuItem mnemonicParsing="false" onAction="#removeSongFromPlaylist" text="Remove song from playlist" />
                   <MenuItem mnemonicParsing="false" onAction="#deletePlaylist" text="Delete Playlist" />
                   <MenuItem mnemonicParsing="false" onAction="#DeleteSong" text="Delete" />
             </items>

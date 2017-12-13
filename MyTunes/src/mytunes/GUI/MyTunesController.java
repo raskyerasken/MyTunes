@@ -156,7 +156,7 @@ public class MyTunesController implements Initializable
     private TableColumn<MyTunes, String> songsOnPlaylistClmn;
     @FXML
     private Button searchFilter;
-
+SongIDPlaylistID songIdPlaylistId = new SongIDPlaylistID(); 
 
    
 
@@ -598,6 +598,13 @@ public class MyTunesController implements Initializable
     private void getSelectedPlaylist(MouseEvent event) throws SQLException 
     {
          songsOnPlaylistTable.setItems(model.getSelectedPlaylist(listPlaylist.getSelectionModel().getSelectedItem().getID()));
+    }
+
+    @FXML
+    private void removeSongFromPlaylist(ActionEvent event) throws SQLException {
+        songIdPlaylistId.setIDPlaylist(listPlaylist.getSelectionModel().getSelectedItem().getID());
+        songIdPlaylistId.setIDSong(songsOnPlaylistTable.getSelectionModel().getSelectedItem().getId());
+           ListSongPlaylist.setItems(model.removeSongPlaylist(songIdPlaylistId));
     }
 }
 
