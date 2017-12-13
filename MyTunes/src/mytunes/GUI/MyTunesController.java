@@ -58,7 +58,7 @@ import javafx.util.Duration;
 import static javax.swing.Spring.width;
 import mytunes.BE.MyTunes;
 import mytunes.BE.Playlist;
-import mytunes.BE.Song;
+
 import mytunes.BLL.SongManager;
 import mytunes.GUI.model.SongModel;
 

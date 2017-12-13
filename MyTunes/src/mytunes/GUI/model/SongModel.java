@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import mytunes.BE.MyTunes;
-import mytunes.BE.Song;
-import mytunes.DAL.SongDAO;
 
 /**
  *
@@ -21,8 +19,6 @@ import mytunes.DAL.SongDAO;
 public class SongModel {
     
     private MyTunes contextSong;
-    
-    private SongDAO songDAO;
     
     private static SongModel instance;
         
@@ -37,12 +33,6 @@ public class SongModel {
         }
         return instance;
     }
-    
-    private SongModel() 
-    {
-        songDAO = new SongDAO();
-    }
-    
     
     public void addSong(MyTunes myTunes)
     {
