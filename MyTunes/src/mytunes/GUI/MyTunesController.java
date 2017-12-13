@@ -595,9 +595,9 @@ public class MyTunesController implements Initializable
     }
 
     @FXML
-    private void getSelectedPlaylist(MouseEvent event) 
+    private void getSelectedPlaylist(MouseEvent event) throws SQLException 
     {
-        
+         songsOnPlaylistTable.setItems(model.getSelectedPlaylist(listPlaylist.getSelectionModel().getSelectedItem().getID()));
     }
 }
 
