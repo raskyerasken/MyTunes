@@ -55,10 +55,10 @@ int idminutes;
     }
     URLAdressSong=""+chooser.getSelectedFile();
     Mp3File mp3file = new Mp3File(chooser.getSelectedFile());
-    songLength=(int) mp3file.getLengthInSeconds();
+   songLength=(int) mp3file.getLengthInSeconds();
     System.out.println("Length of this mp3 is: " + mp3file.getLengthInSeconds() + " seconds");  
     System.out.println("Has ID3v2 tag?: " + (mp3file.hasId3v2Tag() ? "YES" : "NO"));
-       
+  
     if (mp3file.hasId3v2Tag()) 
     {
       	ID3v2 id3v2Tag = mp3file.getId3v2Tag();
@@ -68,21 +68,9 @@ int idminutes;
         year = id3v2Tag.getYear();
     }
         
-    if (mp3file.hasId3v2Tag()) 
-    {
-      	ID3v2 id3v2Tag = mp3file.getId3v2Tag();
-        byte[] imageData = id3v2Tag.getAlbumImage();
-        if (imageData != null)  
-        {
-            String mimeType = id3v2Tag.getAlbumImageMimeType();
-	    System.out.println("Mime type: " + mimeType);
-				
-            RandomAccessFile file = new RandomAccessFile("album-artwork", "rw");
-	    file.write(imageData);
-	    file.close();
-        }
+  
     }
-}
+
 
     public MyTunes getdata() throws UnsupportedTagException, InvalidDataException, IOException, NotSupportedException {
         choseFile();

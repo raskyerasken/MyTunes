@@ -58,6 +58,7 @@ import javafx.util.Duration;
 import static javax.swing.Spring.width;
 import mytunes.BE.MyTunes;
 import mytunes.BE.Playlist;
+import mytunes.BE.SongIDPlaylistID;
 
 import mytunes.BLL.SongManager;
 import mytunes.GUI.model.SongModel;
@@ -150,9 +151,11 @@ public class MyTunesController implements Initializable
     @FXML
     private ImageView arrowDownPic;
     @FXML
-    private TableView<?> songsOnPlaylistTable;
+    private TableView<MyTunes> songsOnPlaylistTable;
     @FXML
-    private TableColumn<?, ?> songsOnPlaylistClmn;
+    private TableColumn<MyTunes, String> songsOnPlaylistClmn;
+    @FXML
+    private Button searchFilter;
 
 
    
@@ -175,16 +178,15 @@ public class MyTunesController implements Initializable
         columnPlaylist.setCellValueFactory(
             new PropertyValueFactory("playlistName"));
         
-            
+         songsOnPlaylistClmn.setCellValueFactory(new PropertyValueFactory("SongName"));
         listPlaylist.setItems((ObservableList<Playlist>) model.getAllPlaylist());
         sliderVolume.setValue(100);
     }   
 
    @FXML
-    private void newPlaylist(ActionEvent event) throws IOException 
-//loads the playListView so you can create a new playlist
+   private void newPlaylist(ActionEvent event) throws IOException 
    {
- newFXMLplayListView();
+        newFXMLplayListView();
    }
      void newFXMLplayListView() throws IOException{
        Stage newStage = new Stage();
@@ -292,9 +294,8 @@ public class MyTunesController implements Initializable
         
         alert.showAndWait();
     }
-   
+   //changes the image of the playbutton when the song is playing
     private void changePlayButton(boolean playing)
-            //changes the image of the playbutton when the song is playing
     {
         if (playing)
         {
@@ -317,13 +318,13 @@ public class MyTunesController implements Initializable
             //changes the image of the mute button when its muted
     {
         if (muted)
-    {
-        newImage("/mute.png");
-    }
-    else 
-    {
-        newImage("/unmute.png");
-    }
+        {
+            newImage("/mute.png");
+        }
+        else 
+        {
+            newImage("/unmute.png");
+        }
     }
   
     @FXML
@@ -362,13 +363,18 @@ public class MyTunesController implements Initializable
                 });
     }
 
+<<<<<<< HEAD
+   
+=======
     @FXML
-    private void update(ActionEvent event) throws SQLException 
+    private void updateFilter(ActionEvent event) throws SQLException 
     {
         String a=textField.getText();
         System.out.println(a);
         ListSongPlaylist.setItems((ObservableList<MyTunes>) model.getAllSongsByPlaylist(a));
     }
+>>>>>>> a67f9a794a39187955cc455e13829f6e537fd135
+
 
     @FXML
     private void deletePlaylist(ActionEvent event) 
@@ -479,6 +485,7 @@ public class MyTunesController implements Initializable
         songManager.getMediaPlayer().currentTimeProperty().addListener((ObservableValue<? extends Duration> listener, Duration oldVal, Duration newVal)
         ->
         {
+            int selecSong = ListSongPlaylist.getSelectionModel().getSelectedIndex();
             double timeElapsed = newVal.toMillis() / songManager.getSongLength().toMillis();
             this.progressBar.setProgress(timeElapsed);
             
@@ -486,6 +493,15 @@ public class MyTunesController implements Initializable
             int idMinutes = (int) (newVal.toSeconds()/60);
             double idSeconds = (int) (newVal.toSeconds()%60);
             songLength.setText(df.format(idMinutes+idSeconds / 100) + "");
+            if(progressBar.getProgress()==1){
+             ListSongPlaylist.selectionModelProperty().get().select(selecSong+1);
+           System.out.println("hey");
+                isPlaying=true;
+                handlePlayButton();
+            }
+           
+                
+            
         }
         );
     }
@@ -530,10 +546,36 @@ public class MyTunesController implements Initializable
     }
 
     @FXML
+<<<<<<< HEAD
     private void handleAbout()
             //sets the "About Us"
+=======
+
+    private void addSongsToPlaylist(ActionEvent event) throws SQLException {
+       
+       
+        SongIDPlaylistID id= new SongIDPlaylistID();
+        id.setIDPlaylist(listPlaylist.getSelectionModel().getSelectedItem().getID());
+        id.setIDSong(ListSongPlaylist.getSelectionModel().getSelectedItem().getId());
+        model.addSongToPlaylist(id);
+       songsOnPlaylistTable.setItems(model.getSelectedPlaylist(listPlaylist.getSelectionModel().getSelectedItem().getID()));
+    }
+
+    @FXML
+    private void getPlaylist(MouseEvent event) throws SQLException 
+>>>>>>> 7733091b8e7598889808dea85ab413f080877db3
     {
-        String contentText = "Hello, and welcome to our MyTunes.\n"
+           int playlistID
+                =listPlaylist.getSelectionModel().getSelectedItem().getID();
+             
+            songsOnPlaylistTable.setItems(model.getSelectedPlaylist(playlistID));
+    }
+
+   
+
+    @FXML
+    private void handleAbout(ActionEvent event) {  //sets the "About Us"
+             String contentText = "Hello, and welcome to our MyTunes.\n"
                 +"In the file menu you can find\n"
                 +"\t how to create a new song\n"
                 +"\t how to create a new playlist\n"
@@ -558,12 +600,35 @@ public class MyTunesController implements Initializable
         about.resizableProperty().set(true);
         about.showAndWait();
     }
+<<<<<<< HEAD
     private void addSongsToPlaylist(ActionEvent event) {
     }
+=======
+boolean search=false; 
+    @FXML
+    private void updateFilter(ActionEvent event) throws SQLException {
+     
+       if(search)
+       {
+         search=false;
+       searchFilter.setText("Search");
+       ListSongPlaylist.setItems((ObservableList<MyTunes>) model.getAllSong());
+       }
+       else
+       {
+        String a=textField.getText();
+        ListSongPlaylist.setItems((ObservableList<MyTunes>) model.getAllSongsByPlaylist(a));
+       search=true;
+       searchFilter.setText("All song");
+       }
+    
+    }}
+>>>>>>> 7733091b8e7598889808dea85ab413f080877db3
 
     
 
-}
+
+
 
 
     
