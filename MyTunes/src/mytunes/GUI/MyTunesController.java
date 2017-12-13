@@ -58,6 +58,7 @@ import javafx.util.Duration;
 import static javax.swing.Spring.width;
 import mytunes.BE.MyTunes;
 import mytunes.BE.Playlist;
+import mytunes.BE.SongIDPlaylistID;
 
 import mytunes.BLL.SongManager;
 import mytunes.GUI.model.SongModel;
@@ -150,9 +151,9 @@ public class MyTunesController implements Initializable
     @FXML
     private ImageView arrowDownPic;
     @FXML
-    private TableView<?> songsOnPlaylistTable;
+    private TableView<MyTunes> songsOnPlaylistTable;
     @FXML
-    private TableColumn<?, ?> songsOnPlaylistClmn;
+    private TableColumn<MyTunes, String> songsOnPlaylistClmn;
 
 
    
@@ -175,7 +176,7 @@ public class MyTunesController implements Initializable
         columnPlaylist.setCellValueFactory(
             new PropertyValueFactory("playlistName"));
         
-            
+         songsOnPlaylistClmn.setCellValueFactory(new PropertyValueFactory("SongName"));
         listPlaylist.setItems((ObservableList<Playlist>) model.getAllPlaylist());
         sliderVolume.setValue(100);
     }   
@@ -530,7 +531,22 @@ public class MyTunesController implements Initializable
     }
 
     @FXML
-    private void addSongsToPlaylist(ActionEvent event) {
+    private void addSongsToPlaylist(ActionEvent event) throws SQLException {
+       
+       
+        SongIDPlaylistID id= new SongIDPlaylistID();
+        id.setIDPlaylist(listPlaylist.getSelectionModel().getSelectedItem().getID());
+        id.setIDSong(ListSongPlaylist.getSelectionModel().getSelectedItem().getId());
+        model.addSongToPlaylist(id);
+       songsOnPlaylistTable.setItems(model.getSelectedPlaylist(listPlaylist.getSelectionModel().getSelectedItem().getID()));
+    }
+
+    @FXML
+    private void getPlaylist(MouseEvent event) throws SQLException {
+           int playlistID
+                =listPlaylist.getSelectionModel().getSelectedItem().getID();
+             
+            songsOnPlaylistTable.setItems(model.getSelectedPlaylist(playlistID));
     }
 
     
