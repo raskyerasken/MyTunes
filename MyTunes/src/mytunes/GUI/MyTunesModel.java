@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import mytunes.BE.MyTunes;
 import mytunes.BE.Playlist;
+import mytunes.BE.SongIDPlaylistID;
 import mytunes.BLL.BLLManager;
 
 /**
@@ -23,12 +24,18 @@ public class MyTunesModel
 
     private ObservableList<MyTunes> songList
             = FXCollections.observableArrayList();
-     
+    private ObservableList<MyTunes> songOnPlaylist2
+            = FXCollections.observableArrayList();
+      private ObservableList<SongIDPlaylistID> songOnPlaylist
+            = FXCollections.observableArrayList();
+      
     private ObservableList<Playlist> playlist
             = FXCollections.observableArrayList();
+  
 
     List<MyTunes> getAllSong() 
     {
+        songList.clear();
         songList.addAll(bllManager.getallSong());
        
         return songList;
@@ -54,11 +61,7 @@ public class MyTunesModel
         songList.remove(selectedMyTunes);
     }
     
-    public List<MyTunes> getAllSongsByPlaylist(String song) throws SQLException
-    {
-        songList.setAll(bllManager.getAllSongsByPlaylist(song));
-        return songList;        
-    }
+    
 
     public void add (Playlist playlistSong) throws SQLException
     {   
@@ -79,8 +82,51 @@ public class MyTunesModel
        bllManager.remove(playlistSongs);
         playlist.remove(playlistSongs);
     }
-}
+
+    void addSongToPlaylist(SongIDPlaylistID ID) {
+      bllManager.addSongToPlaylist(ID);
+     songOnPlaylist.add(ID);
     
+       
+}
+ public List<MyTunes> getAllSongsByPlaylist(String song) throws SQLException
+    {
+        songList.setAll(bllManager.getAllSongsByPlaylist(song));
+        return songList;        
+    }
+
+    ObservableList<MyTunes> removeSongPlaylist(SongIDPlaylistID SongPlaylist) throws SQLException {
+       songOnPlaylist.clear();
+          bllManager.removeSongToPlaylist(SongPlaylist);
+     songOnPlaylist.remove(SongPlaylist);
+     return getSelectedPlaylist(SongPlaylist.getIDPlaylist());
+     }
+
+    ObservableList<MyTunes> getSelectedPlaylist(int playlistID) throws SQLException {
+        songOnPlaylist.clear();
+       
+    songOnPlaylist.addAll( bllManager.getSelectedPlaylist(playlistID));
+     
+    songOnPlaylist2.clear();
+        for (SongIDPlaylistID hey : songOnPlaylist) {
+            for (MyTunes myTunes : songList) {
+                if(myTunes.getId()==hey.getIDSong())
+                {
+                   songOnPlaylist2.add(myTunes);
+                }
+                
+            }
+            
+        }
+        
+    
+    return songOnPlaylist2;
+    }
+} 
+
+
+
+
     
    
 

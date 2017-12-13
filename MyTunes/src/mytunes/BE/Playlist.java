@@ -19,7 +19,7 @@ public class Playlist
 {
     private final IntegerProperty ID= new SimpleIntegerProperty();
     private final StringProperty playlistName =  new SimpleStringProperty();
-    private ArrayList<Song> songList;
+    
     
     public String getplaylistName()
     {
@@ -51,8 +51,5 @@ public class Playlist
         return ID;
     }
     
-    public ArrayList<Song> getSongList()
-    {
-        return songList;
-    }
+    
 }

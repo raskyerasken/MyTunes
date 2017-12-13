@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import mytunes.BE.MyTunes;
 import mytunes.BE.Playlist;
+import mytunes.BE.SongIDPlaylistID;
 
 
 /**
@@ -213,7 +214,73 @@ public class myTunesDAL {
         Logger.getLogger(myTunesDAL.class.getName()).log(Level.SEVERE, null, ex);
     }     
     
-    } 
+    }
+      public void addSongToPlaylist(SongIDPlaylistID ID) {
+       try (Connection con = cm.getConnection())  {
+          System.out.println(ID.getIDSong());
+        String sql 
+                = "INSERT INTO songOnPlaylist"
+                + "(songID, playlistID ) "
+                + "VALUES(?,?)";
+           PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+           pstmt.setInt(1, ID.getIDSong());
+            pstmt.setInt(2, ID.getIDPlaylist());
+           
+            
+            
+            int affected = pstmt.executeUpdate();
+            if (affected<1){
+                    throw new SQLException("Song could not be added");}
+            
+                 }
+    catch (SQLException ex) {
+        Logger.getLogger(myTunesDAL.class.getName()).log(Level.SEVERE, null, ex);
+    }     
+    }
+       public void removeSongPlaylist(SongIDPlaylistID SongPlaylist) {
+         try (Connection con = cm.getConnection()) {
+        String sql = "DELETE FROM songOnPlaylist WHERE SongID=? AND playlistID=?";
+       
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        pstmt.setInt(1,SongPlaylist.getIDSong());
+        pstmt.setInt(2,SongPlaylist.getIDPlaylist());
+        pstmt.execute();
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(myTunesDAL.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+    }
+
+   
+
+    public List<SongIDPlaylistID> getSelectedPlaylist(int playlistID) throws SQLServerException, SQLException {
+         List<SongIDPlaylistID> SongOnPlaylist = new ArrayList();
+        
+        try (Connection con = cm.getConnection())
+        {
+                 
+            String query 
+                    = "SELECT * FROM songOnPlaylist "
+                    + "WHERE playlistID LIKE ?";
+          
+            PreparedStatement pstmt
+                    = con.prepareStatement(query);
+            pstmt.setInt(1, playlistID);
+           ResultSet rs = pstmt.executeQuery();
+            while(rs.next())
+            {
+                SongIDPlaylistID sOP = new SongIDPlaylistID();
+               sOP.setIDSong(rs.getInt("songID"));
+                sOP.setIDPlaylist(rs.getInt("PlaylistID"));
+               
+                
+                 SongOnPlaylist.add(sOP);
+            }
+        }
+        return  SongOnPlaylist;
+    }
+      
 }
     
   

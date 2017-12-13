@@ -10,6 +10,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import mytunes.BE.MyTunes;
 import mytunes.BE.Playlist;
+import mytunes.BE.SongIDPlaylistID;
 
 import mytunes.DAL.myTunesDAL;
 
@@ -60,6 +61,17 @@ public class BLLManager
     }
 
     
+    public void addSongToPlaylist(SongIDPlaylistID ID ) {
+         mtdal.addSongToPlaylist(ID);
+    }
+
+    public void removeSongToPlaylist(SongIDPlaylistID SongPlaylist) {
+      mtdal.removeSongPlaylist(SongPlaylist);
+    }
+
+    public List<SongIDPlaylistID> getSelectedPlaylist(int playlistID) throws SQLException {
+   return mtdal.getSelectedPlaylist(playlistID);
+           }
     
    
 }

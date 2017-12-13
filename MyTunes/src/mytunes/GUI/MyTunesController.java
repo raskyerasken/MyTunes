@@ -58,7 +58,7 @@ import javafx.util.Duration;
 import static javax.swing.Spring.width;
 import mytunes.BE.MyTunes;
 import mytunes.BE.Playlist;
-import mytunes.BE.Song;
+
 import mytunes.BLL.SongManager;
 import mytunes.GUI.model.SongModel;
 
@@ -149,6 +149,10 @@ public class MyTunesController implements Initializable
     private ImageView arrowUpPic;
     @FXML
     private ImageView arrowDownPic;
+    @FXML
+    private TableView<?> songsOnPlaylistTable;
+    @FXML
+    private TableColumn<?, ?> songsOnPlaylistClmn;
 
 
    
@@ -526,6 +530,7 @@ public class MyTunesController implements Initializable
     }
 
     @FXML
+<<<<<<< HEAD
     private void handleAbout()
             //sets the "About Us"
     {
@@ -554,6 +559,12 @@ public class MyTunesController implements Initializable
         about.resizableProperty().set(true);
         about.showAndWait();
     }
+=======
+    private void addSongsToPlaylist(ActionEvent event) {
+    }
+
+    
+>>>>>>> 5c80f43563422c1f641d75e906bac7face540236
 
 }
 

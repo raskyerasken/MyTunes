@@ -2,11 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group name="Alt">
+            <file>file:/Users/kasper/Documents/GitHub/MyTunes/MyTunes/src/mytunes/GUI/MyTunesController.java</file>
+            <file>file:/Users/kasper/Documents/GitHub/MyTunes/MyTunes/src/mytunes/GUI/MyTunesModel.java</file>
+        </group>
         <group>
             <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/src/mytunes/GUI/SongViewController.java</file>
             <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/src/mytunes/GUI/MyTunesModel.java</file>
             <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/src/mytunes/BE/Song.java</file>
-            <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/src/mytunes/DAL/PlaylistDAL.java</file>
             <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/src/mytunes/GUI/PlayListController.java</file>
             <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/src/mytunes/BE/MyTunes.java</file>
             <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/src/mytunes/BE/Playlist.java</file>
@@ -23,10 +26,6 @@
             <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/src/mytunes/DAL/myTunesDAL.java</file>
             <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/src/mytunes/DAL/ConnectionManagerMyTunes.java</file>
             <file>file:/C:/Users/jacob/Desktop/MyTunesv3/MyTunes/src/mytunes/DAL/SongDAO.java</file>
-        </group>
-        <group name="Alt">
-            <file>file:/Users/kasper/Documents/GitHub/MyTunes/MyTunes/src/mytunes/GUI/MyTunesController.java</file>
-            <file>file:/Users/kasper/Documents/GitHub/MyTunes/MyTunes/src/mytunes/GUI/MyTunesModel.java</file>
         </group>
     </open-files>
 </project-private>
