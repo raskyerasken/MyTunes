@@ -530,7 +530,6 @@ public class MyTunesController implements Initializable
     }
 
     @FXML
-<<<<<<< HEAD
     private void handleAbout()
             //sets the "About Us"
     {
@@ -559,12 +558,10 @@ public class MyTunesController implements Initializable
         about.resizableProperty().set(true);
         about.showAndWait();
     }
-=======
     private void addSongsToPlaylist(ActionEvent event) {
     }
 
     
->>>>>>> 5c80f43563422c1f641d75e906bac7face540236
 
 }
 
