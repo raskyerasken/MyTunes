@@ -26,8 +26,8 @@
       <TableView fx:id="listPlaylist" layoutX="12.0" layoutY="115.0" onMouseClicked="#getSelectedPlaylist" prefHeight="557.0" prefWidth="228.0" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="621.0" AnchorPane.topAnchor="115.0">
          <columns>
             <TableColumn fx:id="columnPlaylist" prefWidth="91.0" text="Playlists" />
-            <TableColumn prefWidth="49.0" text="Songs" />
-            <TableColumn prefWidth="87.0" text="Time" />
+            <TableColumn fx:id="columsSongs" prefWidth="49.0" text="Songs" />
+            <TableColumn fx:id="columTime" prefWidth="87.0" text="Time" />
          </columns></TableView>
       <TableView fx:id="ListSongPlaylist" layoutX="241.0" layoutY="115.0" prefHeight="557.0" prefWidth="383.0" AnchorPane.bottomAnchor="32.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="115.0">
 <columns>
@@ -109,7 +109,7 @@
             <Image url="@../../arrowdown.png" />
          </image>
       </ImageView>
-      <TableView fx:id="songsOnPlaylistTable" layoutX="249.0" layoutY="115.0" prefHeight="559.0" prefWidth="190.0">
+      <TableView fx:id="songsOnPlaylistTable" layoutX="240.0" layoutY="114.0" prefHeight="559.0" prefWidth="190.0">
         <columns>
           <TableColumn fx:id="songsOnPlaylistClmn" prefWidth="199.0" text="Songs on playlist" />
         </columns>

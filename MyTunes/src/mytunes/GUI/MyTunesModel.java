@@ -30,7 +30,8 @@ public class MyTunesModel
             = FXCollections.observableArrayList();
     private ObservableList<Playlist> playlist
             = FXCollections.observableArrayList();
- 
+ int counter= 0 ;
+ float counterTime=0;
     List<MyTunes> getAllSong() 
     {
         songList.clear();
@@ -69,9 +70,18 @@ public class MyTunesModel
         playlist.add(playlistSong);
     }
 
-    List<Playlist> getAllPlaylist() 
+    List<Playlist> getAllPlaylist() throws SQLException 
     {
-        playlist.addAll(bllManager.getallPlaylist());
+        
+        
+        for (Playlist pl : bllManager.getallPlaylist()) {
+            getSelectedPlaylist(pl.getID());
+           pl.setsongNumbers(counter);
+           pl.setplaylistTime(counterTime);
+           playlist.add(pl);
+            
+        }
+    System.out.println(playlist);
         return playlist;
     }
 
@@ -107,16 +117,20 @@ public class MyTunesModel
         songOnPlaylist.clear();
         songOnPlaylist.addAll( bllManager.getSelectedPlaylist(playlistID));
         songOnPlaylist2.clear();
-        
-        
-        
+      
+         counter = 0;
         for (SongIDPlaylistID hey : songOnPlaylist) 
         {
+           
             for (MyTunes myTunes : songList) 
             {
+                
                 if(myTunes.getId()==hey.getIDSong())
-                {
+                {counter++;
+                counterTime=myTunes.getSongLength()+counterTime;
+                    System.out.println(counter);
                    songOnPlaylist2.add(myTunes);
+                   
                 }
                 
             }

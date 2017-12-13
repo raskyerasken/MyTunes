@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 
 
@@ -157,6 +159,10 @@ public class MyTunesController implements Initializable
     @FXML
     private Button searchFilter;
 SongIDPlaylistID songIdPlaylistId = new SongIDPlaylistID(); 
+    @FXML
+    private TableColumn<Playlist, Integer> columsSongs;
+    @FXML
+    private TableColumn<Playlist, Integer> columTime;
 
    
 
@@ -177,10 +183,20 @@ SongIDPlaylistID songIdPlaylistId = new SongIDPlaylistID();
         changePlayButton(isPlaying);
         columnPlaylist.setCellValueFactory(
             new PropertyValueFactory("playlistName"));
+       columsSongs.setCellValueFactory(
+            new PropertyValueFactory("songNumbers"));
+          columTime.setCellValueFactory(
+            new PropertyValueFactory("playlistTime"));
         
          songsOnPlaylistClmn.setCellValueFactory(new PropertyValueFactory("SongName"));
          
-        listPlaylist.setItems((ObservableList<Playlist>) model.getAllPlaylist());
+        
+        try {
+            listPlaylist.setItems((ObservableList<Playlist>) model.getAllPlaylist());
+        } catch (SQLException ex) {
+            Logger.getLogger(MyTunesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
         sliderVolume.setValue(100);
     }   
 
