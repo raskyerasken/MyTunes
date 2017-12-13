@@ -141,7 +141,7 @@ public class MyTunesController implements Initializable
     @FXML
     private Button muteBtn;
     @FXML
-    private TableColumn<?, ?> columnPlaylist;
+    private TableColumn<MyTunes, String> columnPlaylist;
     @FXML
     private Button arrowDown;
     @FXML
@@ -163,7 +163,7 @@ public class MyTunesController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        listSongTitle.setCellValueFactory(
+        /*listSongTitle.setCellValueFactory(
             new PropertyValueFactory("songName"));
         listSongArtist.setCellValueFactory(
             new PropertyValueFactory("artist"));
@@ -179,8 +179,9 @@ public class MyTunesController implements Initializable
             new PropertyValueFactory("playlistName"));
         
          songsOnPlaylistClmn.setCellValueFactory(new PropertyValueFactory("SongName"));
+         
         listPlaylist.setItems((ObservableList<Playlist>) model.getAllPlaylist());
-        sliderVolume.setValue(100);
+        sliderVolume.setValue(100);*/
     }   
 
    @FXML
