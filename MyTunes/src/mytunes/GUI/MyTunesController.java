@@ -184,10 +184,9 @@ public class MyTunesController implements Initializable
     }   
 
    @FXML
-    private void newPlaylist(ActionEvent event) throws IOException 
-//loads the playListView so you can create a new playlist
+   private void newPlaylist(ActionEvent event) throws IOException 
    {
- newFXMLplayListView();
+        newFXMLplayListView();
    }
      void newFXMLplayListView() throws IOException{
        Stage newStage = new Stage();
@@ -295,9 +294,8 @@ public class MyTunesController implements Initializable
         
         alert.showAndWait();
     }
-   
+   //changes the image of the playbutton when the song is playing
     private void changePlayButton(boolean playing)
-            //changes the image of the playbutton when the song is playing
     {
         if (playing)
         {
@@ -320,13 +318,13 @@ public class MyTunesController implements Initializable
             //changes the image of the mute button when its muted
     {
         if (muted)
-    {
-        newImage("/mute.png");
-    }
-    else 
-    {
-        newImage("/unmute.png");
-    }
+        {
+            newImage("/mute.png");
+        }
+        else 
+        {
+            newImage("/unmute.png");
+        }
     }
   
     @FXML
@@ -365,7 +363,18 @@ public class MyTunesController implements Initializable
                 });
     }
 
+<<<<<<< HEAD
    
+=======
+    @FXML
+    private void updateFilter(ActionEvent event) throws SQLException 
+    {
+        String a=textField.getText();
+        System.out.println(a);
+        ListSongPlaylist.setItems((ObservableList<MyTunes>) model.getAllSongsByPlaylist(a));
+    }
+>>>>>>> a67f9a794a39187955cc455e13829f6e537fd135
+
 
     @FXML
     private void deletePlaylist(ActionEvent event) 
