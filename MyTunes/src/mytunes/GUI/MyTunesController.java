@@ -522,30 +522,17 @@ public class MyTunesController implements Initializable
     }
 
     @FXML
-    private void handleSongDown() {
+    private void handleSongDown() 
+    {
         moveSong(false);
     }
 
     @FXML
-    private void handleSongUp() {
+    private void handleSongUp() 
+    {
         moveSong(true);
     }
-
     
-    @FXML
-    private void addSongsToPlaylist(ActionEvent event) throws SQLException {
-       
-       
-        SongIDPlaylistID id= new SongIDPlaylistID();
-        id.setIDPlaylist(listPlaylist.getSelectionModel().getSelectedItem().getID());
-        id.setIDSong(ListSongPlaylist.getSelectionModel().getSelectedItem().getId());
-        model.addSongToPlaylist(id);
-       songsOnPlaylistTable.setItems(model.getSelectedPlaylist(listPlaylist.getSelectionModel().getSelectedItem().getID()));
-    }
-
-
-   
-
     @FXML
     private void handleAbout(ActionEvent event) {  //sets the "About Us"
              String contentText = "\t Hello, and welcome to our MyTunes.\n"
@@ -583,22 +570,34 @@ public class MyTunesController implements Initializable
      
        if(search)
        {
-         search=false;
-       searchFilter.setText("Search");
-       ListSongPlaylist.setItems((ObservableList<MyTunes>) model.getAllSong());
+            search=false;
+            searchFilter.setText("Search");
+            ListSongPlaylist.setItems((ObservableList<MyTunes>) model.getAllSong());
        }
        else
        {
-        String a=textField.getText();
-        ListSongPlaylist.setItems((ObservableList<MyTunes>) model.getAllSongsByPlaylist(a));
-       search=true;
-       searchFilter.setText("All song");
+            String a=textField.getText();
+            ListSongPlaylist.setItems((ObservableList<MyTunes>) model.getAllSongsByPlaylist(a));
+            search=true;
+            searchFilter.setText("All song");
        }
     
     }
 
     @FXML
-    private void addSongsToPlaylist(MouseEvent event) {
+    private void addSongsToPlaylist(MouseEvent event) throws SQLException 
+    {
+        SongIDPlaylistID id= new SongIDPlaylistID();
+        id.setIDPlaylist(listPlaylist.getSelectionModel().getSelectedItem().getID());
+        id.setIDSong(ListSongPlaylist.getSelectionModel().getSelectedItem().getId());
+        model.addSongToPlaylist(id);
+        songsOnPlaylistTable.setItems(model.getSelectedPlaylist(listPlaylist.getSelectionModel().getSelectedItem().getID()));
+    }
+
+    @FXML
+    private void getSelectedPlaylist(MouseEvent event) 
+    {
+        
     }
 }
 
