@@ -163,7 +163,7 @@ public class MyTunesController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        /*listSongTitle.setCellValueFactory(
+        listSongTitle.setCellValueFactory(
             new PropertyValueFactory("songName"));
         listSongArtist.setCellValueFactory(
             new PropertyValueFactory("artist"));
@@ -181,7 +181,7 @@ public class MyTunesController implements Initializable
          songsOnPlaylistClmn.setCellValueFactory(new PropertyValueFactory("SongName"));
          
         listPlaylist.setItems((ObservableList<Playlist>) model.getAllPlaylist());
-        sliderVolume.setValue(100);*/
+        sliderVolume.setValue(100);
     }   
 
    @FXML
@@ -214,7 +214,7 @@ public class MyTunesController implements Initializable
    }
     @FXML
     private void editPlaylist(ActionEvent event) throws IOException 
-            //loads playlistview so you can edit playlists
+//            loads playlistview so you can edit playlists
     {
         newFXMLplayListView();
    }
@@ -380,7 +380,7 @@ public class MyTunesController implements Initializable
             model.removePlaylist(playlist);
         }
     }
-//    
+   
     private void macros(KeyEvent key)
     {
         if (key.getCode() == KeyCode.SPACE)
@@ -489,9 +489,7 @@ public class MyTunesController implements Initializable
                 isPlaying=true;
                 handlePlayButton();
             }
-           
-                
-            
+             
         }
         );
     }
@@ -536,6 +534,7 @@ public class MyTunesController implements Initializable
     }
 
     
+    @FXML
     private void addSongsToPlaylist(ActionEvent event) throws SQLException {
        
        
@@ -546,14 +545,6 @@ public class MyTunesController implements Initializable
        songsOnPlaylistTable.setItems(model.getSelectedPlaylist(listPlaylist.getSelectionModel().getSelectedItem().getID()));
     }
 
-    @FXML
-    private void getPlaylist(MouseEvent event) throws SQLException 
-    {
-           int playlistID
-                =listPlaylist.getSelectionModel().getSelectedItem().getID();
-             
-            songsOnPlaylistTable.setItems(model.getSelectedPlaylist(playlistID));
-    }
 
    
 
