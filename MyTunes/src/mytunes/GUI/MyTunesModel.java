@@ -28,11 +28,9 @@ public class MyTunesModel
             = FXCollections.observableArrayList();
       private ObservableList<SongIDPlaylistID> songOnPlaylist
             = FXCollections.observableArrayList();
-      
     private ObservableList<Playlist> playlist
             = FXCollections.observableArrayList();
-  
-
+ 
     List<MyTunes> getAllSong() 
     {
         songList.clear();
@@ -40,19 +38,21 @@ public class MyTunesModel
        
         return songList;
     }
+    
     List<MyTunes> updateAllSong()
     {
     return songList;
     }
+    
      List<Playlist> getPlaylist()
     {
     return playlist;
     }
+     
     public void add (MyTunes mytunes) throws SQLException
     {   
         bllManager.add(mytunes);
        songList.add(mytunes);
-     
     }
 
     public void remove(MyTunes selectedMyTunes) 
@@ -65,10 +65,8 @@ public class MyTunesModel
 
     public void add (Playlist playlistSong) throws SQLException
     {   
-        
-                bllManager.add(playlistSong);
-                playlist.add(playlistSong);
-          
+        bllManager.add(playlistSong);
+        playlist.add(playlistSong);
     }
 
     List<Playlist> getAllPlaylist() 
@@ -77,39 +75,45 @@ public class MyTunesModel
         return playlist;
     }
 
-    void removePlaylist(Playlist playlistSongs) 
+    public void removePlaylist(Playlist playlistSongs) 
     {
-       bllManager.remove(playlistSongs);
+        bllManager.remove(playlistSongs);
         playlist.remove(playlistSongs);
     }
 
-    void addSongToPlaylist(SongIDPlaylistID ID) {
-      bllManager.addSongToPlaylist(ID);
-     songOnPlaylist.add(ID);
+    public void addSongToPlaylist(SongIDPlaylistID ID) 
+    {
+        bllManager.addSongToPlaylist(ID);
+        songOnPlaylist.add(ID);
+    }
     
-       
-}
- public List<MyTunes> getAllSongsByPlaylist(String song) throws SQLException
+    
+    public List<MyTunes> getAllSongsByPlaylist(String song) throws SQLException
     {
         songList.setAll(bllManager.getAllSongsByPlaylist(song));
         return songList;        
     }
 
-    ObservableList<MyTunes> removeSongPlaylist(SongIDPlaylistID SongPlaylist) throws SQLException {
-       songOnPlaylist.clear();
+    ObservableList<MyTunes> removeSongPlaylist(SongIDPlaylistID SongPlaylist) throws SQLException 
+    {
+          songOnPlaylist.clear();
           bllManager.removeSongToPlaylist(SongPlaylist);
-     songOnPlaylist.remove(SongPlaylist);
-     return getSelectedPlaylist(SongPlaylist.getIDPlaylist());
+          songOnPlaylist.remove(SongPlaylist);
+          
+          return getSelectedPlaylist(SongPlaylist.getIDPlaylist());
      }
 
     ObservableList<MyTunes> getSelectedPlaylist(int playlistID) throws SQLException {
         songOnPlaylist.clear();
-       
-    songOnPlaylist.addAll( bllManager.getSelectedPlaylist(playlistID));
-     
-    songOnPlaylist2.clear();
-        for (SongIDPlaylistID hey : songOnPlaylist) {
-            for (MyTunes myTunes : songList) {
+        songOnPlaylist.addAll( bllManager.getSelectedPlaylist(playlistID));
+        songOnPlaylist2.clear();
+        
+        
+        
+        for (SongIDPlaylistID hey : songOnPlaylist) 
+        {
+            for (MyTunes myTunes : songList) 
+            {
                 if(myTunes.getId()==hey.getIDSong())
                 {
                    songOnPlaylist2.add(myTunes);

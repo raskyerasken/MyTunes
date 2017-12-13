@@ -7,16 +7,12 @@ package mytunes.BE;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import static sun.audio.AudioPlayer.player;
 
 
 /**
@@ -41,8 +37,6 @@ public class MyTunes
         this.song = song;
     }
    
-
-  
     public float getSongLength()
     {
         return songLength.get();
@@ -150,9 +144,6 @@ public class MyTunes
         return genre;
        
     }
- 
-   
-     
     
     public void setGenre(String genre)
     {
@@ -164,9 +155,6 @@ public class MyTunes
     {
         return genre;
     }
-    
-     
-    
     
     @Override
     public String toString() 

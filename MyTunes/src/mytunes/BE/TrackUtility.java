@@ -11,7 +11,6 @@ import com.mpatric.mp3agic.Mp3File;
 import com.mpatric.mp3agic.NotSupportedException;
 import com.mpatric.mp3agic.UnsupportedTagException;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 import javax.swing.JFileChooser;
 
 /**
@@ -27,8 +26,8 @@ public class TrackUtility {
     String year; 
     String URLAdressSong;
     float songLength;
-int idminutes;
     float idseconds;
+    int idminutes;
 
     /**
      * Get all tracklists stored in user preferences
@@ -38,24 +37,26 @@ int idminutes;
      * @return List
      */
     private void choseFile() throws UnsupportedTagException, InvalidDataException, IOException, NotSupportedException {
-                                                                            JFileChooser chooser = new JFileChooser();
-    chooser.setCurrentDirectory(new java.io.File("."));
-    chooser.setDialogTitle("choosertitle");
+        JFileChooser chooser = new JFileChooser();
+        chooser.setCurrentDirectory(new java.io.File("."));
+        chooser.setDialogTitle("choosertitle");
 
 
 
-    if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
- 
-    System.out.println("getSelectedFile() : " + chooser.getSelectedFile());
-    } 
+            if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) 
+            {
+                System.out.println("getSelectedFile() : " + chooser.getSelectedFile());
+            } 
     
-    else 
-    {
-        System.out.println("No Selection ");
-    }
+            else 
+            {
+                System.out.println("No Selection ");
+            }
+            
+            
     URLAdressSong=""+chooser.getSelectedFile();
     Mp3File mp3file = new Mp3File(chooser.getSelectedFile());
-   songLength=(int) mp3file.getLengthInSeconds();
+    songLength=(int) mp3file.getLengthInSeconds();
     System.out.println("Length of this mp3 is: " + mp3file.getLengthInSeconds() + " seconds");  
     System.out.println("Has ID3v2 tag?: " + (mp3file.hasId3v2Tag() ? "YES" : "NO"));
   
@@ -73,8 +74,10 @@ int idminutes;
 
 
     public MyTunes getdata() throws UnsupportedTagException, InvalidDataException, IOException, NotSupportedException {
-        choseFile();
-        MyTunes song = new MyTunes();
+    choseFile();
+    MyTunes song = new MyTunes();
+    
+    
         if (year != null)
         {
             int yearr= Integer.parseInt(year);   
@@ -83,11 +86,11 @@ int idminutes;
 
         
         idminutes = (int) (songLength/60);
-           System.out.println(idminutes);
+        System.out.println(idminutes);
         idseconds = songLength%60;
 
         song.setSongLength(idminutes+idseconds/100);
-song.setAlbum(album);
+        song.setAlbum(album);
         song.setArtist(artist);
         song.setPath(URLAdressSong);
         song.setSongName(title);
