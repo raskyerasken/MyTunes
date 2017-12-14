@@ -558,26 +558,27 @@ public class MyTunesController implements Initializable
     
     @FXML
     private void handleAbout(ActionEvent event) {  //sets the "About Us"
-             String contentText = "\t Hello, and welcome to our MyTunes.\n"
-                +"\t In the file menu you can find\n"
-                +"\t how to create a new song\n"
-                +"\t how to create a new playlist\n"
-                +"\t how to close the program \n"
-                +"\t In the edit menu you can find\n"
-                +"\t how to edit a song\n"
-                +"\t how to edit a playlist\n"
-                +"\t how to delete a song\n"
-                +"\t how to delete a playlist\n"
-                +"\t We are a couple of students who made this\n"
-                +"\t if you have any problems at all\n"
-                +"\t you're very welcome to stream into a wall \n"
-                +"\t as there will be roughly zero support from us \n"
-                +"\t proudly presented by \n"
-                +"\t Jacob, Kristófer, Kent & Kasper\n";
+             String contentText = "\t Hello, and welcome to our MyTunes."
+                +"\n\t In the file menu you can find:\n"
+                +"\t * How to create a new song\n"
+                +"\t * How to create a new playlist\n"
+                +"\t * How to close the program \n"
+                +"\n\t In the edit menu you can find:\n"
+                +"\t * How to edit a song\n"
+                +"\t * How to edit a playlist\n"
+                +"\t * How to delete a song\n"
+                +"\t * How to delete a playlist\n"
+                +"\n\t We are a four students that created this program.\n"
+                +"\t If you have any problems at all,\n"
+                +"\t you are very welcome to stream into a wall \n"
+                +"\t since there will be roughly zero support from us \n"
+                +"\t unless you throw money at the screen. \n"
+                +"\t Proudly presented by De Raske: \n"
+                +"\t Jacob, Kristófer, Kent & Kasper Raskafar\n";
                 
         Alert about = new Alert(AlertType.INFORMATION);
-        about.setTitle("About us");
-        about.setHeaderText("About MyTunes");
+        about.setTitle("About us and MyTunes");
+        about.setHeaderText(null);
         about.setContentText(contentText);
         about.getDialogPane().setPrefWidth(480);
         about.resizableProperty().set(true);
@@ -611,44 +612,42 @@ public class MyTunesController implements Initializable
     private void addSongsToPlaylist(MouseEvent event) throws SQLException 
     {
         SongIDPlaylistID id= new SongIDPlaylistID();
-        if(listPlaylist.getSelectionModel().getSelectedItem()!=null &&ListSongPlaylist.getSelectionModel().getSelectedItem()!=null)
+        if(listPlaylist.getSelectionModel().getSelectedItem() != null && ListSongPlaylist.getSelectionModel().getSelectedItem() != null) 
         {
-        int lastSelected=listPlaylist.getSelectionModel().getSelectedIndex();
-        id.setIDPlaylist(listPlaylist.getSelectionModel().getSelectedItem().getID());
-        id.setIDSong(ListSongPlaylist.getSelectionModel().getSelectedItem().getId());
-        model.addSongToPlaylist(id);
-        songsOnPlaylistTable.setItems(model.getSelectedPlaylist(listPlaylist.getSelectionModel().getSelectedItem().getID()));
-        listPlaylist.setItems((ObservableList<Playlist>) model.getAllPlaylist());
-         listPlaylist.selectionModelProperty().get().select(lastSelected);
+            int lastSelected=listPlaylist.getSelectionModel().getSelectedIndex();
+            id.setIDPlaylist(listPlaylist.getSelectionModel().getSelectedItem().getID());
+            id.setIDSong(ListSongPlaylist.getSelectionModel().getSelectedItem().getId());
+            model.addSongToPlaylist(id);
+            songsOnPlaylistTable.setItems(model.getSelectedPlaylist(listPlaylist.getSelectionModel().getSelectedItem().getID()));
+            listPlaylist.setItems((ObservableList<Playlist>) model.getAllPlaylist());
+            listPlaylist.selectionModelProperty().get().select(lastSelected);
         }
-        else 
+        else
         {
-            showErrorDialog("Selection error", null, "Select a playlist and a song");
+            showErrorDialog("Selection Error", null, "Please select a song and/or a playlist");
         }
-    
     }
 
     @FXML
     private void getSelectedPlaylist(MouseEvent event) throws SQLException 
     {
-         songsOnPlaylistTable.setItems(model.getSelectedPlaylist(listPlaylist.getSelectionModel().getSelectedItem().getID()));
+        songsOnPlaylistTable.setItems(model.getSelectedPlaylist(listPlaylist.getSelectionModel().getSelectedItem().getID()));
     }
 
+    //Removes a song from the slected playlist, if nothing is slected you get a popup window
     @FXML
-    private void removeSongFromPlaylist(ActionEvent event) throws SQLException {
-        songIdPlaylistId.setIDPlaylist(listPlaylist.getSelectionModel().getSelectedItem().getID());
-        songIdPlaylistId.setIDSong(songsOnPlaylistTable.getSelectionModel().getSelectedItem().getId());
-        songsOnPlaylistTable.setItems(model.removeSongPlaylist(songIdPlaylistId));
-    }
-
-    @FXML
-    private void selectSongFromAllSong(MouseEvent event) {
-        songsOnPlaylistTable.selectionModelProperty().get().clearSelection();
-    }
-
-    @FXML
-    private void selectFromPlaylist(MouseEvent event) {
-        ListSongPlaylist.selectionModelProperty().get().clearSelection();
+    private void removeSongFromPlaylist(ActionEvent event) throws SQLException 
+    {
+        if (listPlaylist.getSelectionModel().getSelectedItem() != null && songsOnPlaylistTable.getSelectionModel().getSelectedItem() != null) 
+        {
+            songIdPlaylistId.setIDPlaylist(listPlaylist.getSelectionModel().getSelectedItem().getID());
+            songIdPlaylistId.setIDSong(songsOnPlaylistTable.getSelectionModel().getSelectedItem().getId());
+            songsOnPlaylistTable.setItems(model.removeSongPlaylist(songIdPlaylistId));
+        }
+        else
+        {
+            showErrorDialog("Selection Error", null, "Please select a song in the playlist in order to remove it");
+        }
     }
 }
 
