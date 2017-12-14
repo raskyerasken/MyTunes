@@ -23,6 +23,6 @@
       <Label layoutX="21.0" layoutY="36.0" text="Song name" />
       <TextField fx:id="txtYear" layoutX="98.0" layoutY="147.0" />
       <Label layoutX="21.0" layoutY="152.0" text="Year" />
-      <Button layoutX="5.0" layoutY="207.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="61.0" style="-fx-background-radius: 30;" text="Save" />
+      <Button layoutX="5.0" layoutY="207.0" mnemonicParsing="false" onAction="#save" prefHeight="27.0" prefWidth="61.0" style="-fx-background-radius: 30;" text="Save" />
    </children>
 </AnchorPane>

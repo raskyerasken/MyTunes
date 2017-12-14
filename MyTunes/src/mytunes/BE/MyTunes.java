@@ -139,19 +139,17 @@ public class MyTunes
     }
  
     
-    public StringProperty getGenre()
+    public String getGenre()
     {
-        return genre;
-       
+        return artist.get();
     }
     
     public void setGenre(String genre)
     {
         this.genre.set(genre);
-    }
-    
-    
-    public StringProperty genreProperty()
+    }   
+     
+    public StringProperty GenreProperty()
     {
         return genre;
     }

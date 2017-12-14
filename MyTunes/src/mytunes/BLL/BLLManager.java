@@ -68,6 +68,10 @@ public class BLLManager
     public List<SongIDPlaylistID> getSelectedPlaylist(int playlistID) throws SQLException {
    return mtdal.getSelectedPlaylist(playlistID);
            }
+
+    public void update(MyTunes myTunes) {
+    mtdal.update(myTunes);
+    }
    
 }
 

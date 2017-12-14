@@ -210,6 +210,8 @@ public class MyTunesController implements Initializable
         Parent root = fxLoader.load();
         SongViewController controller= fxLoader.getController();
         controller.setModel(model);
+         controller.setSelectFile(ListSongPlaylist.getSelectionModel().getSelectedItem());
+         
         Scene scene = new Scene(root);
         newStage.setScene(scene);
         newStage.show();
@@ -235,6 +237,7 @@ public class MyTunesController implements Initializable
         ListSongPlaylist.getSelectionModel().getSelectedItem();
         try 
         {
+           
             if (myTunes!=null)
             {
                 newsongView();
