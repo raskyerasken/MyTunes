@@ -280,6 +280,35 @@ public class myTunesDAL {
         }
         return  SongOnPlaylist;
     }
+
+    public void update(MyTunes myTunes) {
+     try (Connection con = cm.getConnection()) {
+            String sql
+                    = "UPDATE myTunes3 SET "
+                    + "name=?, album=?, year=?, path=?, songLength=?, artist=? "
+                    + "WHERE id=?";
+            
+           
+            PreparedStatement pstmt
+                    = con.prepareStatement(sql);
+            pstmt.setString(1, myTunes.getSongName());
+            pstmt.setString(2, myTunes.getAlbum());
+            pstmt.setInt(3, myTunes.getYear());
+            pstmt.setString(4, myTunes.getPath());
+            pstmt.setFloat(5, myTunes.getSongLength());
+            pstmt.setString(6, myTunes.getArtist());
+            pstmt.setInt(7, myTunes.getId());
+
+            int affected = pstmt.executeUpdate();
+            if (affected<1)
+                throw new SQLException("Prisoner could not be updated");
+
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(myTunesDAL.class.getName()).log(
+                    Level.SEVERE, null, ex);
+        }
+    }
       
 }
     

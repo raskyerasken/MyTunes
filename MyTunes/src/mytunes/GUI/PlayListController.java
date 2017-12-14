@@ -38,6 +38,7 @@ public class PlayListController implements Initializable
     public void initialize(URL url, ResourceBundle rb) 
     {
         
+        
     } 
     
     MyTunesModel model;
@@ -68,5 +69,5 @@ public class PlayListController implements Initializable
         // do what you have to do
         stage.close();
     }
-    
+
 }

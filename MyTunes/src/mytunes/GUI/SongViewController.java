@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import mytunes.BE.TrackUtility;
@@ -44,7 +45,7 @@ public class SongViewController implements Initializable {
     private TextField txtSongName;
     @FXML
     private TextField txtYear;
-    
+    MyTunes myTunes;
     /**
      * Initializes the controller class.
      */
@@ -52,6 +53,7 @@ public class SongViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) 
     {
         
+      
     }    
     
 
@@ -81,6 +83,30 @@ public class SongViewController implements Initializable {
     {
         this.model = model;
     }
+
+   
+
+    void setSelectFile(MyTunes myTunes) {
+       if(myTunes!=null){
+        txtSongName.setText(myTunes.getSongName());
+        txtCategory.setText(myTunes.getGenre());
+        txtArtist.setText(myTunes.getArtist());
+        txtYear.setText(myTunes.getYear()+"");
+        }
+    }
+
+    @FXML
+    private void save(ActionEvent event) {
+       myTunes.setArtist(txtArtist.getText());
+       myTunes.setSongName(txtSongName.getText());
+       myTunes.setGenre(txtCategory.getText());
+       myTunes.setYear(Integer.parseInt(txtYear.getText()));
+       model.changeSongInfoMation(myTunes);
+       Stage stage = (Stage) closeButton.getScene().getWindow();
+        // do what you have to do
+        stage.close();
+    }
+    
 }
 
     

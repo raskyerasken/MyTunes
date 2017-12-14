@@ -152,6 +152,10 @@ int counterTimeSeconds;
     
     return songOnPlaylist2;
     }
+
+    void changeSongInfoMation(MyTunes myTunes) {
+       bllManager.update(myTunes);
+    }
 } 
 
 
