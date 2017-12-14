@@ -410,7 +410,6 @@ public class MyTunesController implements Initializable
     }
     
     
-    @FXML
     private void macros(KeyEvent key)
     {
         if (key.getCode() == KeyCode.SPACE)
