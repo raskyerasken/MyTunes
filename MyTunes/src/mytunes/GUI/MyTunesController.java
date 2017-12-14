@@ -73,7 +73,6 @@ import mytunes.GUI.model.SongModel;
 public class MyTunesController implements Initializable 
 {
     SongManager songManager= new SongManager();
-//    MyTunes myTunes = new MyTunes();
     TableViewSelectionModel<MyTunes> selectionModel;
     
     private Label label;
@@ -158,7 +157,7 @@ public class MyTunesController implements Initializable
     private TableColumn<MyTunes, String> songsOnPlaylistClmn;
     @FXML
     private Button searchFilter;
-SongIDPlaylistID songIdPlaylistId = new SongIDPlaylistID(); 
+    SongIDPlaylistID songIdPlaylistId = new SongIDPlaylistID(); 
     @FXML
     private TableColumn<Playlist, Integer> columsSongs;
     @FXML
@@ -178,47 +177,49 @@ SongIDPlaylistID songIdPlaylistId = new SongIDPlaylistID();
         listSongTime.setCellValueFactory(
             new PropertyValueFactory("songLength"));
         
-        
         ListSongPlaylist.setItems((ObservableList<MyTunes>) model.getAllSong());
         changePlayButton(isPlaying);
         columnPlaylist.setCellValueFactory(
             new PropertyValueFactory("playlistName"));
-       columsSongs.setCellValueFactory(
+        columsSongs.setCellValueFactory(
             new PropertyValueFactory("songNumbers"));
-          columTime.setCellValueFactory(
+        columTime.setCellValueFactory(
             new PropertyValueFactory("playlistTime"));
         
-         songsOnPlaylistClmn.setCellValueFactory(new PropertyValueFactory("SongName"));
+        songsOnPlaylistClmn.setCellValueFactory(new PropertyValueFactory("SongName"));
          
-        
-        try {
+        try 
+        {
             listPlaylist.setItems((ObservableList<Playlist>) model.getAllPlaylist());
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) 
+        {
             Logger.getLogger(MyTunesController.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
         sliderVolume.setValue(100);
     }   
 
-   @FXML
-   private void newPlaylist(ActionEvent event) throws IOException 
-   {
-        newFXMLplayListView();
-   }
-     void newFXMLplayListView() throws IOException{
-       Stage newStage = new Stage();
-       FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("playListView.fxml"));
+    @FXML
+    private void newPlaylist(ActionEvent event) throws IOException 
+    {
+         newFXMLplayListView();
+    }
+    
+    void newFXMLplayListView() throws IOException
+    {
+        Stage newStage = new Stage();
+        FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("playListView.fxml"));
         Parent root = fxLoader.load();
         PlayListController controller= fxLoader.getController();
         controller.setModel(model);
         Scene scene = new Scene(root);
         newStage.setScene(scene);
         newStage.show();
-
-   }
+    }
      
-      void newsongView() throws IOException{
-       Stage newStage = new Stage();
+    void newsongView() throws IOException
+    {
+        Stage newStage = new Stage();
 
         FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("songView.fxml"));
         Parent root = fxLoader.load();
@@ -227,16 +228,17 @@ SongIDPlaylistID songIdPlaylistId = new SongIDPlaylistID();
         Scene scene = new Scene(root);
         newStage.setScene(scene);
         newStage.show();
-   }
+    }
+    
+    //loads playlistview so you can edit playlists
     @FXML
     private void editPlaylist(ActionEvent event) throws IOException 
-//            loads playlistview so you can edit playlists
     {
         newFXMLplayListView();
-   }
+    }
    
-  @FXML
-    private void newSong(ActionEvent event) throws IOException 
+   @FXML
+   private void newSong(ActionEvent event) throws IOException 
    {
         newsongView();
    }
@@ -245,26 +247,28 @@ SongIDPlaylistID songIdPlaylistId = new SongIDPlaylistID();
     private void editSong(ActionEvent event) 
     {
         MyTunes myTunes=
-       ListSongPlaylist.getSelectionModel().getSelectedItem();
-        try {
+        ListSongPlaylist.getSelectionModel().getSelectedItem();
+        try 
+        {
             if (myTunes!=null)
             {
-            newsongView();
+                newsongView();
             }
             else
             {
-          showErrorDialog("No SongSelected", null, "Please select a song first.");
+                showErrorDialog("No SongSelected", null, "Please select a song first.");
             }
         }
-        catch(IOException ex){
+        catch(IOException ex)
+        {
             showErrorDialog("I/O Exception", "DATASTREAM FAILED!", "Please select a song first.");
         }
       
     }  
 
+    //allows you to delete a song
     @FXML
     private void DeleteSong(ActionEvent event) 
-            //allows you to delete a song
     {
         MyTunes selectedMyTunes = ListSongPlaylist.getSelectionModel().getSelectedItem();
         if(selectedMyTunes==null)
@@ -277,9 +281,9 @@ SongIDPlaylistID songIdPlaylistId = new SongIDPlaylistID();
         }
     }
         
+    //handles playing the song, and making sure its not null before playing
     @FXML
     private void handlePlayButton() 
-            //handles playing the song, and making sure its not null before playing
     {
        selectedSong = (MyTunes) ListSongPlaylist.getSelectionModel().getSelectedItem();
        if (selectedSong == null )
@@ -301,8 +305,8 @@ SongIDPlaylistID songIdPlaylistId = new SongIDPlaylistID();
        progressBarTimeHandler();
     }
     
+    //allows us to create error messages
     private void showErrorDialog(String title, String header, String message)
-            //allows us to create error messages
     {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle(title);
@@ -311,42 +315,52 @@ SongIDPlaylistID songIdPlaylistId = new SongIDPlaylistID();
         
         alert.showAndWait();
     }
-   //changes the image of the playbutton when the song is playing
+    
+    //changes the image of the playbutton when the song is playing
     private void changePlayButton(boolean playing)
     {
         if (playing)
         {
-            newImage("/pause.png");
+            newImageForPlay("/pause.png");
             isPlaying = false;
         }
         else
         {
-            newImage("/play.png");
+            newImageForPlay("/play.png");
             isPlaying = true;
         }
      }
-    private void newImage(String picture)
-    {
-     Image image= new Image(getClass().getResourceAsStream(picture));
-     imgPlay.setImage(image);
-    }
     
+        //changes the image of the mute button when its muted
     private void changeMuteButton(boolean muted)
-            //changes the image of the mute button when its muted
     {
         if (muted)
         {
-            newImage("/mute.png");
+            newImageForMute("/mute.png");
         }
         else 
         {
-            newImage("/unmute.png");
+            newImageForMute("/unmute.png");
         }
     }
-  
+    
+    //The method to change the image, since we change the image on the 
+    //play button here we used the same method twice, to change the mute button as well
+    private void newImageForPlay(String picture)
+    {
+        Image image= new Image(getClass().getResourceAsStream(picture));
+        imgPlay.setImage(image);
+    }
+    private void newImageForMute(String picture)
+    {
+        Image image= new Image(getClass().getResourceAsStream(picture));
+        imgMute.setImage(image);
+    }
+    
+
+    //allows the user to mute the sound
     @FXML
     private void handleMuteSound()
-            //allows the user to mute the sound
     {
         if (!isMuted)
         {
@@ -364,9 +378,9 @@ SongIDPlaylistID songIdPlaylistId = new SongIDPlaylistID();
         changeMuteButton(isMuted);
     }
     
-   @FXML
+    //updates the volume based on where the user positions the slider
+    @FXML
     private void VolumeSliderUpdate()
-            //updates the volume based on where the user positions the slider
     {
       
         sliderVolume.valueProperty().addListener((ObservableValue<? extends Number> listener, Number oldVal, Number newVal)
@@ -379,8 +393,6 @@ SongIDPlaylistID songIdPlaylistId = new SongIDPlaylistID();
                     }
                 });
     }
-
-
 
     @FXML
     private void deletePlaylist(ActionEvent event) 
@@ -396,21 +408,16 @@ SongIDPlaylistID songIdPlaylistId = new SongIDPlaylistID();
             model.removePlaylist(playlist);
         }
     }
-   
+    
+    
+    @FXML
     private void macros(KeyEvent key)
     {
         if (key.getCode() == KeyCode.SPACE)
         {
             handlePlayButton();
-        }
-//        
-//       if (key.getCode() == KeyCode.DELETE)
-//        {
-//            deletePlaylist();
-//        }
-
-   
-  }
+        }   
+    }
   
     @FXML
     private void nextSong() 
@@ -446,7 +453,7 @@ SongIDPlaylistID songIdPlaylistId = new SongIDPlaylistID();
         }
         selectedSong = (MyTunes) ListSongPlaylist.getSelectionModel().getSelectedItem();
         songManager.playSong(selectedSong, false);
-}
+    }
 
     private void update()
     {
@@ -455,9 +462,9 @@ SongIDPlaylistID songIdPlaylistId = new SongIDPlaylistID();
         tableSongsTotalItems = ListSongPlaylist.getItems().size() - 1;
     }
 
+    //allows the user to close the program, and does a pop-up making sure the user actually wants to
     @FXML
     private void closeProgram(ActionEvent event) 
-            //allows the user to close the program, and does a pop-up making sure the user actually wants to
     {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
@@ -471,10 +478,9 @@ SongIDPlaylistID songIdPlaylistId = new SongIDPlaylistID();
         } 
     } 
 
-     @FXML
+    //handles the progress bar
+    @FXML
     private void handleProgressBar(MouseEvent event)
-
-            //handles the progress bar
     {        
 
         double mousePos = event.getX();
@@ -504,14 +510,12 @@ SongIDPlaylistID songIdPlaylistId = new SongIDPlaylistID();
                 progressBarTimeHandler();
             }
              
-        }
-        );
+        });
     }
    
+    //allows the user to move the song up or down, depending on the button clicked
     private void moveSong(boolean up)
-            //allows the user to move the song up or down, depending on the button clicked
     {
-      
         int cIndex = ListSongPlaylist.getSelectionModel().getSelectedIndex();
         int changeIndex = cIndex;
         boolean change = false;
