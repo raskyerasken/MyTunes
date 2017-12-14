@@ -75,17 +75,13 @@ public class MyTunesModel
     List<Playlist> getAllPlaylist() throws SQLException 
     {
         
-        
+        playlist.clear();
         for (Playlist pl : bllManager.getallPlaylist()) {
             getSelectedPlaylist(pl.getID()); 
-            
-           int plotminutes=(int) (plot/60);
-            System.out.println("plot"+plot);
-                float plotSecond= plot%60;
-                System.out.println("sec"+plotSecond);
-                counterTime=plotminutes+plotSecond/100;
+            int plotminutes=(int) (plot/60);
+            float plotSecond= plot%60;
+            counterTime=plotminutes+plotSecond/100;
            pl.setsongNumbers(counter);
-          
            pl.setplaylistTime(counterTime);
            playlist.add(pl);
             

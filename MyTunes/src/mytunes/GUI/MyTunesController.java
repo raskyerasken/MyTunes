@@ -608,10 +608,13 @@ public class MyTunesController implements Initializable
     private void addSongsToPlaylist(MouseEvent event) throws SQLException 
     {
         SongIDPlaylistID id= new SongIDPlaylistID();
+        int lastSelected=listPlaylist.getSelectionModel().getSelectedIndex();
         id.setIDPlaylist(listPlaylist.getSelectionModel().getSelectedItem().getID());
         id.setIDSong(ListSongPlaylist.getSelectionModel().getSelectedItem().getId());
         model.addSongToPlaylist(id);
         songsOnPlaylistTable.setItems(model.getSelectedPlaylist(listPlaylist.getSelectionModel().getSelectedItem().getID()));
+       listPlaylist.setItems((ObservableList<Playlist>) model.getAllPlaylist());
+       listPlaylist.selectionModelProperty().get().select(lastSelected);
     }
 
     @FXML
@@ -624,7 +627,7 @@ public class MyTunesController implements Initializable
     private void removeSongFromPlaylist(ActionEvent event) throws SQLException {
         songIdPlaylistId.setIDPlaylist(listPlaylist.getSelectionModel().getSelectedItem().getID());
         songIdPlaylistId.setIDSong(songsOnPlaylistTable.getSelectionModel().getSelectedItem().getId());
-           ListSongPlaylist.setItems(model.removeSongPlaylist(songIdPlaylistId));
+        songsOnPlaylistTable.setItems(model.removeSongPlaylist(songIdPlaylistId));
     }
 }
 
