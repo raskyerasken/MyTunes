@@ -5,7 +5,6 @@
  */
 package mytunes.GUI;
 
-import java.awt.Cursor;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -15,15 +14,6 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
-
-
-import static javafx.beans.binding.Bindings.length;
-
-import javafx.beans.value.ChangeListener;
-
-import static javafx.beans.binding.Bindings.length;
-import javafx.beans.value.ChangeListener;
-
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,7 +29,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -48,22 +37,17 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.DragEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import static javax.swing.Spring.width;
 import mytunes.BE.MyTunes;
 import mytunes.BE.Playlist;
 import mytunes.BE.SongIDPlaylistID;
-
 import mytunes.BLL.SongManager;
-import mytunes.GUI.model.SongModel;
 
 
 /**
@@ -206,6 +190,7 @@ public class MyTunesController implements Initializable
     }
     
     void newFXMLplayListView() throws IOException
+            //sets the stage for the playlistview
     {
         Stage newStage = new Stage();
         FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("playListView.fxml"));
@@ -410,7 +395,6 @@ public class MyTunesController implements Initializable
     }
     
     
-    @FXML
     private void macros(KeyEvent key)
     {
         if (key.getCode() == KeyCode.SPACE)
@@ -421,6 +405,7 @@ public class MyTunesController implements Initializable
   
     @FXML
     private void nextSong() 
+            //Does so you can click 'Next' and it goes to the next song
     {
         update();
         if (selectedSongIndex == tableSongsTotalItems || ListSongPlaylist.getSelectionModel().getSelectedItem()==null)
@@ -437,6 +422,7 @@ public class MyTunesController implements Initializable
 
     @FXML
     private void prevSong(MouseEvent event) 
+            //does so you can press previous and it'll play the previous song
     {
         update();
         if( ListSongPlaylist.getSelectionModel().getSelectedItem()==null)
