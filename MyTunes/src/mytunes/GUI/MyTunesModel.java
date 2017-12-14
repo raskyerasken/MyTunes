@@ -6,6 +6,7 @@
 package mytunes.GUI;
 
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,6 +33,7 @@ public class MyTunesModel
             = FXCollections.observableArrayList();
  int counter= 0 ;
  float counterTime=0;
+ DecimalFormat df = new DecimalFormat("#.##");
     List<MyTunes> getAllSong() 
     {
         songList.clear();
@@ -75,8 +77,15 @@ public class MyTunesModel
         
         
         for (Playlist pl : bllManager.getallPlaylist()) {
-            getSelectedPlaylist(pl.getID());
+            getSelectedPlaylist(pl.getID()); 
+            
+           int plotminutes=(int) (plot/60);
+            System.out.println("plot"+plot);
+                float plotSecond= plot%60;
+                System.out.println("sec"+plotSecond);
+                counterTime=plotminutes+plotSecond/100;
            pl.setsongNumbers(counter);
+          
            pl.setplaylistTime(counterTime);
            playlist.add(pl);
             
@@ -111,14 +120,16 @@ public class MyTunesModel
           songOnPlaylist.remove(SongPlaylist);
           
           return getSelectedPlaylist(SongPlaylist.getIDPlaylist());
-     }
-
+     } 
+    float plot;
+int counterTimeSeconds;
     ObservableList<MyTunes> getSelectedPlaylist(int playlistID) throws SQLException {
         songOnPlaylist.clear();
         songOnPlaylist.addAll( bllManager.getSelectedPlaylist(playlistID));
         songOnPlaylist2.clear();
-      counterTime=0;
-         counter = 0;
+       counter = 0;
+         plot=0;
+        
         for (SongIDPlaylistID hey : songOnPlaylist) 
         {
            
@@ -126,9 +137,14 @@ public class MyTunesModel
             {
                 
                 if(myTunes.getId()==hey.getIDSong())
-                {counter++;
-                counterTime=myTunes.getSongLength()+counterTime;
-                    System.out.println(counter);
+                {
+                    counter++;
+               int minutes= (int) myTunes.getSongLength();
+                   
+               float seconds = (myTunes.getSongLength()-minutes);
+               
+                plot= (float) (minutes*60+seconds*100)+plot;
+                  
                    songOnPlaylist2.add(myTunes);
                    
                 }
