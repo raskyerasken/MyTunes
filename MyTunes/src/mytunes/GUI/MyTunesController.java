@@ -210,7 +210,7 @@ public class MyTunesController implements Initializable
         Parent root = fxLoader.load();
         SongViewController controller= fxLoader.getController();
         controller.setModel(model);
-         controller.setSelectFile(ListSongPlaylist.getSelectionModel().getSelectedItem());
+         controller.setSelectFile(ListSongPlaylist.getSelectionModel().getSelectedItem(),ListSongPlaylist.getSelectionModel().getSelectedIndex());
          
         Scene scene = new Scene(root);
         newStage.setScene(scene);
@@ -651,6 +651,14 @@ public class MyTunesController implements Initializable
         {
             showErrorDialog("Selection Error", null, "Please select a song in the playlist in order to remove it");
         }
+    }
+
+    @FXML
+    private void selectSongFromAllSong(MouseEvent event) {
+    }
+
+    @FXML
+    private void selectFromPlaylist(MouseEvent event) {
     }
 }
 

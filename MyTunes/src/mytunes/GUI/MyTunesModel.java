@@ -153,8 +153,10 @@ int counterTimeSeconds;
     return songOnPlaylist2;
     }
 
-    void changeSongInfoMation(MyTunes myTunes) {
+    void changeSongInfoMation(MyTunes myTunes, int index) {
        bllManager.update(myTunes);
+       songList.set(index, myTunes);
+       
     }
 } 
 

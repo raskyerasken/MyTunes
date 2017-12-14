@@ -32,7 +32,7 @@ public class SongViewController implements Initializable {
     
     @FXML
     private Button chooseDirectory;
-
+    int index;
     MyTunes songData ;
     MyTunesModel model;
     @FXML
@@ -86,7 +86,9 @@ public class SongViewController implements Initializable {
 
    
 
-    void setSelectFile(MyTunes myTunes) {
+    void setSelectFile(MyTunes myTunes, int index) {
+        this.myTunes=myTunes;
+        this.index=index;
        if(myTunes!=null){
         txtSongName.setText(myTunes.getSongName());
         txtCategory.setText(myTunes.getGenre());
@@ -99,9 +101,9 @@ public class SongViewController implements Initializable {
     private void save(ActionEvent event) {
        myTunes.setArtist(txtArtist.getText());
        myTunes.setSongName(txtSongName.getText());
-       myTunes.setGenre(txtCategory.getText());
+       myTunes.setAlbum(txtCategory.getText());
        myTunes.setYear(Integer.parseInt(txtYear.getText()));
-       model.changeSongInfoMation(myTunes);
+       model.changeSongInfoMation(myTunes,index);
        Stage stage = (Stage) closeButton.getScene().getWindow();
         // do what you have to do
         stage.close();
