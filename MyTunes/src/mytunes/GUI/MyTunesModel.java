@@ -117,7 +117,7 @@ public class MyTunesModel
         songOnPlaylist.clear();
         songOnPlaylist.addAll( bllManager.getSelectedPlaylist(playlistID));
         songOnPlaylist2.clear();
-      
+      counterTime=0;
          counter = 0;
         for (SongIDPlaylistID hey : songOnPlaylist) 
         {
