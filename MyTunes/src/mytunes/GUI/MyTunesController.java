@@ -58,7 +58,7 @@ public class MyTunesController implements Initializable
 {
     SongManager songManager= new SongManager();
     TableViewSelectionModel<MyTunes> selectionModel;
-    
+    private MyTunes selectedSongPlayList;
     private Label label;
     @FXML
     private TableView<MyTunes> ListSongPlaylist;
@@ -78,7 +78,7 @@ public class MyTunesController implements Initializable
     private TableColumn<MyTunes, Integer> listSongTime;
     @FXML
     private Button playBtn;
-    
+    TableView playfrom;
     MyTunesModel model= new MyTunesModel();
     SongViewController songview = new SongViewController();
     
@@ -270,24 +270,39 @@ public class MyTunesController implements Initializable
     @FXML
     private void handlePlayButton() 
     {
+      
        selectedSong = (MyTunes) ListSongPlaylist.getSelectionModel().getSelectedItem();
-       if (selectedSong == null )
+       selectedSongPlayList=songsOnPlaylistTable.getSelectionModel().getSelectedItem();
+       if (selectedSong == null && selectedSongPlayList == null)
        {
-            ListSongPlaylist.selectionModelProperty().get().select(0);
+            songsOnPlaylistTable.selectionModelProperty().get().select(0);
+            selectedSongPlayList=songsOnPlaylistTable.getSelectionModel().getSelectedItem();
        }
+        
        //if the play button gets pressed
        if (isPlaying)
        {
-           songManager.playSong(selectedSong, false);
-           System.out.println(selectedSong.getPath());
+           if(selectedSong != null)
+           {playfrom=ListSongPlaylist;
+                songManager.playSong(selectedSong, false);
+                songLength.setText(selectedSong.getSongLength()+"");
+                  progressBarTimeHandler(ListSongPlaylist);
+           }
+           else if (selectedSongPlayList != null)
+           {
+               playfrom=songsOnPlaylistTable;
+                System.out.println("hey");
+                songManager.playSong(selectedSongPlayList, false);
+                songLength.setText(selectedSongPlayList.getSongLength()+"");
+                  progressBarTimeHandler(songsOnPlaylistTable);
+           }
        }
        else 
        {
            songManager.pauseSong();
        }
-       songLength.setText(selectedSong.getSongLength()+"");
-       changePlayButton(isPlaying);
-       progressBarTimeHandler();
+      changePlayButton(isPlaying);
+       
     }
     
     //allows us to create error messages
@@ -408,7 +423,7 @@ public class MyTunesController implements Initializable
             //Does so you can click 'Next' and it goes to the next song
     {
         update();
-        if (selectedSongIndex == tableSongsTotalItems || ListSongPlaylist.getSelectionModel().getSelectedItem()==null)
+        if (selectedSongIndex == tableSongsTotalItems || playfrom.getSelectionModel().getSelectedItem()==null)
         {
             selectionModel.clearAndSelect(0);            
         }
@@ -416,8 +431,9 @@ public class MyTunesController implements Initializable
         {
             selectionModel.clearAndSelect(selectedSongIndex + 1);
         }
-        selectedSong = (MyTunes) ListSongPlaylist.getSelectionModel().getSelectedItem();
+        selectedSong = (MyTunes) playfrom.getSelectionModel().getSelectedItem();
         songManager.playSong(selectedSong, false);
+          progressBarTimeHandler(playfrom);
     }
 
     @FXML
@@ -425,7 +441,7 @@ public class MyTunesController implements Initializable
             //does so you can press previous and it'll play the previous song
     {
         update();
-        if( ListSongPlaylist.getSelectionModel().getSelectedItem()==null)
+        if( playfrom.getSelectionModel().getSelectedItem()==null)
         {
             selectionModel.clearAndSelect(0);
         }
@@ -437,15 +453,16 @@ public class MyTunesController implements Initializable
         {
             selectionModel.clearAndSelect(selectedSongIndex -1);
         }
-        selectedSong = (MyTunes) ListSongPlaylist.getSelectionModel().getSelectedItem();
+        selectedSong = (MyTunes) playfrom.getSelectionModel().getSelectedItem();
         songManager.playSong(selectedSong, false);
+          progressBarTimeHandler(playfrom);
     }
 
     private void update()
     {
-        selectionModel = (TableViewSelectionModel<MyTunes>) ListSongPlaylist.selectionModelProperty().getValue();
+        selectionModel = (TableViewSelectionModel<MyTunes>) playfrom.selectionModelProperty().getValue();
         selectedSongIndex = selectionModel.getSelectedIndex();
-        tableSongsTotalItems = ListSongPlaylist.getItems().size() - 1;
+        tableSongsTotalItems = playfrom.getItems().size() - 1;
     }
 
     //allows the user to close the program, and does a pop-up making sure the user actually wants to
@@ -477,12 +494,12 @@ public class MyTunesController implements Initializable
         songManager.getMediaPlayer().seek(Duration.seconds(lenghtDiff));
     }
    
-    private void progressBarTimeHandler()
+    private void progressBarTimeHandler(TableView playfrom)
     {
         songManager.getMediaPlayer().currentTimeProperty().addListener((ObservableValue<? extends Duration> listener, Duration oldVal, Duration newVal)
         ->
         {
-            int selecSong = ListSongPlaylist.getSelectionModel().getSelectedIndex();
+            int selecSong = playfrom.getSelectionModel().getSelectedIndex();
             double timeElapsed = newVal.toMillis() / songManager.getSongLength().toMillis();
             this.progressBar.setProgress(timeElapsed);
             
@@ -493,7 +510,7 @@ public class MyTunesController implements Initializable
             if(progressBar.getProgress()==1)
             {
                 nextSong();
-                progressBarTimeHandler();
+                progressBarTimeHandler(playfrom);
             }
              
         });
@@ -594,13 +611,21 @@ public class MyTunesController implements Initializable
     private void addSongsToPlaylist(MouseEvent event) throws SQLException 
     {
         SongIDPlaylistID id= new SongIDPlaylistID();
+        if(listPlaylist.getSelectionModel().getSelectedItem()!=null &&ListSongPlaylist.getSelectionModel().getSelectedItem()!=null)
+        {
         int lastSelected=listPlaylist.getSelectionModel().getSelectedIndex();
         id.setIDPlaylist(listPlaylist.getSelectionModel().getSelectedItem().getID());
         id.setIDSong(ListSongPlaylist.getSelectionModel().getSelectedItem().getId());
         model.addSongToPlaylist(id);
         songsOnPlaylistTable.setItems(model.getSelectedPlaylist(listPlaylist.getSelectionModel().getSelectedItem().getID()));
-       listPlaylist.setItems((ObservableList<Playlist>) model.getAllPlaylist());
-       listPlaylist.selectionModelProperty().get().select(lastSelected);
+        listPlaylist.setItems((ObservableList<Playlist>) model.getAllPlaylist());
+         listPlaylist.selectionModelProperty().get().select(lastSelected);
+        }
+        else 
+        {
+            showErrorDialog("Selection error", null, "Select a playlist and a song");
+        }
+    
     }
 
     @FXML
@@ -614,6 +639,16 @@ public class MyTunesController implements Initializable
         songIdPlaylistId.setIDPlaylist(listPlaylist.getSelectionModel().getSelectedItem().getID());
         songIdPlaylistId.setIDSong(songsOnPlaylistTable.getSelectionModel().getSelectedItem().getId());
         songsOnPlaylistTable.setItems(model.removeSongPlaylist(songIdPlaylistId));
+    }
+
+    @FXML
+    private void selectSongFromAllSong(MouseEvent event) {
+        songsOnPlaylistTable.selectionModelProperty().get().clearSelection();
+    }
+
+    @FXML
+    private void selectFromPlaylist(MouseEvent event) {
+        ListSongPlaylist.selectionModelProperty().get().clearSelection();
     }
 }
 
